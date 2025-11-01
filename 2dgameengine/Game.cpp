@@ -17,7 +17,7 @@ void Game::Initialize() {
 		return;
 	}
 
-	SDL_Window* window = SDL_CreateWindow(
+	m_window = SDL_CreateWindow(
 		NULL,
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
@@ -26,18 +26,18 @@ void Game::Initialize() {
 		SDL_WINDOW_BORDERLESS
 	);
 
-	if (!window) {
+	if (!m_window) {
 		std::cerr << "Error initializing SDL window." << std::endl;
 		return;
 	}
 
-	SDL_Renderer* renderer = SDL_CreateRenderer(
-		window,
+	m_renderer = SDL_CreateRenderer(
+		m_window,
 		-1,
 		0
 	);
 
-	if (!renderer) {
+	if (!m_renderer) {
 		std::cerr << "Error initializing SDL renderer." << std::endl;
 		return;
 	}
@@ -60,4 +60,10 @@ void Game::Update() {};
 
 void Game::Render() {};
 
-void Game::Destroy() {};
+void Game::Destroy() {
+
+	SDL_DestroyRenderer(m_renderer);
+	SDL_DestroyWindow(m_window);
+	SDL_Quit();
+
+};
