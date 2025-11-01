@@ -10,6 +10,7 @@ private:
 	SDL_Window* m_window;
 	SDL_Renderer* m_renderer;
 	bool m_IsRunning;
+	int m_MillisecsPreviousFrame = 0;
 
 public:
 	Game();

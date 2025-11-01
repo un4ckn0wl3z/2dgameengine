@@ -93,6 +93,10 @@ void  Game::Setup() {
 }
 
 void Game::Update() {
+	// frame control
+	while (!SDL_TICKS_PASSED(SDL_GetTicks(), m_MillisecsPreviousFrame + MILLISECS_PER_FRAME));
+	m_MillisecsPreviousFrame = SDL_GetTicks();
+
 	playerPosition.x += playerVelocity.x;
 	playerPosition.y += playerVelocity.y;
 };
