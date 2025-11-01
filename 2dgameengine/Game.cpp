@@ -88,7 +88,7 @@ glm::vec2 playerVelocity;
 void  Game::Setup() {
 	// setup game object
 	playerPosition = glm::vec2(10.0, 20.0);
-	playerVelocity = glm::vec2(1.0, 0.0);
+	playerVelocity = glm::vec2(100, 0.0);
 
 }
 
