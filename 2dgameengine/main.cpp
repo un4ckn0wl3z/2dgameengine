@@ -4,6 +4,14 @@
 #include "SDL_ttf.h"
 #include "SDL_mixer.h"
 #include "glm.hpp"
+#include "imgui.h"
+extern "C"
+{
+    #include "lua.h"
+    #include "lauxlib.h"
+    #include "lualib.h"
+}
+#include "sol.hpp"
 
 int main(int argc, char* argv[]){
     SDL_Init(SDL_INIT_EVERYTHING);
