@@ -114,6 +114,7 @@ void Game::Render() {
 		10, 10, 32, 32
 	};
 	SDL_RenderCopy(m_renderer, texture, NULL, &dstRect);
+	SDL_DestroyTexture(texture);
 
 	// draw (switch-buffer)
 	SDL_RenderPresent(m_renderer);
