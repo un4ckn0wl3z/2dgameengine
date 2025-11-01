@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="libs\imgui\src\imgui.cpp" />
     <ClCompile Include="libs\imgui\src\imgui_demo.cpp" />
     <ClCompile Include="libs\imgui\src\imgui_draw.cpp" />
@@ -169,6 +170,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game.h" />
     <ClInclude Include="libs\lua\src\lua.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
