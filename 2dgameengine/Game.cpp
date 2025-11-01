@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "SDL.h"
+#include "SDL_image.h"
 #include <iostream>
 
 Game::Game() {
@@ -98,12 +99,21 @@ void Game::Render() {
 	SDL_RenderClear(m_renderer);
 
 	// render game object
-	SDL_Rect player = {
-		10, 10, 20, 20
-	};
-	SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
-	SDL_RenderFillRect(m_renderer, &player);
+	//SDL_Rect player = {
+	//	10, 10, 20, 20
+	//};
+	//SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
+	//SDL_RenderFillRect(m_renderer, &player);
 
+	// draw texture
+	SDL_Surface* surface = IMG_Load("./assets/images/tank-tiger-right.png");
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(m_renderer, surface);
+	SDL_FreeSurface(surface);
+
+	SDL_Rect dstRect = {
+		10, 10, 32, 32
+	};
+	SDL_RenderCopy(m_renderer, texture, NULL, &dstRect);
 
 	// draw (switch-buffer)
 	SDL_RenderPresent(m_renderer);
