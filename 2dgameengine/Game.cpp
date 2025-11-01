@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "SDL.h"
 #include <iostream>
 
 Game::Game() {
@@ -9,9 +10,35 @@ Game::~Game() {
 	std::cout << "Game decontructor called" << std::endl;
 };
 
-void Game::Initialize() {};
+void Game::Initialize() {
 
-void Game::Run() {};
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
+		std::cerr << "Error initializing SDL." << std::endl;
+		return;
+	}
+
+	SDL_Window* window = SDL_CreateWindow(
+		NULL,
+		SDL_WINDOWPOS_CENTERED,
+		SDL_WINDOWPOS_CENTERED,
+		800,
+		600,
+		SDL_WINDOW_BORDERLESS
+	);
+
+
+
+
+};
+
+void Game::Run() {
+	
+	while (1) {
+		ProcesInput();
+		Update();
+		Render();
+	}
+};
 
 void Game::ProcesInput() {};
 
