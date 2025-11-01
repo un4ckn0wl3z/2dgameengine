@@ -73,15 +73,18 @@ void Game::ProcesInput() {
 
 		}
 	}
-
-
-
-
 };
 
 void Game::Update() {};
 
-void Game::Render() {};
+void Game::Render() {
+
+	SDL_SetRenderDrawColor(m_renderer, 255, 0, 0, 255);
+	SDL_RenderClear(m_renderer);
+
+	SDL_RenderPresent(m_renderer);
+
+};
 
 void Game::Destroy() {
 
