@@ -54,7 +54,15 @@ void Game::Run() {
 	}
 };
 
-void Game::ProcesInput() {};
+void Game::ProcesInput() {
+
+	SDL_Event sdlEvent;
+	SDL_PollEvent(&sdlEvent);
+
+
+
+
+};
 
 void Game::Update() {};
 
