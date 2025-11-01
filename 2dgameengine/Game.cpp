@@ -26,6 +26,11 @@ void Game::Initialize() {
 		SDL_WINDOW_BORDERLESS
 	);
 
+	if (!window) {
+		std::cerr << "Error initializing SDL window." << std::endl;
+		return;
+	}
+
 
 
 
