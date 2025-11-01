@@ -3,6 +3,7 @@
 #include <iostream>
 
 Game::Game() {
+	m_IsRunning = false;
 	std::cout << "Game contructor called" << std::endl;
 };
 
@@ -42,12 +43,14 @@ void Game::Initialize() {
 		return;
 	}
 
+	m_IsRunning = true;
+
 
 };
 
 void Game::Run() {
 	
-	while (1) {
+	while (m_IsRunning) {
 		ProcesInput();
 		Update();
 		Render();
@@ -57,7 +60,19 @@ void Game::Run() {
 void Game::ProcesInput() {
 
 	SDL_Event sdlEvent;
-	SDL_PollEvent(&sdlEvent);
+	while (SDL_PollEvent(&sdlEvent)) {
+		switch (sdlEvent.type) {
+		
+		case SDL_QUIT:
+			m_IsRunning = false;
+			break;
+		case SDL_KEYDOWN:
+			if (sdlEvent.key.keysym.sym == SDLK_ESCAPE) m_IsRunning = false;
+			break;
+
+
+		}
+	}
 
 
 
