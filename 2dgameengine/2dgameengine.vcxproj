@@ -127,7 +127,48 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="libs\imgui\src\imgui.cpp" />
+    <ClCompile Include="libs\imgui\src\imgui_demo.cpp" />
+    <ClCompile Include="libs\imgui\src\imgui_draw.cpp" />
+    <ClCompile Include="libs\imgui\src\imgui_sdl.cpp" />
+    <ClCompile Include="libs\imgui\src\imgui_widgets.cpp" />
+    <ClCompile Include="libs\lua\src\lapi.c" />
+    <ClCompile Include="libs\lua\src\lauxlib.c" />
+    <ClCompile Include="libs\lua\src\lbaselib.c" />
+    <ClCompile Include="libs\lua\src\lbitlib.c" />
+    <ClCompile Include="libs\lua\src\lcode.c" />
+    <ClCompile Include="libs\lua\src\lcorolib.c" />
+    <ClCompile Include="libs\lua\src\lctype.c" />
+    <ClCompile Include="libs\lua\src\ldblib.c" />
+    <ClCompile Include="libs\lua\src\ldebug.c" />
+    <ClCompile Include="libs\lua\src\ldo.c" />
+    <ClCompile Include="libs\lua\src\ldump.c" />
+    <ClCompile Include="libs\lua\src\lfunc.c" />
+    <ClCompile Include="libs\lua\src\lgc.c" />
+    <ClCompile Include="libs\lua\src\linit.c" />
+    <ClCompile Include="libs\lua\src\liolib.c" />
+    <ClCompile Include="libs\lua\src\llex.c" />
+    <ClCompile Include="libs\lua\src\lmathlib.c" />
+    <ClCompile Include="libs\lua\src\lmem.c" />
+    <ClCompile Include="libs\lua\src\loadlib.c" />
+    <ClCompile Include="libs\lua\src\lobject.c" />
+    <ClCompile Include="libs\lua\src\lopcodes.c" />
+    <ClCompile Include="libs\lua\src\loslib.c" />
+    <ClCompile Include="libs\lua\src\lparser.c" />
+    <ClCompile Include="libs\lua\src\lstate.c" />
+    <ClCompile Include="libs\lua\src\lstring.c" />
+    <ClCompile Include="libs\lua\src\lstrlib.c" />
+    <ClCompile Include="libs\lua\src\ltable.c" />
+    <ClCompile Include="libs\lua\src\ltablib.c" />
+    <ClCompile Include="libs\lua\src\ltm.c" />
+    <ClCompile Include="libs\lua\src\lundump.c" />
+    <ClCompile Include="libs\lua\src\lutf8lib.c" />
+    <ClCompile Include="libs\lua\src\lvm.c" />
+    <ClCompile Include="libs\lua\src\lzio.c" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="libs\lua\src\lua.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
