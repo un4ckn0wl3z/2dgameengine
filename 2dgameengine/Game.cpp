@@ -56,7 +56,7 @@ void Game::Initialize() {
 };
 
 void Game::Run() {
-	
+	Setup();
 	while (m_IsRunning) {
 		ProcesInput();
 		Update();
