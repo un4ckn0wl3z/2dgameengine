@@ -49,7 +49,7 @@ void Game::Initialize() {
 		return;
 	}
 
-	SDL_SetWindowFullscreen(m_window, SDL_WINDOW_FULLSCREEN);
+	// SDL_SetWindowFullscreen(m_window, SDL_WINDOW_FULLSCREEN);
 	m_IsRunning = true;
 
 
@@ -82,13 +82,30 @@ void Game::ProcesInput() {
 	}
 };
 
-void Game::Update() {};
+
+void  Game::Setup() {
+	// setup game object
+
+}
+
+void Game::Update() {
+
+};
 
 void Game::Render() {
 
-	SDL_SetRenderDrawColor(m_renderer, 255, 0, 0, 255);
+	SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
 	SDL_RenderClear(m_renderer);
 
+	// render game object
+	SDL_Rect player = {
+		10, 10, 20, 20
+	};
+	SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
+	SDL_RenderFillRect(m_renderer, &player);
+
+
+	// draw (switch-buffer)
 	SDL_RenderPresent(m_renderer);
 
 };

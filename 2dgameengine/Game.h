@@ -13,6 +13,7 @@ public:
 	~Game();
 	void Initialize();
 	void Run();
+	void Setup();
 	void ProcesInput();
 	void Update();
 	void Render();
