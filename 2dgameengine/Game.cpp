@@ -18,12 +18,18 @@ void Game::Initialize() {
 		return;
 	}
 
+	SDL_DisplayMode displayMode;
+	SDL_GetCurrentDisplayMode(0, &displayMode);
+
+	windowWidth = displayMode.w;
+	windowsHeight = displayMode.h;
+
 	m_window = SDL_CreateWindow(
 		NULL,
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		800,
-		600,
+		windowWidth,
+		windowsHeight,
 		SDL_WINDOW_BORDERLESS
 	);
 
