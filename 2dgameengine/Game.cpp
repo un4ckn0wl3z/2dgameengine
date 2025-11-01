@@ -31,7 +31,16 @@ void Game::Initialize() {
 		return;
 	}
 
+	SDL_Renderer* renderer = SDL_CreateRenderer(
+		window,
+		-1,
+		0
+	);
 
+	if (!renderer) {
+		std::cerr << "Error initializing SDL renderer." << std::endl;
+		return;
+	}
 
 
 };
