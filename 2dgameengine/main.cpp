@@ -7,6 +7,7 @@
 
 int main(int argc, char* argv[]){
     SDL_Init(SDL_INIT_EVERYTHING);
+    glm::vec2 velocity = glm::vec2(5.0, -2.0);
     std::cout << "Hello, world!" << std::endl;
     return 0;
 }
