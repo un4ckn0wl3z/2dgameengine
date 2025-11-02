@@ -168,7 +168,7 @@
     <ClCompile Include="libs\lua\src\lvm.c" />
     <ClCompile Include="libs\lua\src\lzio.c" />
     <ClCompile Include="Logger.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
