@@ -43,7 +43,7 @@ public:
 	std::vector<Entity> GetSystemEntity() const;
 	Signature& GetComponentSignature() const;
 
-	template<typename T> void RequireComponent();
+	template<typename TComponent> void RequireComponent();
 };
 
 class Registry {
@@ -52,8 +52,8 @@ class Registry {
 
 
 
-template<typename T> 
+template<typename TComponent>
 void System::RequireComponent() {
-	const auto componentId = Component<T>::GetId();
+	const auto componentId = Component<TComponent>::GetId();
 	componentSignature.set(componentId);
 }
