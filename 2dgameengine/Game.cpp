@@ -3,7 +3,9 @@
 #include "SDL_image.h"
 #include "glm.hpp"
 #include "Logger.h"
+#include "ECS.h"
 #include <iostream>
+
 
 Game::Game() {
 	m_IsRunning = false;
@@ -83,13 +85,14 @@ void Game::ProcesInput() {
 	}
 };
 
-glm::vec2 playerPosition;
-glm::vec2 playerVelocity;
+
 
 void  Game::Setup() {
 	// setup game object
-	playerPosition = glm::vec2(10.0, 20.0);
-	playerVelocity = glm::vec2(100, 0.0);
+	// Entity tank = registry.CreateEntity();
+	// tank.AddComponent<TransformComponent>();
+	// tank.AddComponent<SpriteComponent>("./sprite");
+
 
 }
 
