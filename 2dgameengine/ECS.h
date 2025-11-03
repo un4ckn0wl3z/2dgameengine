@@ -9,13 +9,13 @@ const unsigned int MAX_COMPONENTS = 32;
 // Signature | 
 typedef std::bitset<MAX_COMPONENTS> Signature;
 
-struct BaseComponent {
+struct IComponent {
 protected:
 	static int netxId;
 };
 
 template <typename T>
-class Component : public BaseComponent {
+class Component : public IComponent {
 
 	static int GetId() {
 		static auto id = netxId++;
