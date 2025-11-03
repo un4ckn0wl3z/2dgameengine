@@ -106,8 +106,10 @@ void Game::Update() {
 	double deltaTime = (SDL_GetTicks() - m_MillisecsPreviousFrame) / 1000.0;
 	m_MillisecsPreviousFrame = SDL_GetTicks();
 
-	playerPosition.x += playerVelocity.x * deltaTime;
-	playerPosition.y += playerVelocity.y * deltaTime;
+	// delegate System update
+	// MovementSystem.Update();
+	// CollisionSystem.Update();
+	// DamageSystem.Update();
 };
 
 void Game::Render() {
