@@ -117,26 +117,7 @@ void Game::Render() {
 	SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
 	SDL_RenderClear(m_renderer);
 
-	// render game object
-	//SDL_Rect player = {
-	//	10, 10, 20, 20
-	//};
-	//SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
-	//SDL_RenderFillRect(m_renderer, &player);
-
-	// draw texture
-	SDL_Surface* surface = IMG_Load("./assets/images/tank-tiger-right.png");
-	SDL_Texture* texture = SDL_CreateTextureFromSurface(m_renderer, surface);
-	SDL_FreeSurface(surface);
-
-	SDL_Rect dstRect = {
-		static_cast<int>(playerPosition.x), 
-		static_cast<int>(playerPosition.y), 
-		32, 
-		32
-	};
-	SDL_RenderCopy(m_renderer, texture, NULL, &dstRect);
-	SDL_DestroyTexture(texture);
+	// Render system
 
 	// draw (switch-buffer)
 	SDL_RenderPresent(m_renderer);
