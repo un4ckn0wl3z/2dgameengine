@@ -126,6 +126,8 @@ public:
 
 	template <typename T, typename ...TArgs> void AddComponent(Entity entity, TArgs&& ...args);
 
+	template <typename T> void RemoveComponent(Entity entity);
+
 	void Update();
 
 };
@@ -140,5 +142,10 @@ void System::RequireComponent() {
 
 template<typename T, typename ...TArgs>
 void Registry::AddComponent(Entity entity, TArgs && ...args) {
+
+}
+
+template<typename T>
+void Registry::RemoveComponent(Entity entity) {
 
 }
