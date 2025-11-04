@@ -124,10 +124,7 @@ public:
 	void KillEntity(Entity entity);
 	void AddEntityToSystem();
 
-	//void AddSystem(...);
-	//void AddComponent(...);
-	//void RemoveComponent(...);
-	//
+	template <typename T, typename ...TArgs> void AddComponent(Entity entity, TArgs&& ...args);
 
 	void Update();
 
@@ -139,4 +136,9 @@ template<typename TComponent>
 void System::RequireComponent() {
 	const auto componentId = Component<TComponent>::GetId();
 	m_componentSignature.set(componentId);
+}
+
+template<typename T, typename ...TArgs>
+void Registry::AddComponent(Entity entity, TArgs && ...args) {
+
 }
