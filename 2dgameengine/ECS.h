@@ -121,7 +121,7 @@ public:
 	Registry() = default;
 	
 	Entity CreateEntity();
-	void KillEntry(Entity entity);
+	void KillEntity(Entity entity);
 	//void AddSystem(...);
 	//void AddComponent(...);
 	//void RemoveComponent(...);

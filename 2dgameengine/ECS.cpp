@@ -40,7 +40,7 @@ Entity Registry::CreateEntity() {
     return entity;
 }
 
-void Registry::KillEntry(Entity entity) {
+void Registry::KillEntity(Entity entity) {
 
 }
 
