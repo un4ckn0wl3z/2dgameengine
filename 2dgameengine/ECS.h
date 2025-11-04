@@ -28,7 +28,11 @@ private:
 	int m_id;
 public:
 	Entity(int id) : m_id(id) {};
+	Entity(const Entity& other) = default;
 	int GetId() const;
+
+	Entity& operator= (const Entity& other) = default;
+
 	bool operator== (const Entity& other) const {
 		return m_id == other.m_id;
 	}
