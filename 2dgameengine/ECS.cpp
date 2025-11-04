@@ -13,7 +13,7 @@ void System::RemoveEntityToSystem(Entity entity) {
         std::remove_if(
             m_entities.begin(),
             m_entities.end(),
-            [&entity](const Entity& other) { return entity.GetId() == other.GetId(); }
+            [&entity](const Entity& other) { return entity == other; }
         ),
         m_entities.end()
     );

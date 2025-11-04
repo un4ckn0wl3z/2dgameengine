@@ -29,6 +29,10 @@ private:
 public:
 	Entity(int id) : m_id(id) {};
 	int GetId() const;
+	bool operator== (const Entity& other) const {
+		return m_id == other.GetId();
+	}
+
 };
 
 class System {
