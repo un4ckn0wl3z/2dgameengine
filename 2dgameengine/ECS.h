@@ -122,6 +122,8 @@ public:
 	
 	Entity CreateEntity();
 	void KillEntity(Entity entity);
+	void AddEntityToSystem();
+
 	//void AddSystem(...);
 	//void AddComponent(...);
 	//void RemoveComponent(...);
