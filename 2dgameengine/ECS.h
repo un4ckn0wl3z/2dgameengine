@@ -60,13 +60,18 @@ public:
 	template<typename TComponent> void RequireComponent();
 };
 
+class IPool {
+public:
+	virtual ~IPool() {}
+};
+
 template <typename T>
-class Pool {
+class Pool : public IPool {
 private:
 	std::vector<T> m_data;
 public:
 	Pool(int size = 100) { Resize(size); }
-	~Pool() = default;
+	virtual ~Pool() = default;
 
 	bool IsEmpty() const {
 		return m_data.empty();
@@ -102,7 +107,7 @@ public:
 class Registry {
 private:
 	int m_numEntities = 0;
-	std::vector<Pool*> m_componentPools;
+	std::vector<IPool*> m_componentPools;
 };
 
 
