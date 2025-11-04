@@ -1,8 +1,10 @@
 #pragma once
 
+#include <iostream>
 #include <bitset>
 #include <vector>
-#include <iostream>
+#include <unordered_map>
+#include <typeindex>
 
 const unsigned int MAX_COMPONENTS = 32;
 
@@ -108,6 +110,20 @@ class Registry {
 private:
 	int m_numEntities = 0;
 	std::vector<IPool*> m_componentPools;
+	std::vector<Signature> m_entityComponentSignatures;
+	std::unordered_map<std::type_index, System*> m_systems;
+
+
+
+public:
+	Registry() = default;
+	
+	Entity CreateEntity();
+	void KillEntry(Entity entity);
+	void AddSystem(...);
+	void AddComponent(...);
+	void RemoveComponent(...);
+
 };
 
 
