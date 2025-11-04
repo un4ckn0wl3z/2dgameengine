@@ -26,3 +26,18 @@ std::vector<Entity> System::GetSystemEntity() const {
 const Signature& System::GetComponentSignature() const {
 	return m_componentSignature;
 }
+
+Entity Registry::CreateEntity() {
+    int entityId = m_numEntities++;
+    if (entityId >= m_entityComponentSignatures.size()) {
+        m_entityComponentSignatures.resize(entityId + 1);
+    }
+
+    Entity entity(entityId);
+    m_entitiesToBeAdded.insert(entity);
+    return entity;
+}
+
+void Registry::KillEntry(Entity entity) {
+
+}
