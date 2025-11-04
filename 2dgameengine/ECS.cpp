@@ -43,3 +43,7 @@ Entity Registry::CreateEntity() {
 void Registry::KillEntry(Entity entity) {
 
 }
+
+void Registry::Update() {
+
+}

@@ -127,6 +127,8 @@ public:
 	//void RemoveComponent(...);
 	//
 
+	void Update();
+
 };
 
 
