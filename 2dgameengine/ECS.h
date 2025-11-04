@@ -113,8 +113,6 @@ private:
 	std::vector<Signature> m_entityComponentSignatures;
 	std::unordered_map<std::type_index, System*> m_systems;
 
-
-
 public:
 	Registry() = default;
 	
