@@ -130,6 +130,8 @@ public:
 
 	template <typename T> bool HasComponent(Entity entity) const;
 
+	template <typename T> T& GetComponent(Entity entity) const;
+
 	void Update();
 
 };
@@ -155,4 +157,9 @@ void Registry::RemoveComponent(Entity entity) {
 template<typename T>
 bool Registry::HasComponent(Entity entity) const {
 	return false;
+}
+
+template<typename T>
+T& Registry::GetComponent(Entity entity) const {
+	// TODO: insert return statement here
 }
