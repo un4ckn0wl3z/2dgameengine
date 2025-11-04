@@ -11,37 +11,37 @@ typedef std::bitset<MAX_COMPONENTS> Signature;
 
 struct IComponent {
 protected:
-	static int netxId;
+	static int m_netxId;
 };
 
 template <typename T>
 class Component : public IComponent {
 
 	static int GetId() {
-		static auto id = netxId++;
+		static auto id = m_netxId++;
 		return id;
 	}
 };
 
 class Entity {
 private:
-	int id;
+	int m_id;
 public:
-	Entity(int id) : id(id) {};
+	Entity(int id) : m_id(id) {};
 	int GetId() const;
 };
 
 class System {
 private:
-	Signature componentSignature;
-	std::vector<Entity> entities;
+	Signature m_componentSignature;
+	std::vector<Entity> m_entities;
 public:
 	System() = default;
 	~System() = default;
 	void AddEntityToSystem(Entity entity);
 	void RemoveEntityToSystem(Entity entity);
 	std::vector<Entity> GetSystemEntity() const;
-	Signature& GetComponentSignature() const;
+	const Signature& GetComponentSignature() const;
 
 	template<typename TComponent> void RequireComponent();
 };
@@ -55,5 +55,5 @@ class Registry {
 template<typename TComponent>
 void System::RequireComponent() {
 	const auto componentId = Component<TComponent>::GetId();
-	componentSignature.set(componentId);
+	m_componentSignature.set(componentId);
 }
