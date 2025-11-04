@@ -128,6 +128,8 @@ public:
 
 	template <typename T> void RemoveComponent(Entity entity);
 
+	template <typename T> bool HasComponent(Entity entity) const;
+
 	void Update();
 
 };
@@ -148,4 +150,9 @@ void Registry::AddComponent(Entity entity, TArgs && ...args) {
 template<typename T>
 void Registry::RemoveComponent(Entity entity) {
 
+}
+
+template<typename T>
+bool Registry::HasComponent(Entity entity) const {
+	return false;
 }
