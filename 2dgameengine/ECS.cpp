@@ -1,4 +1,5 @@
 #include "ECS.h"
+#include "Logger.h"
 
 int Entity::GetId() const {
 	return m_id;
@@ -35,6 +36,7 @@ Entity Registry::CreateEntity() {
 
     Entity entity(entityId);
     m_entitiesToBeAdded.insert(entity);
+    Logger::Log("Entity created with id = " + std::to_string(entityId));
     return entity;
 }
 
