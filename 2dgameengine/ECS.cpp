@@ -68,5 +68,8 @@ void Registry::Update() {
     }
     m_entitiesToBeAdded.clear();
 
+    // Remove entity to active systems
+
+
 
 }
