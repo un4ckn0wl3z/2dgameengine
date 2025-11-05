@@ -200,12 +200,13 @@ void Registry::AddSystem(TArgs && ...args) {
 
 template<typename TSystem>
 void Registry::RemoveSystem() {
-	
+	auto system = m_systems.find(std::type_index(typeid(TSystem)));
+	m_systems.erase(system);
 }
 
 template<typename TSystem>
 bool Registry::HasSystem() const {
-	return false;
+	return m_systems.find(std::type_index(typeid(TSystem))) != m_systems.end();
 }
 
 template<typename TSystem>
