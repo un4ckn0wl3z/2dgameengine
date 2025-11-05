@@ -134,6 +134,12 @@ public:
 
 	void Update();
 
+	template <typename TSystem, typename ...TArgs> void AddSystem(TArgs&& ...args);
+	template <typename TSystem> void RemoveSystem();
+	template <typename TSystem> bool HasSystem() const;
+	template <typename TSystem> TSystem& GetSystem() const;
+
+
 };
 
 
@@ -183,5 +189,26 @@ bool Registry::HasComponent(Entity entity) const {
 
 template<typename T>
 T& Registry::GetComponent(Entity entity) const {
+	// TODO: insert return statement here
+}
+
+template<typename TSystem, typename ...TArgs>
+void Registry::AddSystem(TArgs && ...args) {
+	TSystem* newSystem(new TSystem(std::forward<TArgs>(args)...));
+	m_systems.insert(std::make_pair(std::type_index(typeid(TSystem)), newSystem));
+}
+
+template<typename TSystem>
+void Registry::RemoveSystem() {
+	
+}
+
+template<typename TSystem>
+bool Registry::HasSystem() const {
+	return false;
+}
+
+template<typename TSystem>
+TSystem& Registry::GetSystem() const {
 	// TODO: insert return statement here
 }
