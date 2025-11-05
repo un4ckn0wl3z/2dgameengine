@@ -211,5 +211,6 @@ bool Registry::HasSystem() const {
 
 template<typename TSystem>
 TSystem& Registry::GetSystem() const {
-	// TODO: insert return statement here
+	auto system =  m_systems.find(std::type_index(typeid(TSystem)));
+	return *(std::static_pointer_cast<TSystem>(system->second));
 }
