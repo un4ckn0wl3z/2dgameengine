@@ -114,9 +114,9 @@ private:
 	std::set<Entity> m_entitiesToBeAdded;
 	std::set<Entity> m_entitiesToBeKilled;
 
-	std::vector<IPool*> m_componentPools;
+	std::vector<std::shared_ptr<IPool>> m_componentPools;
 	std::vector<Signature> m_entityComponentSignatures;
-	std::unordered_map<std::type_index, System*> m_systems;
+	std::unordered_map<std::type_index, std::shared_ptr<System>> m_systems;
 
 public:
 	Registry() {
