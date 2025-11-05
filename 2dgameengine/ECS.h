@@ -124,7 +124,7 @@ public:
 	};
 
 	~Registry() {
-		Logger::Log("Registry Decontructor called");
+		Logger::Log("Registry decontructor called");
 	};
 	
 	Entity CreateEntity();
