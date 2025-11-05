@@ -128,7 +128,7 @@ public:
 
 	template <typename TComponent> void RemoveComponent(Entity entity);
 
-	template <typename T> bool HasComponent(Entity entity) const;
+	template <typename TComponent> bool HasComponent(Entity entity) const;
 
 	template <typename T> T& GetComponent(Entity entity) const;
 
@@ -174,9 +174,11 @@ void Registry::RemoveComponent(Entity entity) {
 	m_entityComponentSignatures[entityId].set(componentId, false);
 }
 
-template<typename T>
+template<typename TComponent>
 bool Registry::HasComponent(Entity entity) const {
-	return false;
+	const auto componentId = Component<TComponent>::GetId();
+	const auto entityId = entity.GetId();
+	return m_entityComponentSignatures[entityId].test(componentId);
 }
 
 template<typename T>
