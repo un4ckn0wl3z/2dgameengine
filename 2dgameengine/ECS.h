@@ -138,7 +138,7 @@ public:
 	template <typename TSystem> bool HasSystem() const;
 	template <typename TSystem> TSystem& GetSystem() const;
 
-	void AddEntityToSystem(Entity entity);
+	void AddEntityToSystems(Entity entity);
 
 
 };
