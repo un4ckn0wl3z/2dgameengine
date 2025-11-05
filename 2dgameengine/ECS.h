@@ -146,6 +146,28 @@ void System::RequireComponent() {
 
 template<typename T, typename ...TArgs>
 void Registry::AddComponent(Entity entity, TArgs && ...args) {
+	const auto componentId = Component<T>::GetId();
+	const auto entityId = entity.GetId();
+	if (componentId >= m_componentPools.size()) {
+		m_componentPools.resize(componentId + 1, nullptr);
+	}
+
+	if (!m_componentPools[componentId]) {
+		Pool<T>* newComponentPool = new Pool<T>();
+		m_componentPools[componentId] = newComponentPool;
+	}
+
+	Pool<T>* componentPool = Pool<T>(m_componentPools[componentId]);
+	if (entityId >= componentPool->GetSize()) {
+		componentPool->Resize(m_numEntities);
+	}
+
+	T newComponent(std::forward<TArgs>(args)...);
+	componentPool->Set(entityId, newComponent);
+	m_entityComponentSignatures[entityId].set(componentId);
+
+
+
 
 }
 
