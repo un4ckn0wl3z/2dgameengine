@@ -126,7 +126,7 @@ public:
 
 	template <typename TComponent, typename ...TArgs> void AddComponent(Entity entity, TArgs&& ...args);
 
-	template <typename T> void RemoveComponent(Entity entity);
+	template <typename TComponent> void RemoveComponent(Entity entity);
 
 	template <typename T> bool HasComponent(Entity entity) const;
 
@@ -167,9 +167,11 @@ void Registry::AddComponent(Entity entity, TArgs && ...args) {
 	m_entityComponentSignatures[entityId].set(componentId);
 }
 
-template<typename T>
+template<typename TComponent>
 void Registry::RemoveComponent(Entity entity) {
-
+	const auto componentId = Component<TComponent>::GetId();
+	const auto entityId = entity.GetId();
+	m_entityComponentSignatures[entityId].set(componentId, false);
 }
 
 template<typename T>
