@@ -62,5 +62,11 @@ void Registry::AddEntityToSystems(Entity entity) {
 }
 
 void Registry::Update() {
+    // Add entity to active systems
+    for (auto entity : m_entitiesToBeAdded) {
+        AddEntityToSystems(entity);
+    }
+    m_entitiesToBeAdded.clear();
+
 
 }
