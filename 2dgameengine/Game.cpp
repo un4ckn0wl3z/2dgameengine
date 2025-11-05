@@ -94,6 +94,7 @@ void  Game::Setup() {
 	Entity truck = m_registry->CreateEntity();
 
 
+
 }
 
 void Game::Update() {
