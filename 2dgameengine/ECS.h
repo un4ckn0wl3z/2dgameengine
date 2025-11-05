@@ -122,7 +122,6 @@ public:
 	
 	Entity CreateEntity();
 	void KillEntity(Entity entity);
-	void AddEntityToSystem();
 
 	template <typename TComponent, typename ...TArgs> void AddComponent(Entity entity, TArgs&& ...args);
 
@@ -138,6 +137,8 @@ public:
 	template <typename TSystem> void RemoveSystem();
 	template <typename TSystem> bool HasSystem() const;
 	template <typename TSystem> TSystem& GetSystem() const;
+
+	void AddEntityToSystem(Entity entity);
 
 
 };

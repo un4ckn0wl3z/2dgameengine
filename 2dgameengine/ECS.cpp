@@ -46,7 +46,7 @@ void Registry::KillEntity(Entity entity) {
 
 }
 
-void Registry::AddEntityToSystem() {
+void Registry::AddEntityToSystem(Entity entity) {
 
 }
 
