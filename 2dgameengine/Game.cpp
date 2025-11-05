@@ -9,7 +9,7 @@
 
 Game::Game() {
 	m_IsRunning = false;
-	m_registry = new Registry();
+	m_registry = std::make_unique<Registry>();
 	Logger::Log("Game contructor called");
 };
 

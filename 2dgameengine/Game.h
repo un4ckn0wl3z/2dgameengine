@@ -12,7 +12,7 @@ private:
 	SDL_Renderer* m_renderer;
 	bool m_IsRunning;
 	int m_MillisecsPreviousFrame = 0;
-	Registry* m_registry;
+	std::unique_ptr<Registry> m_registry;
 
 
 public:

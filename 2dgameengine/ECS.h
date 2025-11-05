@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <typeindex>
 #include <set>
+#include "Logger.h"
 
 const unsigned int MAX_COMPONENTS = 32;
 
@@ -118,7 +119,13 @@ private:
 	std::unordered_map<std::type_index, System*> m_systems;
 
 public:
-	Registry() = default;
+	Registry() {
+		Logger::Log("Registry contructor called");
+	};
+
+	~Registry() {
+		Logger::Log("Registry Decontructor called");
+	};
 	
 	Entity CreateEntity();
 	void KillEntity(Entity entity);
