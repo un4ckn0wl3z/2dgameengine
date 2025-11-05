@@ -1,6 +1,8 @@
 #include "ECS.h"
 #include "Logger.h"
 
+int IComponent::m_netxId = 0;
+
 int Entity::GetId() const {
 	return m_id;
 }
