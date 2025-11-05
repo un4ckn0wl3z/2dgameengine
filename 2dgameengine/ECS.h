@@ -171,7 +171,7 @@ void Registry::AddComponent(Entity entity, TArgs && ...args) {
 		m_componentPools[componentId] = newComponentPool;
 	}
 
-	Pool<TComponent>* componentPool = Pool<TComponent>(m_componentPools[componentId]);
+	std::shared_ptr<Pool<TComponent>> componentPool = std::static_pointer_cast<Pool<TComponent>>(m_componentPools[componentId]);
 	if (entityId >= componentPool->GetSize()) {
 		componentPool->Resize(m_numEntities);
 	}
