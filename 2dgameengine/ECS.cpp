@@ -47,6 +47,13 @@ void Registry::KillEntity(Entity entity) {
 }
 
 void Registry::AddEntityToSystem(Entity entity) {
+    const auto entityId = entity.GetId();
+    const auto& entityComponentSignature = m_entityComponentSignatures[entityId];
+    for (auto& system : m_systems) {
+        const auto& systemComponentSignature = system.second->GetComponentSignature();
+
+    }
+
 
 }
 
