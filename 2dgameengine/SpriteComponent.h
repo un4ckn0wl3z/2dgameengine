@@ -16,12 +16,9 @@ struct SpriteComponent {
 		int srcRectX = 0,
 		int srcRectY = 0
 	) {
-		this->assetId = "";
+		this->assetId = assetId;
 		this->width = width;
 		this->height = height;
-		this->srcRect.x = srcRectX;
-		this->srcRect.y = srcRectY;
-		this->srcRect.w = width;
-		this->srcRect.h = height;
+		this->srcRect = { srcRectX, srcRectY, width, height };
 	}
 };

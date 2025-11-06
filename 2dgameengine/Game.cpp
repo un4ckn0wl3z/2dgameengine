@@ -102,14 +102,14 @@ void  Game::Setup() {
 
 	// Adding assets
 	m_assetStore->AddAssets(m_renderer, "tank-image", "./assets/images/tank-panther-right.png");
-	m_assetStore->AddAssets(m_renderer, "truck-image", "./assets/images/truck-ford-right.png");
+	m_assetStore->AddAssets(m_renderer, "truck-image", "./assets/images/truck-ford-left.png");
 
 
 	// Create entity
 	Entity tank = m_registry->CreateEntity();
 	tank.AddComponent<TransformComponent>(
 		glm::vec2(10.0, 30.0),
-		glm::vec2(1, 1),
+		glm::vec2(1.5,1.5),
 		0.0
 	);
 	tank.AddComponent<RigidBodyComponent>(
@@ -122,7 +122,7 @@ void  Game::Setup() {
 	Entity truck = m_registry->CreateEntity();
 	truck.AddComponent<TransformComponent>(
 		glm::vec2(windowWidth-50, 50),
-		glm::vec2(1, 1),
+		glm::vec2(1.5, 1.5),
 		0.0
 	);
 	truck.AddComponent<RigidBodyComponent>(
