@@ -177,7 +177,9 @@
     <ClInclude Include="libs\lua\src\lua.hpp" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="MovementSystem.h" />
+    <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="RigidBodyComponent.h" />
+    <ClInclude Include="SpriteComponent.h" />
     <ClInclude Include="TransformComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

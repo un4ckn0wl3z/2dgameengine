@@ -8,7 +8,8 @@
 #include "TransformComponent.h"
 #include "RigidBodyComponent.h"
 #include "MovementSystem.h"
-
+#include "SpriteComponent.h"
+#include "RenderSystem.h"
 
 Game::Game() {
 	m_IsRunning = false;
@@ -95,6 +96,7 @@ void  Game::Setup() {
 
 	// create system
 	m_registry->AddSystem<MovementSystem>();
+	m_registry->AddSystem<RenderSystem>();
 
 	// Create entity
 	Entity tank = m_registry->CreateEntity();
@@ -109,6 +111,8 @@ void  Game::Setup() {
 		glm::vec2(50.0, 0)
 	);
 
+	tank.AddComponent<SpriteComponent>(10, 10);
+
 }
 
 void Game::Update() {
@@ -121,7 +125,7 @@ void Game::Update() {
 	double deltaTime = (SDL_GetTicks() - m_MillisecsPreviousFrame) / 1000.0;
 	m_MillisecsPreviousFrame = SDL_GetTicks();
 
-	// update all system
+	// invoke update system
 	m_registry->GetSystem<MovementSystem>().Update(deltaTime);
 
 	// update entities
@@ -135,7 +139,9 @@ void Game::Render() {
 	SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
 	SDL_RenderClear(m_renderer);
 
-	// Render system
+	// invoke render system
+	m_registry->GetSystem<RenderSystem>().Update(m_renderer);
+
 
 	// draw (switch-buffer)
 	SDL_RenderPresent(m_renderer);
