@@ -239,20 +239,20 @@ TSystem& Registry::GetSystem() const {
 
 template<typename TComponent, typename ...TArgs>
 void Entity::AddComponent(TArgs && ...args) {
-
+	registry->AddComponent<TComponent>(this, args);
 }
 
 template<typename TComponent>
 void Entity::RemoveComponent() {
-
+	registry->RemoveComponent<TComponent>(this);
 }
 
 template<typename TComponent>
 bool Entity::HasComponent() const {
-
+	return registry->HasComponent<TComponent>(this);
 }
 
 template<typename TComponent>
 TComponent& Entity::GetComponent() const {
-	return NULL;
+	return registry->GetComponent<TComponent>(this);
 }
