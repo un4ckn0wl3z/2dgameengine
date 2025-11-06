@@ -34,11 +34,14 @@ public:
 
 			SDL_Rect srcRect = sprite.srcRect;
 
-			SDL_RenderCopy(
+			SDL_RenderCopyEx(
 				renderer, 
 				assetStore->GetTexture(sprite.assetId),
 				&srcRect,
-				&dstRect
+				&dstRect,
+				transform.rotation,
+				NULL,
+				SDL_FLIP_NONE
 				);
 
 
