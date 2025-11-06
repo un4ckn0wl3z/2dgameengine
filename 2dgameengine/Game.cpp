@@ -5,6 +5,8 @@
 #include "Logger.h"
 #include "ECS.h"
 #include <iostream>
+#include "TransformComponent.h"
+#include "RigidBodyComponent.h"
 
 
 Game::Game() {
@@ -91,8 +93,17 @@ void Game::ProcesInput() {
 void  Game::Setup() {
 	// Create entity
 	Entity tank = m_registry->CreateEntity();
-	Entity truck = m_registry->CreateEntity();
+	m_registry->AddComponent<TransformComponent>(
+		tank, 
+		glm::vec2(10.0, 30.0),
+		glm::vec2(1, 1),
+		0.0
+	);
 
+	m_registry->AddComponent<RigidBodyComponent>(
+		tank,
+		glm::vec2(50.0, 0)
+	);
 
 
 }
