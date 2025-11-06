@@ -2,6 +2,7 @@
 #include "ECS.h"
 #include "TransformComponent.h"
 #include "RigidBodyComponent.h"
+#include "Logger.h"
 
 class MovementSystem : public System {
 public:
@@ -20,6 +21,8 @@ public:
 
 			transform.position.x += rigidbody.velocity.x;
 			transform.position.y += rigidbody.velocity.y;
+
+			Logger::Log("Entity Id = " + std::to_string(entity.GetId()) + " position is now ( " + std::to_string(transform.position.x) + " ," + std::to_string(transform.position.y) + "_)");
 
 		}
 	}

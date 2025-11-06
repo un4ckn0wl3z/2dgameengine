@@ -109,8 +109,6 @@ void  Game::Setup() {
 		glm::vec2(50.0, 0)
 	);
 
-	tank.RemoveComponent<TransformComponent>();
-
 }
 
 void Game::Update() {
