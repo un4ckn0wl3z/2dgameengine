@@ -239,7 +239,7 @@ TSystem& Registry::GetSystem() const {
 
 template<typename TComponent, typename ...TArgs>
 void Entity::AddComponent(TArgs && ...args) {
-	registry->AddComponent<TComponent>(*this, args);
+	registry->AddComponent<TComponent>(*this, std::forward<TArgs>(args)...);
 }
 
 template<typename TComponent>
