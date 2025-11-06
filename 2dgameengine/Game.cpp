@@ -7,6 +7,7 @@
 #include <iostream>
 #include "TransformComponent.h"
 #include "RigidBodyComponent.h"
+#include "MovementSystem.h"
 
 
 Game::Game() {
@@ -91,19 +92,13 @@ void Game::ProcesInput() {
 
 
 void  Game::Setup() {
+
+	// create system
+	m_registry->AddSystem<MovementSystem>();
+
 	// Create entity
 	Entity tank = m_registry->CreateEntity();
-	//m_registry->AddComponent<TransformComponent>(
-	//	tank, 
-	//	glm::vec2(10.0, 30.0),
-	//	glm::vec2(1, 1),
-	//	0.0
-	//);
 
-	//m_registry->AddComponent<RigidBodyComponent>(
-	//	tank,
-	//	glm::vec2(50.0, 0)
-	//);
 	tank.AddComponent<TransformComponent>(
 		glm::vec2(10.0, 30.0),
 		glm::vec2(1, 1),
@@ -128,10 +123,10 @@ void Game::Update() {
 	double deltaTime = (SDL_GetTicks() - m_MillisecsPreviousFrame) / 1000.0;
 	m_MillisecsPreviousFrame = SDL_GetTicks();
 
-	// delegate System update
-	// MovementSystem.Update();
-	// CollisionSystem.Update();
-	// DamageSystem.Update();
+	// update all system
+	m_registry->GetSystem<MovementSystem>().Update();
+
+
 };
 
 void Game::Render() {
