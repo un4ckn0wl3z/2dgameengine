@@ -126,6 +126,9 @@ void Game::Update() {
 	// update all system
 	m_registry->GetSystem<MovementSystem>().Update();
 
+	// update entities
+	m_registry->Update();
+
 
 };
 
