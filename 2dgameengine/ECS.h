@@ -50,6 +50,10 @@ public:
 
 	class Registry* registry;
 
+	template <typename TComponent, typename ...TArgs> void AddComponent(TArgs&& ...args);
+	template <typename TComponent> void RemoveComponent();
+	template <typename TComponent> void HasComponent() const;
+	template <typename TComponent> TComponent& GetComponent() const;
 };
 
 class System {
@@ -139,7 +143,7 @@ public:
 
 	template <typename TComponent> bool HasComponent(Entity entity) const;
 
-	template <typename T> T& GetComponent(Entity entity) const;
+	template <typename TComponent> TComponent& GetComponent(Entity entity) const;
 
 	void Update();
 
@@ -147,6 +151,7 @@ public:
 	template <typename TSystem> void RemoveSystem();
 	template <typename TSystem> bool HasSystem() const;
 	template <typename TSystem> TSystem& GetSystem() const;
+
 
 	void AddEntityToSystems(Entity entity);
 
@@ -201,9 +206,12 @@ bool Registry::HasComponent(Entity entity) const {
 	return m_entityComponentSignatures[entityId].test(componentId);
 }
 
-template<typename T>
-T& Registry::GetComponent(Entity entity) const {
-	// TODO: insert return statement here
+template<typename TComponent>
+TComponent& Registry::GetComponent(Entity entity) const {
+	const auto componentId = Component<TComponent>::GetId();
+	const auto entityId = entity.GetId();
+	auto componentPool = std::static_pointer_cast<Pool<TComponent>>(m_componentPools[componentId]);
+	return componentPool->Get(entityId);
 }
 
 template<typename TSystem, typename ...TArgs>
@@ -227,4 +235,24 @@ template<typename TSystem>
 TSystem& Registry::GetSystem() const {
 	auto system =  m_systems.find(std::type_index(typeid(TSystem)));
 	return *(std::static_pointer_cast<TSystem>(system->second));
+}
+
+template<typename TComponent, typename ...TArgs>
+void Entity::AddComponent(TArgs && ...args) {
+
+}
+
+template<typename TComponent>
+void Entity::RemoveComponent() {
+
+}
+
+template<typename TComponent>
+void Entity::HasComponent() const {
+
+}
+
+template<typename TComponent>
+TComponent& Entity::GetComponent() const {
+	return NULL;
 }
