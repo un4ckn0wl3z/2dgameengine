@@ -121,7 +121,7 @@ void  Game::Setup() {
 	truck.AddComponent<RigidBodyComponent>(
 		glm::vec2(-50.0, 0)
 	);
-	truck.AddComponent<SpriteComponent>(10, 10);
+	truck.AddComponent<SpriteComponent>(50, 10);
 
 }
 
