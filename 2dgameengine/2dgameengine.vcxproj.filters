@@ -43,6 +43,12 @@
     <Filter Include="Source Files\ECS">
       <UniqueIdentifier>{ed09d638-1137-4847-98d4-095c83149efa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\AssetStore">
+      <UniqueIdentifier>{87f192c3-ab52-41dc-8638-faef80bc2637}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AssetStore">
+      <UniqueIdentifier>{fb979ec6-4b32-438a-b6ae-4d4640c3114c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -171,6 +177,9 @@
     <ClCompile Include="ECS.cpp">
       <Filter>Source Files\ECS</Filter>
     </ClCompile>
+    <ClCompile Include="AssetStore.cpp">
+      <Filter>Source Files\AssetStore</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\lua\src\lua.hpp">
@@ -199,6 +208,9 @@
     </ClInclude>
     <ClInclude Include="RenderSystem.h">
       <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetStore.h">
+      <Filter>Header Files\AssetStore</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
