@@ -122,7 +122,7 @@ void Game::Update() {
 	m_MillisecsPreviousFrame = SDL_GetTicks();
 
 	// update all system
-	m_registry->GetSystem<MovementSystem>().Update();
+	m_registry->GetSystem<MovementSystem>().Update(deltaTime);
 
 	// update entities
 	m_registry->Update();
