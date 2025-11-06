@@ -52,7 +52,7 @@ public:
 
 	template <typename TComponent, typename ...TArgs> void AddComponent(TArgs&& ...args);
 	template <typename TComponent> void RemoveComponent();
-	template <typename TComponent> void HasComponent() const;
+	template <typename TComponent> bool HasComponent() const;
 	template <typename TComponent> TComponent& GetComponent() const;
 };
 
@@ -248,7 +248,7 @@ void Entity::RemoveComponent() {
 }
 
 template<typename TComponent>
-void Entity::HasComponent() const {
+bool Entity::HasComponent() const {
 
 }
 
