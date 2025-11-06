@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include "ECS.h"
+#include "AssetStore.h"
 
 const int FPS = 60;
 const int MILLISECS_PER_FRAME = 1000 / FPS;
@@ -13,6 +14,7 @@ private:
 	bool m_IsRunning;
 	int m_MillisecsPreviousFrame = 0;
 	std::unique_ptr<Registry> m_registry;
+	std::unique_ptr<AssetStore> m_assetStore;
 
 
 public:
