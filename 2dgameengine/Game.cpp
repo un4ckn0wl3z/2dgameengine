@@ -104,9 +104,15 @@ void  Game::Setup() {
 	//	tank,
 	//	glm::vec2(50.0, 0)
 	//);
+	tank.AddComponent<TransformComponent>(
+		glm::vec2(10.0, 30.0),
+		glm::vec2(1, 1),
+		0.0
+	);
 
-
-
+	tank.AddComponent<RigidBodyComponent>(
+		glm::vec2(50.0, 0)
+	);
 
 
 
