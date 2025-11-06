@@ -157,7 +157,7 @@ void Game::Render() {
 	SDL_RenderClear(m_renderer);
 
 	// invoke render system
-	m_registry->GetSystem<RenderSystem>().Update(m_renderer);
+	m_registry->GetSystem<RenderSystem>().Update(m_renderer, m_assetStore);
 
 
 	// draw (switch-buffer)
