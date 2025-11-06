@@ -100,18 +100,28 @@ void  Game::Setup() {
 
 	// Create entity
 	Entity tank = m_registry->CreateEntity();
-
 	tank.AddComponent<TransformComponent>(
 		glm::vec2(10.0, 30.0),
 		glm::vec2(1, 1),
 		0.0
 	);
-
 	tank.AddComponent<RigidBodyComponent>(
 		glm::vec2(50.0, 0)
 	);
-
 	tank.AddComponent<SpriteComponent>(10, 10);
+
+
+	// Create entity
+	Entity truck = m_registry->CreateEntity();
+	truck.AddComponent<TransformComponent>(
+		glm::vec2(windowWidth-50, 50),
+		glm::vec2(1, 1),
+		0.0
+	);
+	truck.AddComponent<RigidBodyComponent>(
+		glm::vec2(-50.0, 0)
+	);
+	truck.AddComponent<SpriteComponent>(10, 10);
 
 }
 
