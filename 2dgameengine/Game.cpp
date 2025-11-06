@@ -10,10 +10,12 @@
 #include "MovementSystem.h"
 #include "SpriteComponent.h"
 #include "RenderSystem.h"
+#include "AssetStore.h"
 
 Game::Game() {
 	m_IsRunning = false;
 	m_registry = std::make_unique<Registry>();
+	m_assetStore = std::make_unique<AssetStore>();
 	Logger::Log("Game contructor called");
 };
 
