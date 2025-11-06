@@ -27,6 +27,7 @@ public:
 	}
 };
 
+
 class Entity {
 private:
 	int m_id;
@@ -46,6 +47,8 @@ public:
 	bool operator< (const Entity& other) const {
 		return m_id < other.m_id;
 	}
+
+	class Registry* registry;
 
 };
 
