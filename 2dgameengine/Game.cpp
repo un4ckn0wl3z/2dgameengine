@@ -107,7 +107,7 @@ void Game::LoadLevel(int level) {
 	m_assetStore->AddAssets(m_renderer, "tilemap-image", "./assets/tilemaps/jungle.png");
 
 	int tileSize = 32;
-	double tileScale = 1.5;
+	double tileScale = 2.0;
 	int mapNumCols = 25;
 	int mapNumRows = 20;
 	std::fstream mapFile;
@@ -131,13 +131,13 @@ void Game::LoadLevel(int level) {
 
 	// Create entity
 	Entity tank = m_registry->CreateEntity();
-	tank.AddComponent<TransformComponent>(glm::vec2(10.0, 30.0), glm::vec2(1.5, 1.5), 0.0);
+	tank.AddComponent<TransformComponent>(glm::vec2(10.0, 30.0), glm::vec2(1.0, 1.0), 0.0);
 	tank.AddComponent<RigidBodyComponent>(glm::vec2(50.0, 0));
 	tank.AddComponent<SpriteComponent>("tank-image", 32, 32);
 
 	// Create entity
 	Entity truck = m_registry->CreateEntity();
-	truck.AddComponent<TransformComponent>(glm::vec2(windowWidth - 50, 50), glm::vec2(1.5, 1.5), 0.0);
+	truck.AddComponent<TransformComponent>(glm::vec2(windowWidth - 50, 50), glm::vec2(1.0, 1.0), 0.0);
 	truck.AddComponent<RigidBodyComponent>(glm::vec2(-50.0, 0));
 	truck.AddComponent<SpriteComponent>("truck-image", 32, 32);
 }
