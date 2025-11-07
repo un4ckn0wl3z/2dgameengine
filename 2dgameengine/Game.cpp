@@ -92,9 +92,7 @@ void Game::ProcesInput() {
 	}
 };
 
-
-
-void  Game::Setup() {
+void Game::LoadLevel(int level) {
 
 	// create system
 	m_registry->AddSystem<MovementSystem>();
@@ -104,31 +102,25 @@ void  Game::Setup() {
 	m_assetStore->AddAssets(m_renderer, "tank-image", "./assets/images/tank-panther-right.png");
 	m_assetStore->AddAssets(m_renderer, "truck-image", "./assets/images/truck-ford-left.png");
 
+	// Load tilemap
+	m_assetStore->AddAssets(m_renderer, "tile-image", "./assets/tilemaps/jungle.png");
+
 
 	// Create entity
 	Entity tank = m_registry->CreateEntity();
-	tank.AddComponent<TransformComponent>(
-		glm::vec2(10.0, 30.0),
-		glm::vec2(1.5,1.5),
-		0.0
-	);
-	tank.AddComponent<RigidBodyComponent>(
-		glm::vec2(50.0, 0)
-	);
+	tank.AddComponent<TransformComponent>(glm::vec2(10.0, 30.0), glm::vec2(1.5, 1.5), 0.0);
+	tank.AddComponent<RigidBodyComponent>(glm::vec2(50.0, 0));
 	tank.AddComponent<SpriteComponent>("tank-image", 32, 32);
-
 
 	// Create entity
 	Entity truck = m_registry->CreateEntity();
-	truck.AddComponent<TransformComponent>(
-		glm::vec2(windowWidth-50, 50),
-		glm::vec2(1.5, 1.5),
-		0.0
-	);
-	truck.AddComponent<RigidBodyComponent>(
-		glm::vec2(-50.0, 0)
-	);
+	truck.AddComponent<TransformComponent>(glm::vec2(windowWidth - 50, 50), glm::vec2(1.5, 1.5), 0.0);
+	truck.AddComponent<RigidBodyComponent>(glm::vec2(-50.0, 0));
 	truck.AddComponent<SpriteComponent>("truck-image", 32, 32);
+}
+
+void  Game::Setup() {
+	LoadLevel(1);
 
 }
 
