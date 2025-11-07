@@ -107,7 +107,7 @@ void Game::LoadLevel(int level) {
 	m_assetStore->AddAssets(m_renderer, "tilemap-image", "./assets/tilemaps/jungle.png");
 
 	int tileSize = 32;
-	double tileScale = 1.0;
+	double tileScale = 1.5;
 	int mapNumCols = 25;
 	int mapNumRows = 20;
 	std::fstream mapFile;
