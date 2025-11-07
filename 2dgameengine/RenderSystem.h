@@ -19,6 +19,9 @@ public:
 	}
 
 	void Update(SDL_Renderer* renderer, std::unique_ptr<AssetStore>& assetStore) {
+		// sort entities by index
+
+
 		// Update entity 
 		for (auto entity : GetSystemEntity()) {
 			// update
