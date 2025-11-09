@@ -7,6 +7,7 @@
 #include <iostream>
 #include "TransformComponent.h"
 #include "RigidBodyComponent.h"
+#include "AnimationComponent.h"
 #include "MovementSystem.h"
 #include "SpriteComponent.h"
 #include "RenderSystem.h"
@@ -102,6 +103,8 @@ void Game::LoadLevel(int level) {
 	// Adding assets
 	m_assetStore->AddAssets(m_renderer, "tank-image", "./assets/images/tank-panther-right.png");
 	m_assetStore->AddAssets(m_renderer, "truck-image", "./assets/images/truck-ford-left.png");
+	m_assetStore->AddAssets(m_renderer, "chopper-image", "./assets/images/chopper.png");
+
 
 	// Load tilemap
 	m_assetStore->AddAssets(m_renderer, "tilemap-image", "./assets/tilemaps/jungle.png");
@@ -129,17 +132,25 @@ void Game::LoadLevel(int level) {
 	mapFile.close();
 
 
-	// Create entity
-	Entity tank = m_registry->CreateEntity();
-	tank.AddComponent<TransformComponent>(glm::vec2(10.0, 30.0), glm::vec2(1.0, 1.0), 0.0);
-	tank.AddComponent<RigidBodyComponent>(glm::vec2(50.0, 0));
-	tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 2);
+	//// Create entity
+	//Entity tank = m_registry->CreateEntity();
+	//tank.AddComponent<TransformComponent>(glm::vec2(10.0, 30.0), glm::vec2(1.0, 1.0), 0.0);
+	//tank.AddComponent<RigidBodyComponent>(glm::vec2(50.0, 0));
+	//tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 2);
+
+	//// Create entity
+	//Entity truck = m_registry->CreateEntity();
+	//truck.AddComponent<TransformComponent>(glm::vec2(windowWidth, 40.0), glm::vec2(1.0, 1.0), 0.0);
+	//truck.AddComponent<RigidBodyComponent>(glm::vec2(-45.0, 0));
+	//truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 1);
 
 	// Create entity
-	Entity truck = m_registry->CreateEntity();
-	truck.AddComponent<TransformComponent>(glm::vec2(windowWidth, 40.0), glm::vec2(1.0, 1.0), 0.0);
-	truck.AddComponent<RigidBodyComponent>(glm::vec2(-45.0, 0));
-	truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 1);
+	Entity chhopper = m_registry->CreateEntity();
+	chhopper.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
+	chhopper.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0));
+	chhopper.AddComponent<SpriteComponent>("chhopper-image", 32, 32, 1);
+	chhopper.AddComponent<AnimationComponent>();
+
 }
 
 void  Game::Setup() {
