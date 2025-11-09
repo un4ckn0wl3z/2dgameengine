@@ -147,11 +147,11 @@ void Game::LoadLevel(int level) {
 	truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 1);
 
 	// Create entity
-	Entity chhopper = m_registry->CreateEntity();
-	chhopper.AddComponent<TransformComponent>(glm::vec2(windowWidth/2, (windowsHeight / 2) - 50), glm::vec2(1.5, 1.5), 0.0);
-	chhopper.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
-	chhopper.AddComponent<SpriteComponent>("chopper-image", 32, 32, 1);
-	chhopper.AddComponent<AnimationComponent>(2,15,true);
+	Entity chopper = m_registry->CreateEntity();
+	chopper.AddComponent<TransformComponent>(glm::vec2(windowWidth/2, (windowsHeight / 2) - 50), glm::vec2(1.5, 1.5), 0.0);
+	chopper.AddComponent<RigidBodyComponent>(glm::vec2(10.0, 0.0));
+	chopper.AddComponent<SpriteComponent>("chopper-image", 32, 32, 1);
+	chopper.AddComponent<AnimationComponent>(2,10,true);
 
 	// Create entity
 	Entity radar = m_registry->CreateEntity();
