@@ -22,7 +22,7 @@ void System::RemoveEntityToSystem(Entity entity) {
     );
 }
 
-std::vector<Entity> System::GetSystemEntity() const {
+std::vector<Entity> System::GetSystemEntities() const {
 	return m_entities;
 }
 

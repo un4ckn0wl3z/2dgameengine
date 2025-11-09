@@ -65,7 +65,7 @@ public:
 	~System() = default;
 	void AddEntityToSystem(Entity entity);
 	void RemoveEntityToSystem(Entity entity);
-	std::vector<Entity> GetSystemEntity() const;
+	std::vector<Entity> GetSystemEntities() const;
 	const Signature& GetComponentSignature() const;
 
 	template<typename TComponent> void RequireComponent();

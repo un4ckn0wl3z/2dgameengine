@@ -14,7 +14,7 @@ public:
 
 	void Update(double deleta_time) {
 		// Update entity 
-		for (auto entity : GetSystemEntity()) {
+		for (auto entity : GetSystemEntities()) {
 			// update
 			auto& transform = entity.GetComponent<TransformComponent>();
 			const auto rigidbody = entity.GetComponent<RigidBodyComponent>();
