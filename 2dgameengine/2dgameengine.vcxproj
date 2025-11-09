@@ -173,6 +173,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="AssetStore.h" />
     <ClInclude Include="ECS.h" />
     <ClInclude Include="Game.h" />

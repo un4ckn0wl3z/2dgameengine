@@ -212,5 +212,8 @@
     <ClInclude Include="AssetStore.h">
       <Filter>Header Files\AssetStore</Filter>
     </ClInclude>
+    <ClInclude Include="AnimationComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
