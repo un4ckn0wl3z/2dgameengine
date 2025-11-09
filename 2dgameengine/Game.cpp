@@ -107,7 +107,6 @@ void Game::LoadLevel(int level) {
 	m_assetStore->AddAssets(m_renderer, "truck-image", "./assets/images/truck-ford-left.png");
 	m_assetStore->AddAssets(m_renderer, "chopper-image", "./assets/images/chopper.png");
 
-
 	// Load tilemap
 	m_assetStore->AddAssets(m_renderer, "tilemap-image", "./assets/tilemaps/jungle.png");
 
@@ -135,22 +134,22 @@ void Game::LoadLevel(int level) {
 
 
 	//// Create entity
-	//Entity tank = m_registry->CreateEntity();
-	//tank.AddComponent<TransformComponent>(glm::vec2(10.0, 30.0), glm::vec2(1.0, 1.0), 0.0);
-	//tank.AddComponent<RigidBodyComponent>(glm::vec2(50.0, 0));
-	//tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 2);
+	Entity tank = m_registry->CreateEntity();
+	tank.AddComponent<TransformComponent>(glm::vec2(10.0, 30.0), glm::vec2(1.0, 1.0), 0.0);
+	tank.AddComponent<RigidBodyComponent>(glm::vec2(50.0, 0.0));
+	tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 2);
 
 	//// Create entity
-	//Entity truck = m_registry->CreateEntity();
-	//truck.AddComponent<TransformComponent>(glm::vec2(windowWidth, 40.0), glm::vec2(1.0, 1.0), 0.0);
-	//truck.AddComponent<RigidBodyComponent>(glm::vec2(-45.0, 0));
-	//truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 1);
+	Entity truck = m_registry->CreateEntity();
+	truck.AddComponent<TransformComponent>(glm::vec2(windowWidth, 40.0), glm::vec2(1.0, 1.0), 0.0);
+	truck.AddComponent<RigidBodyComponent>(glm::vec2(-45.0, 0.0));
+	truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 1);
 
 	// Create entity
 	Entity chhopper = m_registry->CreateEntity();
 	chhopper.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
-	chhopper.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0));
-	chhopper.AddComponent<SpriteComponent>("chhopper-image", 32, 32, 1);
+	chhopper.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+	chhopper.AddComponent<SpriteComponent>("chhopper-image", 32, 32, 3);
 	chhopper.AddComponent<AnimationComponent>(2,5,true);
 
 }
@@ -170,8 +169,12 @@ void Game::Update() {
 	double deltaTime = (SDL_GetTicks() - m_MillisecsPreviousFrame) / 1000.0;
 	m_MillisecsPreviousFrame = SDL_GetTicks();
 
+
 	// invoke update system
 	m_registry->GetSystem<MovementSystem>().Update(deltaTime);
+
+	// invoke update system
+	m_registry->GetSystem<AnimationSystem>().Update();
 
 	// update entities
 	m_registry->Update();
