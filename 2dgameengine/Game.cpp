@@ -11,6 +11,7 @@
 #include "MovementSystem.h"
 #include "SpriteComponent.h"
 #include "RenderSystem.h"
+#include "AnimationSystem.h"
 #include "AssetStore.h"
 #include <fstream>
 
@@ -99,6 +100,7 @@ void Game::LoadLevel(int level) {
 	// create system
 	m_registry->AddSystem<MovementSystem>();
 	m_registry->AddSystem<RenderSystem>();
+	m_registry->AddSystem<AnimationSystem>();
 
 	// Adding assets
 	m_assetStore->AddAssets(m_renderer, "tank-image", "./assets/images/tank-panther-right.png");
@@ -149,7 +151,7 @@ void Game::LoadLevel(int level) {
 	chhopper.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
 	chhopper.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0));
 	chhopper.AddComponent<SpriteComponent>("chhopper-image", 32, 32, 1);
-	chhopper.AddComponent<AnimationComponent>();
+	chhopper.AddComponent<AnimationComponent>(2,5,true);
 
 }
 

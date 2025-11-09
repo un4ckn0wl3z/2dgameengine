@@ -18,7 +18,6 @@ struct AnimationComponent {
 		this->frameRateSpeed = frameRateSpeed;
 		this->isLoop = isLoop;
 		this->startTime = SDL_GetTicks();
-
 	}
 
 };
