@@ -8,6 +8,7 @@
 #include "SpriteComponent.h"
 #include "SDL.h"
 #include "AssetStore.h"
+#include <algorithm>
 
 class RenderSystem : public System {
 public:
@@ -19,14 +20,32 @@ public:
 	}
 
 	void Update(SDL_Renderer* renderer, std::unique_ptr<AssetStore>& assetStore) {
-		// sort entities by index
+		// get entities
+		struct RenderableEntity {
+			TransformComponent transformComponent;
+			SpriteComponent spriteComponent;
+		};
 
+		std::vector<RenderableEntity> renderableEntities;
+
+		for (auto entity : GetSystemEntity()) {
+			RenderableEntity renderableEntity;
+			renderableEntity.spriteComponent = entity.GetComponent<SpriteComponent>();
+			renderableEntity.transformComponent = entity.GetComponent<TransformComponent>();
+
+			renderableEntities.emplace_back(renderableEntity);
+		}
+
+		// sort
+		std::sort(renderableEntities.begin(), renderableEntities.end(), [](const RenderableEntity& a, const RenderableEntity& b) {
+			return a.spriteComponent.zIndex < b.spriteComponent.zIndex;
+		});
 
 		// Update entity 
-		for (auto entity : GetSystemEntity()) {
+		for (auto entity : renderableEntities) {
 			// update
-			const auto transform = entity.GetComponent<TransformComponent>();
-			const auto sprite = entity.GetComponent<SpriteComponent>();
+			const auto transform = entity.transformComponent;
+			const auto sprite = entity.spriteComponent;
  
 			SDL_Rect dstRect{
 				static_cast<int>(transform.position.x),
