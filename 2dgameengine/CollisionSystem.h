@@ -1,6 +1,4 @@
 #pragma once
-
-#pragma once
 #include "ECS.h"
 #include "BoxColliderComponent.h"
 #include "TransformComponent.h"

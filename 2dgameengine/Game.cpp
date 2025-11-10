@@ -14,13 +14,15 @@
 #include "SpriteComponent.h"
 #include "RenderSystem.h"
 #include "CollisionSystem.h"
+#include "RenderColliderSystem.h"
 
 #include "AnimationSystem.h"
 #include "AssetStore.h"
 #include <fstream>
 
 Game::Game() {
-	m_IsRunning = false;
+	m_isRunning = false;
+	m_isDebug = false;
 	m_registry = std::make_unique<Registry>();
 	m_assetStore = std::make_unique<AssetStore>();
 	Logger::Log("Game contructor called");
@@ -69,12 +71,12 @@ void Game::Initialize() {
 	}
 
 	// SDL_SetWindowFullscreen(m_window, SDL_WINDOW_FULLSCREEN);
-	m_IsRunning = true;
+	m_isRunning = true;
 };
 
 void Game::Run() {
 	Setup();
-	while (m_IsRunning) {
+	while (m_isRunning) {
 		ProcesInput();
 		Update();
 		Render();
@@ -88,10 +90,10 @@ void Game::ProcesInput() {
 		switch (sdlEvent.type) {
 		
 		case SDL_QUIT:
-			m_IsRunning = false;
+			m_isRunning = false;
 			break;
 		case SDL_KEYDOWN:
-			if (sdlEvent.key.keysym.sym == SDLK_ESCAPE) m_IsRunning = false;
+			if (sdlEvent.key.keysym.sym == SDLK_ESCAPE) m_isRunning = false;
 			break;
 
 

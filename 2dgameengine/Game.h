@@ -11,7 +11,8 @@ class Game
 private:
 	SDL_Window* m_window;
 	SDL_Renderer* m_renderer;
-	bool m_IsRunning;
+	bool m_isRunning;
+	bool m_isDebug;
 	int m_MillisecsPreviousFrame = 0;
 	std::unique_ptr<Registry> m_registry;
 	std::unique_ptr<AssetStore> m_assetStore;
