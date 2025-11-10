@@ -30,12 +30,12 @@ public:
 				// check collision
 
 				bool collisionHappened = CheckAABBCollision(
-					aTransfrom.position.x,
-					aTransfrom.position.y,
+					aTransfrom.position.x + aCollider.offset.x,
+					aTransfrom.position.y + aCollider.offset.y,
 					aCollider.width,
 					aCollider.height,
-					bTransfrom.position.x,
-					bTransfrom.position.y,
+					bTransfrom.position.x + bCollider.offset.x,
+					bTransfrom.position.y + bCollider.offset.y,
 					bCollider.width,
 					bCollider.height
 				);
