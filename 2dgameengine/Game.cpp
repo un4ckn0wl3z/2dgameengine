@@ -94,6 +94,7 @@ void Game::ProcesInput() {
 			break;
 		case SDL_KEYDOWN:
 			if (sdlEvent.key.keysym.sym == SDLK_ESCAPE) m_isRunning = false;
+			if (sdlEvent.key.keysym.sym == SDLK_d) m_isDebug = !m_isDebug;
 			break;
 
 
@@ -108,6 +109,8 @@ void Game::LoadLevel(int level) {
 	m_registry->AddSystem<RenderSystem>();
 	m_registry->AddSystem<AnimationSystem>();
 	m_registry->AddSystem<CollisionSystem>();
+	m_registry->AddSystem<RenderColliderSystem>();
+	
 
 	// Adding assets
 	m_assetStore->AddAssets(m_renderer, "tank-image", "./assets/images/tank-panther-left.png");
@@ -143,28 +146,29 @@ void Game::LoadLevel(int level) {
 
 	////// Create entity
 	Entity tank = m_registry->CreateEntity();
-	tank.AddComponent<TransformComponent>(glm::vec2(500.0, 10.0), glm::vec2(1.5, 1.5), 0.0);
+	tank.AddComponent<TransformComponent>(glm::vec2(500.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
 	tank.AddComponent<RigidBodyComponent>(glm::vec2(-30.0, 0.0));
 	tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 2);
 	tank.AddComponent<BoxColliderComponent>(32, 32);
 
 	////// Create entity
 	Entity truck = m_registry->CreateEntity();
-	truck.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.5, 1.5), 0.0);
+	truck.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
 	truck.AddComponent<RigidBodyComponent>(glm::vec2(20.0, 0.0));
 	truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 1);
 	truck.AddComponent<BoxColliderComponent>(32, 32);
 
 	// Create entity
 	Entity chopper = m_registry->CreateEntity();
-	chopper.AddComponent<TransformComponent>(glm::vec2(windowWidth/2, (windowsHeight / 2) - 50), glm::vec2(1.5, 1.5), 0.0);
+	chopper.AddComponent<TransformComponent>(glm::vec2(windowWidth/2, (windowsHeight / 2) - 50), glm::vec2(1.0, 1.0), 0.0);
 	chopper.AddComponent<RigidBodyComponent>(glm::vec2(10.0, 0.0));
 	chopper.AddComponent<SpriteComponent>("chopper-image", 32, 32, 1);
 	chopper.AddComponent<AnimationComponent>(2,10,true);
+	chopper.AddComponent<BoxColliderComponent>(32, 32);
 
 	// Create entity
 	Entity radar = m_registry->CreateEntity();
-	radar.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.5, 1.5), 0.0);
+	radar.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
 	radar.AddComponent<SpriteComponent>("radar-image", 64, 64, 1);
 	radar.AddComponent<AnimationComponent>(8, 5, true);
 
@@ -208,6 +212,9 @@ void Game::Render() {
 
 	// invoke render system
 	m_registry->GetSystem<RenderSystem>().Update(m_renderer, m_assetStore);
+	if (m_isDebug) {
+		m_registry->GetSystem<RenderColliderSystem>().Update(m_renderer);
+	}
 
 
 	// draw (switch-buffer)
