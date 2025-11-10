@@ -218,5 +218,8 @@
     <ClInclude Include="AnimationSystem.h">
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
+    <ClInclude Include="BoxComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

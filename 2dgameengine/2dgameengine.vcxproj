@@ -176,6 +176,7 @@
     <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="AnimationSystem.h" />
     <ClInclude Include="AssetStore.h" />
+    <ClInclude Include="BoxComponent.h" />
     <ClInclude Include="ECS.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="libs\lua\src\lua.hpp" />
