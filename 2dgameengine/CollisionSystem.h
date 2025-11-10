@@ -6,6 +6,7 @@
 #include "TransformComponent.h"
 #include "Logger.h"
 #include "SDL.h"
+#include <Windows.h>
 
 class CollisionSystem : public System {
 public:
@@ -42,6 +43,7 @@ public:
 				if (collisionHappened) {
 					Logger::Log("Entity " + std::to_string(a.GetId()) + " is colliding with entity " + std::to_string(b.GetId()));
 					// emit event
+					MessageBox(NULL, L"Collision Detected", L"Is collision happened?", MB_OK);
 				}
 
 			}
