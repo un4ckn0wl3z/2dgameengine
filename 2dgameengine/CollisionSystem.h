@@ -4,7 +4,7 @@
 #include "ECS.h"
 #include "BoxColliderComponent.h"
 #include "TransformComponent.h"
-
+#include "Logger.h"
 #include "SDL.h"
 
 class CollisionSystem : public System {
@@ -28,8 +28,21 @@ public:
 				auto bCollider = b.GetComponent<BoxColliderComponent>();
 				// check collision
 
+				bool collisionHappened = CheckAABBCollision(
+					aTransfrom.position.x,
+					aTransfrom.position.y,
+					aCollider.width,
+					aCollider.height,
+					bTransfrom.position.x,
+					bTransfrom.position.y,
+					bCollider.width,
+					bCollider.height
+				);
 
-
+				if (collisionHappened) {
+					Logger::Log("Entity " + std::to_string(a.GetId()) + " is colliding with entity " + std::to_string(b.GetId()));
+					// emit event
+				}
 
 			}
 
@@ -37,4 +50,23 @@ public:
 		
 	}
 
+	bool CheckAABBCollision(
+		double aX, 
+		double aY, 
+		double aW,
+		double aH,
+		double bX,
+		double bY,
+		double bW,
+		double bH
+		) {
+
+		return (
+			aX < bX + bW &&
+			aX + aW > bX &&
+			aY < bY + bH &&
+			aY + aH > bY
+			);
+
+	}
 };

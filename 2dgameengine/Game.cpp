@@ -8,10 +8,13 @@
 #include "TransformComponent.h"
 #include "RigidBodyComponent.h"
 #include "AnimationComponent.h"
+#include "BoxColliderComponent.h"
+
 #include "MovementSystem.h"
 #include "SpriteComponent.h"
 #include "RenderSystem.h"
-#include "BoxColliderComponent.h"
+#include "CollisionSystem.h"
+
 #include "AnimationSystem.h"
 #include "AssetStore.h"
 #include <fstream>
@@ -102,6 +105,7 @@ void Game::LoadLevel(int level) {
 	m_registry->AddSystem<MovementSystem>();
 	m_registry->AddSystem<RenderSystem>();
 	m_registry->AddSystem<AnimationSystem>();
+	m_registry->AddSystem<CollisionSystem>();
 
 	// Adding assets
 	m_assetStore->AddAssets(m_renderer, "tank-image", "./assets/images/tank-panther-left.png");
@@ -185,6 +189,9 @@ void Game::Update() {
 
 	// invoke update system
 	m_registry->GetSystem<AnimationSystem>().Update();
+
+	// invoke update system
+	m_registry->GetSystem<CollisionSystem>().Update();
 
 	// update entities
 	m_registry->Update();
