@@ -16,7 +16,13 @@ public:
 
 	void Update() {
 
+		for (auto a : GetSystemEntities()) {
+			for (auto b : GetSystemEntities()) {
 
+
+
+			}
+		}
 		
 	}
 
