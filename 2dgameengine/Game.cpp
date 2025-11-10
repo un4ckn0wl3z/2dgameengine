@@ -11,7 +11,7 @@
 #include "MovementSystem.h"
 #include "SpriteComponent.h"
 #include "RenderSystem.h"
-#include "BoxComponent.h"
+#include "BoxColliderComponent.h"
 #include "AnimationSystem.h"
 #include "AssetStore.h"
 #include <fstream>
@@ -140,14 +140,14 @@ void Game::LoadLevel(int level) {
 	tank.AddComponent<TransformComponent>(glm::vec2(500.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
 	tank.AddComponent<RigidBodyComponent>(glm::vec2(-30.0, 0.0));
 	tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 2);
-	//tank.AddComponent<BoxComponent>();
+	tank.AddComponent<BoxColliderComponent>(32, 32);
 
 	////// Create entity
 	Entity truck = m_registry->CreateEntity();
 	truck.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
 	truck.AddComponent<RigidBodyComponent>(glm::vec2(20.0, 0.0));
 	truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 1);
-	//truck.AddComponent<BoxComponent>();
+	truck.AddComponent<BoxColliderComponent>(32, 32);
 
 	// Create entity
 	Entity chopper = m_registry->CreateEntity();
