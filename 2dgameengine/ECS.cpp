@@ -7,6 +7,10 @@ int Entity::GetId() const {
 	return m_id;
 }
 
+void Entity::Kill() {
+    registry->KillEntity(*this);
+}
+
 void System::AddEntityToSystem(Entity entity) {
 	m_entities.push_back(entity);
 }

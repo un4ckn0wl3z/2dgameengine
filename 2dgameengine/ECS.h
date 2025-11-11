@@ -36,6 +36,7 @@ public:
 	Entity(int id) : m_id(id) {};
 	Entity(const Entity& other) = default;
 	int GetId() const;
+	void Kill();
 
 	Entity& operator= (const Entity& other) = default;
 

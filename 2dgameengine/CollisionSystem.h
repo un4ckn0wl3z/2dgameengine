@@ -42,6 +42,8 @@ public:
 					Logger::Log("Entity " + std::to_string(a.GetId()) + " is colliding with entity " + std::to_string(b.GetId()));
 					// emit event
 					// MessageBox(NULL, L"Collision Detected", L"Is collision happened?", MB_OK);
+
+					a.Kill();
 				}
 
 			}
