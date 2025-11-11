@@ -43,7 +43,7 @@ public:
 					// emit event
 					// MessageBox(NULL, L"Collision Detected", L"Is collision happened?", MB_OK);
 
-					a.Kill();
+
 				}
 
 			}
