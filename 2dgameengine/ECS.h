@@ -7,6 +7,7 @@
 #include <typeindex>
 #include <set>
 #include "Logger.h"
+#include <deque>
 
 const unsigned int MAX_COMPONENTS = 32;
 
@@ -64,7 +65,7 @@ public:
 	System() = default;
 	~System() = default;
 	void AddEntityToSystem(Entity entity);
-	void RemoveEntityToSystem(Entity entity);
+	void RemoveEntityFromSystem(Entity entity);
 	std::vector<Entity> GetSystemEntities() const;
 	const Signature& GetComponentSignature() const;
 
@@ -124,6 +125,7 @@ private:
 	std::vector<std::shared_ptr<IPool>> m_componentPools;
 	std::vector<Signature> m_entityComponentSignatures;
 	std::unordered_map<std::type_index, std::shared_ptr<System>> m_systems;
+	std::deque<int> m_freeIds;
 
 public:
 	Registry() {
@@ -154,6 +156,7 @@ public:
 
 
 	void AddEntityToSystems(Entity entity);
+	void RemoveEntityFromSystems(Entity entity);
 
 
 };
