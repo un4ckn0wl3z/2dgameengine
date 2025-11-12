@@ -16,6 +16,7 @@ private:
 	int m_MillisecsPreviousFrame = 0;
 	std::unique_ptr<Registry> m_registry;
 	std::unique_ptr<AssetStore> m_assetStore;
+	std::unique_ptr<EventBus> m_eventBus;
 
 
 public:
