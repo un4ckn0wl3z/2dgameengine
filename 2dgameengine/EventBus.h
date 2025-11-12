@@ -56,12 +56,26 @@ public:
 	}
 
 
-	void EmitEvent<>() {}
+	template <typename TEvent>
+	void EmitEvent() {
+		auto handlers = m_subscribers[typeid(TEvent)].get();
+		if (handlers) {
+			for (auto it = handlers->begin(), it != handlers->end(); it++) {
+				auto handler = it->get();
+				TEvent event();
+				handler->Execute(event);
+			}
+		}
+	}
 
 	template <typename TEvent, typename TOWner>
 	void SubscribeToEvent(
 		TOWner* ownerInstance, 
 		void (TOWner::* callbackFunction)(TEvent&)){
+
+		if (!m_subscribers[typeid(TEvent)].get()) {
+			m_subscribers[typeid(TEvent)] = std::make_unique<HandlerList>();
+		}
 	
 		auto subscriber = std::make_unique<EventCallback<TOWner, TEvent>>(ownerInstance, callbackFunction);
 		m_subscribers[typeid(TEvent)]->push_back(std::move(subscriber));
