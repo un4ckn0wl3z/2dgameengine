@@ -49,6 +49,12 @@
     <Filter Include="Header Files\AssetStore">
       <UniqueIdentifier>{fb979ec6-4b32-438a-b6ae-4d4640c3114c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Events">
+      <UniqueIdentifier>{05f3bb61-7011-4d90-8ee2-566a53578da2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\EventBus">
+      <UniqueIdentifier>{b826b87f-3246-4ac4-816b-c27690cba69b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -225,6 +231,18 @@
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
     <ClInclude Include="RenderColliderSystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionEvent.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="EventBus.h">
+      <Filter>Header Files\EventBus</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Header Files\EventBus</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageSystem.h">
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
   </ItemGroup>

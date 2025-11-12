@@ -3,6 +3,7 @@
 #include "BoxColliderComponent.h"
 #include "EventBus.h"
 #include "CollisionEvent.h"
+#include "Logger.h"
 
 class DamageSystem : public System {
 public:
@@ -15,7 +16,7 @@ public:
 	}
 
 	void onCollision(CollisionEvent& event) {
-
+		Logger::Log("DamageSystem got CollisionEvent! [entity]: " + std::to_string(event.a.GetId()) + "  and " + std::to_string(event.b.GetId()));
 	}
 
 	void Update() {

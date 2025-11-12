@@ -177,8 +177,12 @@
     <ClInclude Include="AnimationSystem.h" />
     <ClInclude Include="AssetStore.h" />
     <ClInclude Include="BoxColliderComponent.h" />
+    <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="CollisionSystem.h" />
+    <ClInclude Include="DamageSystem.h" />
     <ClInclude Include="ECS.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="EventBus.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="libs\lua\src\lua.hpp" />
     <ClInclude Include="Logger.h" />
