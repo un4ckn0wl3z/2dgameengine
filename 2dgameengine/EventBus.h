@@ -55,8 +55,17 @@ public:
 		Logger::Log("EventBus deconstructor called!");
 	}
 
+
 	void EmitEvent<>() {}
 
-	void SubscribeToEvent<>(){}
+	template <typename TEvent, typename TOWner>
+	void SubscribeToEvent(
+		TOWner* ownerInstance, 
+		void (TOWner::* callbackFunction)(TEvent&)){
+	
+		auto subscriber = std::make_unique<EventCallback<TOWner, TEvent>>(ownerInstance, callbackFunction);
+		m_subscribers[typeid(TEvent)]->push_back(std::move(subscriber));
+	
+	}
 
 };
