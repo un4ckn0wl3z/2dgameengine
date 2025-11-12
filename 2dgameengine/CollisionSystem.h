@@ -5,6 +5,7 @@
 #include "Logger.h"
 #include "SDL.h"
 #include <Windows.h>
+#include "CollisionEvent.h"
 
 class CollisionSystem : public System {
 public:
@@ -13,7 +14,7 @@ public:
 		RequireComponent<TransformComponent>();
 	}
 
-	void Update() {
+	void Update(std::unique_ptr<EventBus>& eventBus) {
 		auto entities = GetSystemEntities();
 		for (auto i = entities.begin(); i != entities.end(); i++) {
 			Entity a = *i;
@@ -42,7 +43,7 @@ public:
 					Logger::Log("Entity " + std::to_string(a.GetId()) + " is colliding with entity " + std::to_string(b.GetId()));
 					// emit event
 					// MessageBox(NULL, L"Collision Detected", L"Is collision happened?", MB_OK);
-
+					eventBus->EmitEvent<CollisionEvent>(a, b);
 
 				}
 

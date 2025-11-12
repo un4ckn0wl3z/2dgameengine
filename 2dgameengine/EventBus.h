@@ -79,4 +79,9 @@ public:
 	
 	}
 
+	// reset
+	void Reset() {
+		m_subscribers.clear();
+	}
+
 };
