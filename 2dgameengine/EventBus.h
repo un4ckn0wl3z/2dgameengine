@@ -3,11 +3,8 @@
 #include <map>
 #include <typeindex>
 #include <list>
+#include "Event.h"
 
-class Event {
-public:
-	Event() = default;
-};
 
 class IEventCallback {
 private:
@@ -56,13 +53,13 @@ public:
 	}
 
 
-	template <typename TEvent>
-	void EmitEvent() {
+	template <typename TEvent, typename ...TArgs>
+	void EmitEvent(TArgs&& ...args) {
 		auto handlers = m_subscribers[typeid(TEvent)].get();
 		if (handlers) {
 			for (auto it = handlers->begin(), it != handlers->end(); it++) {
 				auto handler = it->get();
-				TEvent event();
+				TEvent event(std::forward<TArgs>(args)...);
 				handler->Execute(event);
 			}
 		}
