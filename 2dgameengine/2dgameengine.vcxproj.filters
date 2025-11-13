@@ -245,5 +245,11 @@
     <ClInclude Include="DamageSystem.h">
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
+    <ClInclude Include="KeypressedEvent.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardControlSystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

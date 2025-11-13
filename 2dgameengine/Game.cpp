@@ -16,11 +16,14 @@
 #include "CollisionSystem.h"
 #include "RenderColliderSystem.h"
 #include "DamageSystem.h"
+#include "KeyboardControlSystem.h"
 
 #include "AnimationSystem.h"
 #include "AssetStore.h"
 #include <fstream>
 #include "EventBus.h"
+#include "KeypressedEvent.h"
+
 
 Game::Game() {
 	m_isRunning = false;
@@ -98,6 +101,7 @@ void Game::ProcesInput() {
 		case SDL_KEYDOWN:
 			if (sdlEvent.key.keysym.sym == SDLK_ESCAPE) m_isRunning = false;
 			if (sdlEvent.key.keysym.sym == SDLK_d) m_isDebug = !m_isDebug;
+			m_eventBus->EmitEvent<KeypressedEvent>(sdlEvent.key.keysym.sym);
 			break;
 
 
@@ -114,6 +118,7 @@ void Game::LoadLevel(int level) {
 	m_registry->AddSystem<CollisionSystem>();
 	m_registry->AddSystem<RenderColliderSystem>();
 	m_registry->AddSystem<DamageSystem>();
+	m_registry->AddSystem<KeyboardControlSystem>();
 	
 
 	// Adding assets
@@ -198,7 +203,7 @@ void Game::Update() {
 
 	// subscription events
 	m_registry->GetSystem<DamageSystem>().SubscribeToEvents(m_eventBus);
-
+	m_registry->GetSystem<KeyboardControlSystem>().SubscribeToEvents(m_eventBus);
 
 
 	// invoke update system
