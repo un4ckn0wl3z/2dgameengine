@@ -125,7 +125,7 @@ void Game::LoadLevel(int level) {
 	// Adding assets
 	m_assetStore->AddAssets(m_renderer, "tank-image", "./assets/images/tank-panther-left.png");
 	m_assetStore->AddAssets(m_renderer, "truck-image", "./assets/images/truck-ford-right.png");
-	m_assetStore->AddAssets(m_renderer, "chopper-image", "./assets/images/chopper-spritecheet.png");
+	m_assetStore->AddAssets(m_renderer, "chopper-image", "./assets/images/chopper-spritesheet.png");
 	m_assetStore->AddAssets(m_renderer, "radar-image", "./assets/images/radar.png");
 
 	// Load tilemap

@@ -32,13 +32,21 @@ public:
 			auto& rigidbody = entity.GetComponent<RigidBodyComponent>();
 
 			switch (event.symbol) {
-			case SDLK_w: 
+			case SDLK_w:
+				rigidbody.velocity = keyboardcontrol.upVelocity;
+				sprite.srcRect.y = sprite.height * 0;
 				break;
 			case SDLK_d:
+				rigidbody.velocity = keyboardcontrol.rightVelocity;
+				sprite.srcRect.y = sprite.height * 1;
 				break;
 			case SDLK_s:
+				rigidbody.velocity = keyboardcontrol.downVelocity;
+				sprite.srcRect.y = sprite.height * 2;
 				break;
 			case SDLK_a:
+				rigidbody.velocity = keyboardcontrol.leftVelocity;
+				sprite.srcRect.y = sprite.height * 3;
 				break;
 			}
 
