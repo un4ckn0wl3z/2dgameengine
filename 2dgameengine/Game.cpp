@@ -9,6 +9,7 @@
 #include "RigidBodyComponent.h"
 #include "AnimationComponent.h"
 #include "BoxColliderComponent.h"
+#include "KeyboardControlledComponent.h"
 
 #include "MovementSystem.h"
 #include "SpriteComponent.h"
@@ -100,7 +101,7 @@ void Game::ProcesInput() {
 			break;
 		case SDL_KEYDOWN:
 			if (sdlEvent.key.keysym.sym == SDLK_ESCAPE) m_isRunning = false;
-			if (sdlEvent.key.keysym.sym == SDLK_d) m_isDebug = !m_isDebug;
+			if (sdlEvent.key.keysym.sym == SDLK_p) m_isDebug = !m_isDebug;
 			m_eventBus->EmitEvent<KeypressedEvent>(sdlEvent.key.keysym.sym);
 			break;
 
@@ -124,7 +125,7 @@ void Game::LoadLevel(int level) {
 	// Adding assets
 	m_assetStore->AddAssets(m_renderer, "tank-image", "./assets/images/tank-panther-left.png");
 	m_assetStore->AddAssets(m_renderer, "truck-image", "./assets/images/truck-ford-right.png");
-	m_assetStore->AddAssets(m_renderer, "chopper-image", "./assets/images/chopper.png");
+	m_assetStore->AddAssets(m_renderer, "chopper-image", "./assets/images/chopper-spritecheet.png");
 	m_assetStore->AddAssets(m_renderer, "radar-image", "./assets/images/radar.png");
 
 	// Load tilemap
@@ -170,10 +171,16 @@ void Game::LoadLevel(int level) {
 	// Create entity
 	Entity chopper = m_registry->CreateEntity();
 	chopper.AddComponent<TransformComponent>(glm::vec2(windowWidth/2, (windowsHeight / 2) - 50), glm::vec2(1.0, 1.0), 0.0);
-	chopper.AddComponent<RigidBodyComponent>(glm::vec2(10.0, 0.0));
+	chopper.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
 	chopper.AddComponent<SpriteComponent>("chopper-image", 32, 32, 1);
 	chopper.AddComponent<AnimationComponent>(2,10,true);
 	chopper.AddComponent<BoxColliderComponent>(32, 32);
+	chopper.AddComponent<KeyboardControlledComponent>(
+		glm::vec2(0.0, -20.0),
+		glm::vec2(20.0, 0.0),
+		glm::vec2(0.0, 20.0),
+		glm::vec2(-20.0, 0.0)
+	);
 
 	// Create entity
 	Entity radar = m_registry->CreateEntity();
