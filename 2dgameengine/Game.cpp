@@ -12,6 +12,8 @@
 #include "KeyboardControlledComponent.h"
 #include "CameraFollowComponent.h"
 #include "ProjectileEmitterComponent.h"
+#include "HealthComponent.h"
+
 
 #include "MovementSystem.h"
 #include "SpriteComponent.h"
@@ -183,6 +185,7 @@ void Game::LoadLevel(int level) {
 	tank.AddComponent<ProjectileEmitterComponent>(
 		glm::vec2(100.0, 0.0), 5000, 10000, 0, false
 	);
+	tank.AddComponent<HealthComponent>(100);
 
 	////// Create entity
 	Entity truck = m_registry->CreateEntity();
@@ -193,6 +196,7 @@ void Game::LoadLevel(int level) {
 	truck.AddComponent<ProjectileEmitterComponent>(
 		glm::vec2(00, 100.0), 5000, 10000, 0, false
 	);
+	truck.AddComponent<HealthComponent>(100);
 
 	// Create entity
 	Entity chopper = m_registry->CreateEntity();
@@ -208,6 +212,7 @@ void Game::LoadLevel(int level) {
 		glm::vec2(-80.0, 0.0)
 	);
 	chopper.AddComponent<CameraFollowComponent>();
+	chopper.AddComponent<HealthComponent>(100);
 
 	// Create entity
 	Entity radar = m_registry->CreateEntity();
