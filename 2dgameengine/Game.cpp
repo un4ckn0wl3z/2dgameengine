@@ -249,7 +249,7 @@ void Game::Render() {
 	SDL_RenderClear(m_renderer);
 
 	// invoke render system
-	m_registry->GetSystem<RenderSystem>().Update(m_renderer, m_assetStore);
+	m_registry->GetSystem<RenderSystem>().Update(m_renderer, m_camera, m_assetStore);
 	if (m_isDebug) {
 		m_registry->GetSystem<RenderColliderSystem>().Update(m_renderer);
 	}

@@ -18,7 +18,7 @@ public:
 
 	}
 
-	void Update(SDL_Renderer* renderer, std::unique_ptr<AssetStore>& assetStore) {
+	void Update(SDL_Renderer* renderer, SDL_Rect camera, std::unique_ptr<AssetStore>& assetStore) {
 		// get entities
 		struct RenderableEntity {
 			TransformComponent transformComponent;
@@ -47,8 +47,8 @@ public:
 			const auto sprite = entity.spriteComponent;
  
 			SDL_Rect dstRect{
-				static_cast<int>(transform.position.x),
-				static_cast<int>(transform.position.y),
+				static_cast<int>(transform.position.x - camera.x),
+				static_cast<int>(transform.position.y - camera.y),
 				static_cast<int>(sprite.width * transform.scale.x),
 				static_cast<int>(sprite.height * transform.scale.y)
 			};
