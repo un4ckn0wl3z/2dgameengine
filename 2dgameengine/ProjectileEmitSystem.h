@@ -26,8 +26,8 @@ public:
 				glm::vec2 projectilePosition = transform.position;
 				if (entity.HasComponent<SpriteComponent>()) {
 					const auto sprite = entity.GetComponent<SpriteComponent>();
-					projectilePosition.x += sprite.width / 2;
-					projectilePosition.y += sprite.height / 2;
+					projectilePosition.x += (transform.scale.x * sprite.width / 2);
+					projectilePosition.y += (transform.scale.y * sprite.height / 2);
 				}
 
 				Entity projectile =  registry->CreateEntity();
