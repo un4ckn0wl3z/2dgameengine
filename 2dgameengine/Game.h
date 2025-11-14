@@ -33,8 +33,10 @@ public:
 	void Destroy();
 	void LoadLevel(int level);
 
-	int windowWidth;
-	int windowsHeight;
+	static int s_windowWidth;
+	static int s_windowsHeight;
+	static int s_mapWidth;
+	static int s_mapHeight;
 
 };
 

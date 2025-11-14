@@ -4,6 +4,7 @@
 #include "TransformComponent.h"
 #include "SDL.h"
 #include "Logger.h"
+#include "Game.h"
 
 class CameraMovementSystem : public System {
 public:
@@ -16,8 +17,20 @@ public:
 		for (auto entity: GetSystemEntities()) {
 			auto transform = entity.GetComponent<TransformComponent>();
 			// change camera base on entity
-			camera.x = transform.position.x;
-			camera.y = transform.position.y;
+
+			if (transform.position.x < Game::s_mapWidth) {
+				camera.x = transform.position.x;
+			}
+
+			if (transform.position.y < Game::s_windowsHeight) {
+				camera.y = transform.position.y;
+			}
+
+			// keep camera still insde screen limits
+			camera.x = camera.x < 0 ? 0 : camera.x;
+			camera.y = camera.y < 0 ? 0 : camera.y;
+
+
 			Logger::Log("Camera changed position to :" + std::to_string(camera.x) + " , " + std::to_string(camera.y));
 		}
 	}

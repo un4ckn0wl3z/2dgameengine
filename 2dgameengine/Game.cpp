@@ -27,6 +27,10 @@
 #include "EventBus.h"
 #include "KeypressedEvent.h"
 
+int Game::s_windowWidth;
+int Game::s_windowsHeight;
+int Game::s_mapWidth;
+int Game::s_mapHeight;
 
 Game::Game() {
 	m_isRunning = false;
@@ -51,15 +55,15 @@ void Game::Initialize() {
 	SDL_DisplayMode displayMode;
 	SDL_GetCurrentDisplayMode(0, &displayMode);
 
-	windowWidth = 800;// displayMode.w;
-	windowsHeight = 600;// displayMode.h;
+	s_windowWidth = 800;// displayMode.w;
+	s_windowsHeight = 600;// displayMode.h;
 
 	m_window = SDL_CreateWindow(
 		NULL,
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		windowWidth,
-		windowsHeight,
+		s_windowWidth,
+		s_windowsHeight,
 		SDL_WINDOW_BORDERLESS
 	);
 
@@ -84,8 +88,8 @@ void Game::Initialize() {
 	// init camera
 	m_camera.x = 0;
 	m_camera.y = 0;
-	m_camera.w = windowWidth;
-	m_camera.h = windowsHeight;
+	m_camera.w = s_windowWidth;
+	m_camera.h = s_windowsHeight;
 
 
 	m_isRunning = true;
@@ -163,7 +167,8 @@ void Game::LoadLevel(int level) {
 	}
 
 	mapFile.close();
-
+	s_mapWidth = mapNumCols * (tileScale * tileSize);
+	s_mapHeight = mapNumRows * (tileScale * tileSize);
 
 	////// Create entity
 	Entity tank = m_registry->CreateEntity();
@@ -181,7 +186,7 @@ void Game::LoadLevel(int level) {
 
 	// Create entity
 	Entity chopper = m_registry->CreateEntity();
-	chopper.AddComponent<TransformComponent>(glm::vec2(windowWidth/2, (windowsHeight / 2) - 50), glm::vec2(1.0, 1.0), 0.0);
+	chopper.AddComponent<TransformComponent>(glm::vec2(s_windowWidth/2, (s_windowsHeight / 2) - 50), glm::vec2(1.0, 1.0), 0.0);
 	chopper.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
 	chopper.AddComponent<SpriteComponent>("chopper-image", 32, 32, 1);
 	chopper.AddComponent<AnimationComponent>(2,10,true);
