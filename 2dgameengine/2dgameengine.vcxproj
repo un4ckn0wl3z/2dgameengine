@@ -177,6 +177,8 @@
     <ClInclude Include="AnimationSystem.h" />
     <ClInclude Include="AssetStore.h" />
     <ClInclude Include="BoxColliderComponent.h" />
+    <ClInclude Include="CameraFollowComponent.h" />
+    <ClInclude Include="CameraMovementSystem.h" />
     <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="CollisionSystem.h" />
     <ClInclude Include="DamageSystem.h" />

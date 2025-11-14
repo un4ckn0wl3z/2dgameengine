@@ -234,7 +234,7 @@ void Game::Update() {
 	// invoke update system
 	m_registry->GetSystem<CollisionSystem>().Update(m_eventBus);
 
-	m_registry->GetSystem<CameraMovementSystem>().Update();
+	m_registry->GetSystem<CameraMovementSystem>().Update(m_camera);
 
 	
 	// update entities
