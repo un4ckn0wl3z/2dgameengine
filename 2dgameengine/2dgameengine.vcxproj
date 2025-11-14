@@ -186,6 +186,7 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventBus.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="KeyboardControlledComponent.h" />
     <ClInclude Include="KeyboardControlSystem.h" />
     <ClInclude Include="KeypressedEvent.h" />
