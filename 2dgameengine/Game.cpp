@@ -11,6 +11,7 @@
 #include "BoxColliderComponent.h"
 #include "KeyboardControlledComponent.h"
 #include "CameraFollowComponent.h"
+#include "ProjectileEmitterComponent.h"
 
 #include "MovementSystem.h"
 #include "SpriteComponent.h"
@@ -20,6 +21,7 @@
 #include "DamageSystem.h"
 #include "KeyboardControlSystem.h"
 #include "CameraMovementSystem.h"
+#include "ProjectileEmitSystem.h"
 
 #include "AnimationSystem.h"
 #include "AssetStore.h"
@@ -135,13 +137,15 @@ void Game::LoadLevel(int level) {
 	m_registry->AddSystem<DamageSystem>();
 	m_registry->AddSystem<KeyboardControlSystem>();
 	m_registry->AddSystem<CameraMovementSystem>();
+	m_registry->AddSystem<ProjectileEmitSystem>();
 	
-
+	
 	// Adding assets
 	m_assetStore->AddAssets(m_renderer, "tank-image", "./assets/images/tank-panther-left.png");
 	m_assetStore->AddAssets(m_renderer, "truck-image", "./assets/images/truck-ford-right.png");
 	m_assetStore->AddAssets(m_renderer, "chopper-image", "./assets/images/chopper-spritesheet.png");
 	m_assetStore->AddAssets(m_renderer, "radar-image", "./assets/images/radar.png");
+	m_assetStore->AddAssets(m_renderer, "bullet-image", "./assets/images/bullet.png");
 
 	// Load tilemap
 	m_assetStore->AddAssets(m_renderer, "tilemap-image", "./assets/tilemaps/jungle.png");
@@ -173,16 +177,22 @@ void Game::LoadLevel(int level) {
 	////// Create entity
 	Entity tank = m_registry->CreateEntity();
 	tank.AddComponent<TransformComponent>(glm::vec2(500.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
-	tank.AddComponent<RigidBodyComponent>(glm::vec2(-30.0, 0.0));
+	tank.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
 	tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 2);
 	tank.AddComponent<BoxColliderComponent>(32, 32);
+	tank.AddComponent<ProjectileEmitterComponent>(
+	
+	);
 
 	////// Create entity
 	Entity truck = m_registry->CreateEntity();
 	truck.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
-	truck.AddComponent<RigidBodyComponent>(glm::vec2(20.0, 0.0));
+	truck.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
 	truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 1);
 	truck.AddComponent<BoxColliderComponent>(32, 32);
+	truck.AddComponent<ProjectileEmitterComponent>(
+	
+	);
 
 	// Create entity
 	Entity chopper = m_registry->CreateEntity();
@@ -240,6 +250,8 @@ void Game::Update() {
 	m_registry->GetSystem<CollisionSystem>().Update(m_eventBus);
 
 	m_registry->GetSystem<CameraMovementSystem>().Update(m_camera);
+
+	m_registry->GetSystem<ProjectileEmitSystem>().Update(m_registry);
 
 	
 	// update entities
