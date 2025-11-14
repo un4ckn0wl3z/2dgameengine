@@ -167,8 +167,8 @@ void Game::LoadLevel(int level) {
 	}
 
 	mapFile.close();
-	s_mapWidth = mapNumCols * (tileScale * tileSize);
-	s_mapHeight = mapNumRows * (tileScale * tileSize);
+	s_mapWidth = mapNumCols * tileSize * tileScale;
+	s_mapHeight = mapNumRows * tileSize * tileScale;
 
 	////// Create entity
 	Entity tank = m_registry->CreateEntity();
