@@ -24,8 +24,8 @@ public:
 			SDL_Rect colliderRect = {
 				static_cast<int>((transform.position.x - camera.x) + collider.offset.x),
 				static_cast<int>((transform.position.y - camera.y) + collider.offset.y),
-				static_cast<int>(collider.width),
-				static_cast<int>(collider.height)
+				static_cast<int>(collider.width * transform.scale.x),
+				static_cast<int>(collider.height * transform.scale.y)
 			};
 
 			SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
