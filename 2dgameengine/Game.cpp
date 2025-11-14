@@ -55,8 +55,8 @@ void Game::Initialize() {
 	SDL_DisplayMode displayMode;
 	SDL_GetCurrentDisplayMode(0, &displayMode);
 
-	s_windowWidth = 800;// displayMode.w;
-	s_windowsHeight = 600;// displayMode.h;
+	s_windowWidth = 800;// displayMode.w; 800
+	s_windowsHeight = 600;// displayMode.h; 600
 
 	m_window = SDL_CreateWindow(
 		NULL,
@@ -83,7 +83,7 @@ void Game::Initialize() {
 		return;
 	}
 
-	// SDL_SetWindowFullscreen(m_window, SDL_WINDOW_FULLSCREEN);
+	//SDL_SetWindowFullscreen(m_window, SDL_WINDOW_FULLSCREEN);
 
 	// init camera
 	m_camera.x = 0;
