@@ -162,7 +162,7 @@ void Game::LoadLevel(int level) {
 			mapFile.ignore();
 			Entity tile = m_registry->CreateEntity();
 			tile.AddComponent<TransformComponent>(glm::vec2(x * (tileScale * tileSize), y * (tileScale * tileSize)), glm::vec2(tileScale, tileScale), 0.0);
-			tile.AddComponent<SpriteComponent>("tilemap-image", tileSize, tileSize, 0, srcRectX, srcRectY);
+			tile.AddComponent<SpriteComponent>("tilemap-image", tileSize, tileSize, 0, false, srcRectX, srcRectY);
 		}
 	}
 
@@ -202,7 +202,7 @@ void Game::LoadLevel(int level) {
 	// Create entity
 	Entity radar = m_registry->CreateEntity();
 	radar.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
-	radar.AddComponent<SpriteComponent>("radar-image", 64, 64, 1);
+	radar.AddComponent<SpriteComponent>("radar-image", 64, 64, 1, true);
 	radar.AddComponent<AnimationComponent>(8, 5, true);
 
 }
@@ -256,7 +256,7 @@ void Game::Render() {
 	// invoke render system
 	m_registry->GetSystem<RenderSystem>().Update(m_renderer, m_camera, m_assetStore);
 	if (m_isDebug) {
-		m_registry->GetSystem<RenderColliderSystem>().Update(m_renderer);
+		m_registry->GetSystem<RenderColliderSystem>().Update(m_renderer, m_camera);
 	}
 
 
