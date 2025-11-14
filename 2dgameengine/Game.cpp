@@ -181,7 +181,7 @@ void Game::LoadLevel(int level) {
 	tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 2);
 	tank.AddComponent<BoxColliderComponent>(32, 32);
 	tank.AddComponent<ProjectileEmitterComponent>(
-	
+		glm::vec2(100.0, 0.0), 5000, 10000, 0, false
 	);
 
 	////// Create entity
@@ -191,7 +191,7 @@ void Game::LoadLevel(int level) {
 	truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 1);
 	truck.AddComponent<BoxColliderComponent>(32, 32);
 	truck.AddComponent<ProjectileEmitterComponent>(
-	
+		glm::vec2(00, 100.0), 5000, 10000, 0, false
 	);
 
 	// Create entity
