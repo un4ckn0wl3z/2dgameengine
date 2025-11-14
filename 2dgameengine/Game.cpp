@@ -10,6 +10,7 @@
 #include "AnimationComponent.h"
 #include "BoxColliderComponent.h"
 #include "KeyboardControlledComponent.h"
+#include "CameraFollowComponent.h"
 
 #include "MovementSystem.h"
 #include "SpriteComponent.h"
@@ -18,6 +19,7 @@
 #include "RenderColliderSystem.h"
 #include "DamageSystem.h"
 #include "KeyboardControlSystem.h"
+#include "CameraMovementSystem.h"
 
 #include "AnimationSystem.h"
 #include "AssetStore.h"
@@ -78,6 +80,14 @@ void Game::Initialize() {
 	}
 
 	// SDL_SetWindowFullscreen(m_window, SDL_WINDOW_FULLSCREEN);
+
+	// init camera
+	m_camera.x = 0;
+	m_camera.y = 0;
+	m_camera.w = windowWidth;
+	m_camera.h = windowsHeight;
+
+
 	m_isRunning = true;
 };
 
@@ -120,6 +130,7 @@ void Game::LoadLevel(int level) {
 	m_registry->AddSystem<RenderColliderSystem>();
 	m_registry->AddSystem<DamageSystem>();
 	m_registry->AddSystem<KeyboardControlSystem>();
+	m_registry->AddSystem<CameraMovementSystem>();
 	
 
 	// Adding assets
@@ -176,11 +187,12 @@ void Game::LoadLevel(int level) {
 	chopper.AddComponent<AnimationComponent>(2,10,true);
 	chopper.AddComponent<BoxColliderComponent>(32, 32);
 	chopper.AddComponent<KeyboardControlledComponent>(
-		glm::vec2(0.0, -20.0),
-		glm::vec2(20.0, 0.0),
-		glm::vec2(0.0, 20.0),
-		glm::vec2(-20.0, 0.0)
+		glm::vec2(0.0, -80.0),
+		glm::vec2(80.0, 0.0),
+		glm::vec2(0.0, 80.0),
+		glm::vec2(-80.0, 0.0)
 	);
+	chopper.AddComponent<CameraFollowComponent>();
 
 	// Create entity
 	Entity radar = m_registry->CreateEntity();
@@ -222,7 +234,9 @@ void Game::Update() {
 	// invoke update system
 	m_registry->GetSystem<CollisionSystem>().Update(m_eventBus);
 
+	m_registry->GetSystem<CameraMovementSystem>().Update();
 
+	
 	// update entities
 	m_registry->Update();
 

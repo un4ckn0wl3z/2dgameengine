@@ -18,6 +18,7 @@ private:
 	std::unique_ptr<Registry> m_registry;
 	std::unique_ptr<AssetStore> m_assetStore;
 	std::unique_ptr<EventBus> m_eventBus;
+	SDL_Rect m_camera;
 
 
 public:
