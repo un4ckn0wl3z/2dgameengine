@@ -18,12 +18,12 @@ public:
 			auto transform = entity.GetComponent<TransformComponent>();
 			// change camera base on entity
 
-			if (transform.position.x < Game::s_mapWidth) {
-				camera.x = transform.position.x;
+			if (transform.position.x + (camera.w / 2) < Game::s_mapWidth) {
+				camera.x = transform.position.x - (Game::s_mapWidth / 2);
 			}
 
-			if (transform.position.y < Game::s_windowsHeight) {
-				camera.y = transform.position.y;
+			if (transform.position.y + (camera.h / 2) < Game::s_windowsHeight) {
+				camera.y = transform.position.y - (Game::s_windowsHeight / 2);
 			}
 
 			// keep camera still insde screen limits
