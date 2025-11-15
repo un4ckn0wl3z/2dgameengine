@@ -177,6 +177,10 @@ void Registry::Update() {
         
         // store freeid
         m_freeIds.push_back(entity.GetId());
+
+        // remove entity from tag/group
+        RemoveEntityTag(entity);
+        RemoveEntityGroup(entity);
     }
 
     m_entitiesToBeKilled.clear();
