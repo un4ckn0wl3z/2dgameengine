@@ -169,6 +169,7 @@ void Game::LoadLevel(int level) {
 			int srcRectX = std::atoi(&ch) * tileSize;
 			mapFile.ignore();
 			Entity tile = m_registry->CreateEntity();
+			tile.Group("tiles");
 			tile.AddComponent<TransformComponent>(glm::vec2(x * (tileScale * tileSize), y * (tileScale * tileSize)), glm::vec2(tileScale, tileScale), 0.0);
 			tile.AddComponent<SpriteComponent>("tilemap-image", tileSize, tileSize, 0, false, srcRectX, srcRectY);
 		}
@@ -227,7 +228,7 @@ void Game::LoadLevel(int level) {
 	radar.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
 	radar.AddComponent<SpriteComponent>("radar-image", 64, 64, 1, true);
 	radar.AddComponent<AnimationComponent>(8, 5, true);
-
+	radar.Group("hud");
 }
 
 void  Game::Setup() {
