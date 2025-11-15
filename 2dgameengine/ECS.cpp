@@ -133,18 +133,32 @@ void Registry::GroupEntity(Entity entity, const std::string& group) {
     m_groupPerEntity.emplace(entity.GetId(), group);
 }
 
-bool Registry::EntityBelongsToGroup(Entity entity, const std::string& group) const
-{
-    return false;
+bool Registry::EntityBelongsToGroup(Entity entity, const std::string& group) const {
+    auto groupEntities = m_entitiesPerGroup.at(group);
+    return groupEntities.find(entity.GetId()) != groupEntities.end();
 }
 
-std::vector<Entity> Registry::GetEntitiesByGroup(const std::string& group) const
-{
-    return std::vector<Entity>();
+std::vector<Entity> Registry::GetEntitiesByGroup(const std::string& group) const {
+    
+    auto& setOfEntities = m_entitiesPerGroup.at(group);
+    return std::vector<Entity>(setOfEntities.begin(), setOfEntities.end());
 }
 
-void Registry::RemoveEntityGroup(Entity entity)
-{
+void Registry::RemoveEntityGroup(Entity entity) {
+    auto groupedEntity = m_groupPerEntity
+        .find(entity.GetId());
+    if (groupedEntity != m_groupPerEntity.end()) {
+        auto group = m_entitiesPerGroup
+            .find(groupedEntity->second);
+        if (group != m_entitiesPerGroup.end()) {
+            auto entityInGroup = group->second
+                .find(entity);
+            if (entityInGroup != group->second.end()) {
+                group->second.erase(entityInGroup);
+            }
+        }
+    }
+    m_groupPerEntity.erase(groupedEntity);
 }
 
 void Registry::Update() {
