@@ -188,6 +188,7 @@ void Game::LoadLevel(int level) {
 		glm::vec2(100.0, 0.0), 500, 5000, 0, false
 	);
 	tank.AddComponent<HealthComponent>(100);
+	tank.Group("enemies");
 
 	////// Create entity
 	Entity truck = m_registry->CreateEntity();
@@ -199,6 +200,7 @@ void Game::LoadLevel(int level) {
 		glm::vec2(00, 100.0), 500, 5000, 0, false
 	);
 	truck.AddComponent<HealthComponent>(100);
+	truck.Group("enemies");
 
 	// Create entity
 	Entity chopper = m_registry->CreateEntity();
@@ -218,6 +220,7 @@ void Game::LoadLevel(int level) {
 	chopper.AddComponent<ProjectileEmitterComponent>(
 		glm::vec2(300.0, 300.0), 0, 10000, 0, true
 	);
+	chopper.Tag("player");
 
 	// Create entity
 	Entity radar = m_registry->CreateEntity();
@@ -236,11 +239,11 @@ void Game::Update() {
 	// frame control
 	//while (!SDL_TICKS_PASSED(SDL_GetTicks(), m_MillisecsPreviousFrame + MILLISECS_PER_FRAME));
 	
-	int timeToWait = MILLISECS_PER_FRAME - (SDL_GetTicks() - m_MillisecsPreviousFrame);
+	int timeToWait = MILLISECS_PER_FRAME - (SDL_GetTicks() - m_millisecsPreviousFrame);
 	if (timeToWait > 0 && timeToWait <= MILLISECS_PER_FRAME) SDL_Delay(timeToWait);
 	
-	double deltaTime = (SDL_GetTicks() - m_MillisecsPreviousFrame) / 1000.0;
-	m_MillisecsPreviousFrame = SDL_GetTicks();
+	double deltaTime = (SDL_GetTicks() - m_millisecsPreviousFrame) / 1000.0;
+	m_millisecsPreviousFrame = SDL_GetTicks();
 
 	// reset all event handlers
 	m_eventBus->Reset();

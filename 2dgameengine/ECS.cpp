@@ -11,6 +11,26 @@ void Entity::Kill() {
     registry->KillEntity(*this);
 }
 
+void Entity::Tag(const std::string& tag)
+{
+    registry->TagEntity(*this, tag);
+}
+
+bool Entity::Hastag(const std::string& tag) const
+{
+    return registry->EntityHasTag(*this, tag);
+}
+
+void Entity::Group(const std::string& groupName)
+{
+    registry->GroupEntity(*this, groupName);
+}
+
+bool Entity::BelongsToGroup(const std::string& groupName) const
+{
+    return registry->EntityBelongsToGroup(*this, groupName);
+}
+
 void System::AddEntityToSystem(Entity entity) {
 	m_entities.push_back(entity);
 }
@@ -78,6 +98,42 @@ void Registry::RemoveEntityFromSystems(Entity entity) {
     for (auto& system : m_systems) {
         system.second->RemoveEntityFromSystem(entity);
     }
+}
+
+void Registry::TagEntity(Entity entity, const std::string& tag)
+{
+}
+
+bool Registry::EntityHasTag(Entity entity, const std::string& tag) const
+{
+    return false;
+}
+
+Entity Registry::GetEntityByTag(const std::string& tag) const
+{
+    return Entity();
+}
+
+void Registry::RemoveEntityTag(Entity entity)
+{
+}
+
+void Registry::GroupEntity(Entity entity, const std::string& group)
+{
+}
+
+bool Registry::EntityBelongsToGroup(Entity entity, const std::string& group) const
+{
+    return false;
+}
+
+std::vector<Entity> Registry::GetEntitiesByGroup(const std::string& group) const
+{
+    return std::vector<Entity>();
+}
+
+void Registry::RemoveEntityGroup(Entity entity)
+{
 }
 
 void Registry::Update() {

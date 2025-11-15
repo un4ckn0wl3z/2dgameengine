@@ -56,6 +56,13 @@ public:
 	template <typename TComponent> void RemoveComponent();
 	template <typename TComponent> bool HasComponent() const;
 	template <typename TComponent> TComponent& GetComponent() const;
+
+	void Tag(const std::string& tag);
+	bool Hastag(const std::string& tag) const;
+
+	void Group(const std::string& groupName);
+	bool BelongsToGroup(const std::string& groupName) const;
+
 };
 
 class System {
@@ -128,6 +135,15 @@ private:
 	std::unordered_map<std::type_index, std::shared_ptr<System>> m_systems;
 	std::deque<int> m_freeIds;
 
+	std::unordered_map<std::string, Entity> m_entityPerTag;
+	std::unordered_map<int, std::string> m_tagPerEntity;
+
+	std::unordered_map<std::string, std::set<Entity>> m_entitiesPerGroup;
+	std::unordered_map<int, std::string> m_groupPerEntity;
+
+
+
+
 public:
 	Registry() {
 		Logger::Log("Registry contructor called");
@@ -159,6 +175,15 @@ public:
 	void AddEntityToSystems(Entity entity);
 	void RemoveEntityFromSystems(Entity entity);
 
+	void TagEntity(Entity entity, const std::string& tag);
+	bool EntityHasTag(Entity entity, const std::string& tag) const;
+	Entity GetEntityByTag(const std::string& tag) const;
+	void RemoveEntityTag(Entity entity);
+
+	void GroupEntity(Entity entity, const std::string& group);
+	bool EntityBelongsToGroup(Entity entity, const std::string& group) const;
+	std::vector<Entity> GetEntitiesByGroup(const std::string& group) const;
+	void RemoveEntityGroup(Entity entity);
 
 };
 

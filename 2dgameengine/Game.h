@@ -14,7 +14,7 @@ private:
 	SDL_Renderer* m_renderer;
 	bool m_isRunning;
 	bool m_isDebug;
-	int m_MillisecsPreviousFrame = 0;
+	int m_millisecsPreviousFrame = 0;
 	std::unique_ptr<Registry> m_registry;
 	std::unique_ptr<AssetStore> m_assetStore;
 	std::unique_ptr<EventBus> m_eventBus;
