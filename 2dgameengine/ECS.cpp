@@ -157,8 +157,8 @@ void Registry::RemoveEntityGroup(Entity entity) {
                 group->second.erase(entityInGroup);
             }
         }
+        m_groupPerEntity.erase(groupedEntity);
     }
-    m_groupPerEntity.erase(groupedEntity);
 }
 
 void Registry::Update() {
