@@ -193,8 +193,10 @@
     <ClInclude Include="libs\lua\src\lua.hpp" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="MovementSystem.h" />
+    <ClInclude Include="ProjectileComponent.h" />
     <ClInclude Include="ProjectileEmitSystem.h" />
     <ClInclude Include="ProjectileEmitterComponent.h" />
+    <ClInclude Include="ProjectileLifeCycle.h" />
     <ClInclude Include="RenderColliderSystem.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="RigidBodyComponent.h" />

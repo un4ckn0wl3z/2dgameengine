@@ -5,6 +5,7 @@
 #include "RigidBodyComponent.h"
 #include "SpriteComponent.h"
 #include "BoxColliderComponent.h"
+#include "ProjectileComponent.h"
 #include "SDL.h"
 #include "glm.hpp"
 
@@ -35,6 +36,11 @@ public:
 				projectile.AddComponent<RigidBodyComponent>(projectileEmitter.projectileVelocity);
 				projectile.AddComponent<SpriteComponent>("bullet-image",4,4,4);
 				projectile.AddComponent<BoxColliderComponent>( 4,4);
+				projectile.AddComponent<ProjectileComponent>(
+					projectileEmitter.isFriendly,
+					projectileEmitter.hitPercentDamage,
+					projectileEmitter.projectileDuration
+				);
 				projectileEmitter.lastEmissionTime = SDL_GetTicks();
 				
 			}

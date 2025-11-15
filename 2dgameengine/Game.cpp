@@ -24,6 +24,7 @@
 #include "KeyboardControlSystem.h"
 #include "CameraMovementSystem.h"
 #include "ProjectileEmitSystem.h"
+#include "ProjectileLifeCycle.h"
 
 #include "AnimationSystem.h"
 #include "AssetStore.h"
@@ -140,7 +141,8 @@ void Game::LoadLevel(int level) {
 	m_registry->AddSystem<KeyboardControlSystem>();
 	m_registry->AddSystem<CameraMovementSystem>();
 	m_registry->AddSystem<ProjectileEmitSystem>();
-	
+	m_registry->AddSystem<ProjectileLifeCycle>();
+
 	
 	// Adding assets
 	m_assetStore->AddAssets(m_renderer, "tank-image", "./assets/images/tank-panther-left.png");
@@ -183,7 +185,7 @@ void Game::LoadLevel(int level) {
 	tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 2);
 	tank.AddComponent<BoxColliderComponent>(32, 32);
 	tank.AddComponent<ProjectileEmitterComponent>(
-		glm::vec2(100.0, 0.0), 5000, 10000, 0, false
+		glm::vec2(100.0, 0.0), 500, 5000, 0, false
 	);
 	tank.AddComponent<HealthComponent>(100);
 
@@ -194,7 +196,7 @@ void Game::LoadLevel(int level) {
 	truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 1);
 	truck.AddComponent<BoxColliderComponent>(32, 32);
 	truck.AddComponent<ProjectileEmitterComponent>(
-		glm::vec2(00, 100.0), 5000, 10000, 0, false
+		glm::vec2(00, 100.0), 500, 5000, 0, false
 	);
 	truck.AddComponent<HealthComponent>(100);
 
@@ -258,7 +260,7 @@ void Game::Update() {
 
 	m_registry->GetSystem<ProjectileEmitSystem>().Update(m_registry);
 
-	
+	m_registry->GetSystem<ProjectileLifeCycle>().Update();
 	// update entities
 	m_registry->Update();
 
