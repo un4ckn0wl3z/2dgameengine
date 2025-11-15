@@ -216,7 +216,7 @@ void Game::LoadLevel(int level) {
 	chopper.AddComponent<CameraFollowComponent>();
 	chopper.AddComponent<HealthComponent>(100);
 	chopper.AddComponent<ProjectileEmitterComponent>(
-		glm::vec2(150.0, 150.0), 0, 10000, 0, true
+		glm::vec2(300.0, 300.0), 0, 10000, 0, true
 	);
 
 	// Create entity

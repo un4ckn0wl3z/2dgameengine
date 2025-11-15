@@ -70,10 +70,9 @@ public:
 
 	void Update(std::unique_ptr<Registry>& registry) {
 		for (auto entity: GetSystemEntities()) {
-			if (entity.HasComponent<CameraFollowComponent>()) continue;
 			auto& projectileEmitter = entity.GetComponent<ProjectileEmitterComponent>();
 			const auto transform = entity.GetComponent<TransformComponent>();
-
+			if (projectileEmitter.repeatFrequency == 0) continue;
 			// re-emit
 			if (SDL_GetTicks() - projectileEmitter.lastEmissionTime > projectileEmitter.repeatFrequency) {
 				// add new projectile entity
