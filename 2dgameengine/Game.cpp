@@ -186,7 +186,7 @@ void Game::LoadLevel(int level) {
 	tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 2);
 	tank.AddComponent<BoxColliderComponent>(32, 32);
 	tank.AddComponent<ProjectileEmitterComponent>(
-		glm::vec2(100.0, 0.0), 500, 5000, 0, false
+		glm::vec2(100.0, 0.0), 500, 5000, 10, false
 	);
 	tank.AddComponent<HealthComponent>(100);
 	tank.Group("enemies");
@@ -198,7 +198,7 @@ void Game::LoadLevel(int level) {
 	truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 1);
 	truck.AddComponent<BoxColliderComponent>(32, 32);
 	truck.AddComponent<ProjectileEmitterComponent>(
-		glm::vec2(00, 100.0), 500, 5000, 0, false
+		glm::vec2(00, 100.0), 500, 5000, 10, false
 	);
 	truck.AddComponent<HealthComponent>(100);
 	truck.Group("enemies");
@@ -219,7 +219,7 @@ void Game::LoadLevel(int level) {
 	chopper.AddComponent<CameraFollowComponent>();
 	chopper.AddComponent<HealthComponent>(100);
 	chopper.AddComponent<ProjectileEmitterComponent>(
-		glm::vec2(300.0, 300.0), 0, 10000, 0, true
+		glm::vec2(300.0, 300.0), 0, 10000, 10, true
 	);
 	chopper.Tag("player");
 
