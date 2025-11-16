@@ -54,7 +54,7 @@ public:
 			if (health.healthPercentage <= 0) {
 				player.Kill();
 			}
-
+			// remove projectile
 			projectile.Kill();
 		}
 	}
@@ -62,15 +62,16 @@ public:
 	void OnProjectileHitsEnemy(Entity projectile, Entity enemy) {
 		auto projectileComponent = projectile.GetComponent<ProjectileComponent>();
 		if (projectileComponent.isFriendly) {
-			// reduce player health
+			// reduce enemy health
 			auto& health = enemy.GetComponent<HealthComponent>();
 			health.healthPercentage -= projectileComponent.hitPercentDamage;
 
-			// player died
+			// enemy died
 			if (health.healthPercentage <= 0) {
 				enemy.Kill();
 			}
 
+			// remove projectile
 			projectile.Kill();
 		}
 	}
