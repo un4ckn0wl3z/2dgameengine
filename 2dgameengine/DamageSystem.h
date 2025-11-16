@@ -61,7 +61,7 @@ public:
 
 	void OnProjectileHitsEnemy(Entity projectile, Entity enemy) {
 		auto projectileComponent = projectile.GetComponent<ProjectileComponent>();
-		if (!projectileComponent.isFriendly) {
+		if (projectileComponent.isFriendly) {
 			// reduce player health
 			auto& health = enemy.GetComponent<HealthComponent>();
 			health.healthPercentage -= projectileComponent.hitPercentDamage;
