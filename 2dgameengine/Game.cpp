@@ -217,7 +217,7 @@ void Game::LoadLevel(int level) {
 		glm::vec2(-80.0, 0.0)
 	);
 	chopper.AddComponent<CameraFollowComponent>();
-	chopper.AddComponent<HealthComponent>(1000);
+	chopper.AddComponent<HealthComponent>(100);
 	chopper.AddComponent<ProjectileEmitterComponent>(
 		glm::vec2(300.0, 300.0), 0, 10000, 10, true
 	);

@@ -53,6 +53,7 @@ public:
 				player.Kill();
 			}
 
+			projectile.Kill();
 		}
 	}
 
