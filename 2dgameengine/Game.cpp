@@ -145,14 +145,14 @@ void Game::LoadLevel(int level) {
 
 	
 	// Adding assets
-	m_assetStore->AddAssets(m_renderer, "tank-image", "./assets/images/tank-panther-left.png");
-	m_assetStore->AddAssets(m_renderer, "truck-image", "./assets/images/truck-ford-right.png");
-	m_assetStore->AddAssets(m_renderer, "chopper-image", "./assets/images/chopper-spritesheet.png");
-	m_assetStore->AddAssets(m_renderer, "radar-image", "./assets/images/radar.png");
-	m_assetStore->AddAssets(m_renderer, "bullet-image", "./assets/images/bullet.png");
+	m_assetStore->AddTexture(m_renderer, "tank-image", "./assets/images/tank-panther-left.png");
+	m_assetStore->AddTexture(m_renderer, "truck-image", "./assets/images/truck-ford-right.png");
+	m_assetStore->AddTexture(m_renderer, "chopper-image", "./assets/images/chopper-spritesheet.png");
+	m_assetStore->AddTexture(m_renderer, "radar-image", "./assets/images/radar.png");
+	m_assetStore->AddTexture(m_renderer, "bullet-image", "./assets/images/bullet.png");
 
 	// Load tilemap
-	m_assetStore->AddAssets(m_renderer, "tilemap-image", "./assets/tilemaps/jungle.png");
+	m_assetStore->AddTexture(m_renderer, "tilemap-image", "./assets/tilemaps/jungle.png");
 
 	int tileSize = 32;
 	double tileScale = 2.0;
