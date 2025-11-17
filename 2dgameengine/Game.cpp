@@ -160,7 +160,7 @@ void Game::LoadLevel(int level) {
 	m_assetStore->AddTexture(m_renderer, "bullet-image", "./assets/images/bullet.png");
 
 	// load fonts
-	m_assetStore->AddFont("charriot-font", "./assets/fonts/charriot.ttf", 14);
+	m_assetStore->AddFont("charriot-font", "./assets/fonts/charriot.ttf", 20);
 
 
 	// Load tilemap
