@@ -59,6 +59,11 @@ void Game::Initialize() {
 		return;
 	}
 
+	if (TTF_Init() != 0) {
+		Logger::Err("Error initializing TTF.");
+		return;
+	}
+
 	SDL_DisplayMode displayMode;
 	SDL_GetCurrentDisplayMode(0, &displayMode);
 

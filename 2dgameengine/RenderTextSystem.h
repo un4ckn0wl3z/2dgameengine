@@ -22,11 +22,20 @@ public:
 				);
 			SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
 			SDL_FreeSurface(surface);
+
+			int labelWidth = 0;
+			int labelHeight = 0;
+
+			SDL_QueryTexture(texture, NULL, NULL, &labelWidth, &labelHeight);
+
 			SDL_Rect dstRect = {
 				static_cast<int>(textLabel.postion.x - (textLabel.isFixed ? 0 : camera.x)),
 				static_cast<int>(textLabel.postion.y - (textLabel.isFixed ? 0 : camera.y)),
-			
+				labelWidth,
+				labelHeight
 			};
+
+			SDL_RenderCopy(renderer, texture, NULL, &dstRect);
 
 		}
 	}

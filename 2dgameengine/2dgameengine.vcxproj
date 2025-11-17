@@ -196,11 +196,13 @@
     <ClInclude Include="ProjectileComponent.h" />
     <ClInclude Include="ProjectileEmitSystem.h" />
     <ClInclude Include="ProjectileEmitterComponent.h" />
-    <ClInclude Include="ProjectileLifeCycle.h" />
+    <ClInclude Include="ProjectileLifeCycleSystem.h" />
     <ClInclude Include="RenderColliderSystem.h" />
     <ClInclude Include="RenderSystem.h" />
+    <ClInclude Include="RenderTextSystem.h" />
     <ClInclude Include="RigidBodyComponent.h" />
     <ClInclude Include="SpriteComponent.h" />
+    <ClInclude Include="TextLabelComponent.h" />
     <ClInclude Include="TransformComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
