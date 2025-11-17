@@ -1,8 +1,34 @@
 #pragma once
 #include "ECS.h"
+#include "TextLabelComponent.h"
+#include "SDL.h"
+#include "AssetStore.h"
+#include "SDL_ttf.h"
 
 class RenderTextSystem : public System {
 public:
-	RenderTextSystem() {}
+	RenderTextSystem() {
+		RequireComponent<TextLabelComponent>();
+	}
+
+	void Update(SDL_Renderer* renderer, SDL_Rect& camera, std::unique_ptr<AssetStore>& assetStore) {
+		for (auto entity : GetSystemEntities()) {
+			const auto textLabel = entity.GetComponent<TextLabelComponent>();
+			SDL_Surface* surface = 
+				TTF_RenderText_Blended(
+					assetStore->GetFont(textLabel.assetId),
+					textLabel.text.c_str(),
+					textLabel.color
+				);
+			SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+			SDL_FreeSurface(surface);
+			SDL_Rect dstRect = {
+				static_cast<int>(textLabel.postion.x - (textLabel.isFixed ? 0 : camera.x)),
+				static_cast<int>(textLabel.postion.y - (textLabel.isFixed ? 0 : camera.y)),
+			
+			};
+
+		}
+	}
 
 };
