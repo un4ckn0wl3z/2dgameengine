@@ -16,14 +16,14 @@ typedef std::bitset<MAX_COMPONENTS> Signature;
 
 struct IComponent {
 protected:
-	static int m_netxId;
+	static int s_netxId;
 };
 
 template <typename T>
 class Component : public IComponent {
 public:
 	static int GetId() {
-		static auto id = m_netxId++;
+		static auto id = s_netxId++;
 		return id;
 	}
 };
