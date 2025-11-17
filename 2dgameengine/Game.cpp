@@ -151,6 +151,10 @@ void Game::LoadLevel(int level) {
 	m_assetStore->AddTexture(m_renderer, "radar-image", "./assets/images/radar.png");
 	m_assetStore->AddTexture(m_renderer, "bullet-image", "./assets/images/bullet.png");
 
+	// load fonts
+	m_assetStore->AddFont("charriot-font", "./assets/fonts/charriot.ttf", 14);
+
+
 	// Load tilemap
 	m_assetStore->AddTexture(m_renderer, "tilemap-image", "./assets/tilemaps/jungle.png");
 
@@ -229,6 +233,11 @@ void Game::LoadLevel(int level) {
 	radar.AddComponent<SpriteComponent>("radar-image", 64, 64, 1, true);
 	radar.AddComponent<AnimationComponent>(8, 5, true);
 	radar.Group("hud");
+
+
+	Entity label = m_registry->CreateEntity();
+	// label.AddComponent<TextLabelComponent>(pos, "THIS IS MY TEXT", "charriot-font");
+
 }
 
 void  Game::Setup() {
