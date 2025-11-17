@@ -72,6 +72,7 @@ public:
 			};
 
 			SDL_RenderCopy(renderer, texture, NULL, &healthBarTextRect);
+			SDL_DestroyTexture(texture);
 
 		}
 	}
