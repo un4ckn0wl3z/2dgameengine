@@ -82,7 +82,8 @@ public:
 
 class IPool {
 public:
-	virtual ~IPool() {}
+	virtual ~IPool() = default;
+	virtual void RemoveEntityFromPool(int entityId) = 0;
 };
 
 template <typename T>
@@ -143,7 +144,7 @@ public:
 
 		// copy the last element to the deleted postion to keep the array packed
 		int indexOfRemoved = m_entityIdToIndex[entityId];
-		int indexOfLast = size - 1;
+		int indexOfLast = m_size - 1;
 		m_data[indexOfRemoved] = m_data[indexOfLast];
 
 		// update the index-entity maps
@@ -154,12 +155,20 @@ public:
 		m_entityIdToIndex.erase(entityId);
 		m_indexToEntityId.erase(indexOfLast);
 
-		size--;
+		m_size--;
 
 	}
 
-	T& Get(int index) {
+	T& Get(int entityId) {
+		int index = m_entityIdToIndex[entityId];
 		return static_cast<T&>(m_data[index]);
+	}
+
+	void RemoveEntityFromPool(int entityId) override {
+		if (m_entityIdToIndex.find(entityId) != m_entityIdToIndex.end()) {
+			Remove(entityId);
+		}
+		
 	}
 
 	T& operator[] (unsigned int index) {
@@ -252,12 +261,11 @@ void Registry::AddComponent(Entity entity, TArgs && ...args) {
 	}
 
 	std::shared_ptr<Pool<TComponent>> componentPool = std::static_pointer_cast<Pool<TComponent>>(m_componentPools[componentId]);
-	if (entityId >= componentPool->GetSize()) {
-		componentPool->Resize(m_numEntities);
-	}
 
 	TComponent newComponent(std::forward<TArgs>(args)...);
+
 	componentPool->Set(entityId, newComponent);
+
 	m_entityComponentSignatures[entityId].set(componentId);
 
 	Logger::Log("Component Id = " + std::to_string(componentId) + " was added to entity id " + std::to_string(entityId));
@@ -268,7 +276,14 @@ template<typename TComponent>
 void Registry::RemoveComponent(Entity entity) {
 	const auto componentId = Component<TComponent>::GetId();
 	const auto entityId = entity.GetId();
+
+	// Remove component for packed
+	std::shared_ptr<Pool<TComponent>> componentPool = std::static_pointer_cast<Pool<TComponent>>(m_componentPools[componentId]);
+	componentPool->Remove(entityId);
+
+	// disable component signature for that entity
 	m_entityComponentSignatures[entityId].set(componentId, false);
+
 	Logger::Log("Component Id = " + std::to_string(componentId) + " was removed from entity id " + std::to_string(entityId));
 
 }

@@ -175,6 +175,11 @@ void Registry::Update() {
         RemoveEntityFromSystems(entity);
         // reset component bit
         m_entityComponentSignatures[entity.GetId()].reset();
+
+        // remove entity from component pools
+        for (auto pool : m_componentPools) {
+            pool->RemoveEntityFromPool(entity.GetId());
+        }
         
         // store freeid
         m_freeIds.push_back(entity.GetId());
@@ -182,6 +187,7 @@ void Registry::Update() {
         // remove entity from tag/group
         RemoveEntityTag(entity);
         RemoveEntityGroup(entity);
+
     }
 
     m_entitiesToBeKilled.clear();
