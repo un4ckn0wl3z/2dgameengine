@@ -252,6 +252,7 @@ void Game::LoadLevel(int level) {
 		green,
 		true
 	);
+	label.Group("hud");
 
 }
 
