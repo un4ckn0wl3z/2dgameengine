@@ -193,7 +193,7 @@ void Game::LoadLevel(int level) {
 
 	////// Create entity
 	Entity tank = m_registry->CreateEntity();
-	tank.AddComponent<TransformComponent>(glm::vec2(500.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
+	tank.AddComponent<TransformComponent>(glm::vec2(500.0, 500.0), glm::vec2(1.0, 1.0), 0.0);
 	tank.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
 	tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 2);
 	tank.AddComponent<BoxColliderComponent>(32, 32);
@@ -205,7 +205,7 @@ void Game::LoadLevel(int level) {
 
 	////// Create entity
 	Entity truck = m_registry->CreateEntity();
-	truck.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
+	truck.AddComponent<TransformComponent>(glm::vec2(120.0, 500.0), glm::vec2(1.0, 1.0), 0.0);
 	truck.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
 	truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 1);
 	truck.AddComponent<BoxColliderComponent>(32, 32);
@@ -217,7 +217,7 @@ void Game::LoadLevel(int level) {
 
 	// Create entity
 	Entity chopper = m_registry->CreateEntity();
-	chopper.AddComponent<TransformComponent>(glm::vec2(s_windowWidth/2, (s_windowsHeight / 2) - 50), glm::vec2(1.0, 1.0), 0.0);
+	chopper.AddComponent<TransformComponent>(glm::vec2(245.0, 110.0), glm::vec2(1.0, 1.0), 0.0);
 	chopper.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
 	chopper.AddComponent<SpriteComponent>("chopper-image", 32, 32, 1);
 	chopper.AddComponent<AnimationComponent>(2,10,true);
