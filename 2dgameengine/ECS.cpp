@@ -178,7 +178,8 @@ void Registry::Update() {
 
         // remove entity from component pools
         for (auto pool : m_componentPools) {
-            pool->RemoveEntityFromPool(entity.GetId());
+            if (pool)
+                pool->RemoveEntityFromPool(entity.GetId());
         }
         
         // store freeid
