@@ -26,6 +26,7 @@
 #include "ProjectileEmitSystem.h"
 #include "ProjectileLifeCycleSystem.h"
 #include "RenderTextSystem.h"
+#include "RenderHealthBarSystem.h"
 
 #include "AnimationSystem.h"
 #include "AssetStore.h"
@@ -150,6 +151,8 @@ void Game::LoadLevel(int level) {
 	m_registry->AddSystem<ProjectileEmitSystem>();
 	m_registry->AddSystem<ProjectileLifeCycleSystem>();
 	m_registry->AddSystem<RenderTextSystem>();
+	m_registry->AddSystem<RenderHealthBarSystem>();
+	
 
 	
 	// Adding assets
@@ -160,7 +163,9 @@ void Game::LoadLevel(int level) {
 	m_assetStore->AddTexture(m_renderer, "bullet-image", "./assets/images/bullet.png");
 
 	// load fonts
-	m_assetStore->AddFont("charriot-font", "./assets/fonts/charriot.ttf", 20);
+	m_assetStore->AddFont("charriot-font-20", "./assets/fonts/charriot.ttf", 20);
+	m_assetStore->AddFont("pico8-font-5", "./assets/fonts/pico-8.ttf", 5);
+	m_assetStore->AddFont("pico8-font-10", "./assets/fonts/pico-8.ttf", 10);
 
 
 	// Load tilemap
@@ -248,7 +253,7 @@ void Game::LoadLevel(int level) {
 	label.AddComponent<TextLabelComponent>(
 		glm::vec2(s_windowWidth/2 - 30, 10.0),
 		"CHOPPER 1.0", 
-		"charriot-font",
+		"charriot-font-20",
 		green,
 		true
 	);
@@ -307,6 +312,7 @@ void Game::Render() {
 	// invoke render system
 	m_registry->GetSystem<RenderSystem>().Update(m_renderer, m_camera, m_assetStore);
 	m_registry->GetSystem<RenderTextSystem>().Update(m_renderer, m_camera, m_assetStore);
+	m_registry->GetSystem<RenderHealthBarSystem>().Update(m_renderer, m_camera, m_assetStore);
 
 	if (m_isDebug) {
 		m_registry->GetSystem<RenderColliderSystem>().Update(m_renderer, m_camera);
