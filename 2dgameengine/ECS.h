@@ -88,16 +88,26 @@ public:
 template <typename T>
 class Pool : public IPool {
 private:
+	// vector of entiy component object
 	std::vector<T> m_data;
+	int m_size;
+
+	// helper map to keep track of entity ids per index, (packed m_data)
+	std::unordered_map<int, int> m_entityIdToIndex;
+	std::unordered_map<int, int> m_indexToEntityId;;
+
 public:
-	Pool(int size = 100) { Resize(size); }
+	Pool(int capacity = 100) { 
+		m_size = 0;
+		m_data.resize(capacity);
+	}
 	virtual ~Pool() = default;
 
 	bool IsEmpty() const {
-		return m_data.empty();
+		return m_size == 0;
 	}
 
-	int GetSize() const { return m_data.size(); }
+	int GetSize() const { return m_size; }
 
 	void Resize(int n) {
 		m_data.resize(n);
@@ -105,14 +115,47 @@ public:
 
 	void Clear() {
 		m_data.clear();
+		m_size = 0;
 	}
 
 	void Add(T Object) {
 		m_data.push_back(Object);
 	}
 
-	void Set(int index, T object) {
-		m_data[index] = object;
+	void Set(int entityId, T object) {
+		if (m_entityIdToIndex.find(entityId) != m_entityIdToIndex.end()) {
+			int index = m_entityIdToIndex[entityId];
+			m_data[index] = object;
+		}
+		else {
+			int index = m_size;
+			m_entityIdToIndex.emplace(entityId, index);
+			m_indexToEntityId.emplace(index, entityId);
+			if (index >= m_data.capacity()) {
+				m_data.resize(m_size * 2);
+			}
+			m_data[index] = object;
+			m_size++;
+		}
+	}
+
+	void Remove(int entityId) {
+
+		// copy the last element to the deleted postion to keep the array packed
+		int indexOfRemoved = m_entityIdToIndex[entityId];
+		int indexOfLast = size - 1;
+		m_data[indexOfRemoved] = m_data[indexOfLast];
+
+		// update the index-entity maps
+		int entityIdOfLastElement = m_indexToEntityId[indexOfLast];
+		m_entityIdToIndex[entityIdOfLastElement] = indexOfRemoved;
+		m_indexToEntityId[indexOfRemoved] = entityIdOfLastElement;
+
+		m_entityIdToIndex.erase(entityId);
+		m_indexToEntityId.erase(indexOfLast);
+
+		size--;
+
 	}
 
 	T& Get(int index) {
