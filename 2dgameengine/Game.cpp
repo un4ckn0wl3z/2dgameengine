@@ -242,14 +242,14 @@ void Game::LoadLevel(int level) {
 	radar.AddComponent<AnimationComponent>(8, 5, true);
 	radar.Group("hud");
 
-	SDL_Color white = { 255, 255, 255 };
+	SDL_Color green = { 0, 255, 0 };
 
 	Entity label = m_registry->CreateEntity();
 	label.AddComponent<TextLabelComponent>(
-		glm::vec2(100.0, 100.0),
-		"THIS IS MY TEXT", 
+		glm::vec2(s_windowWidth/2 - 30, 10.0),
+		"CHOPPER 1.0", 
 		"charriot-font",
-		white,
+		green,
 		true
 	);
 
