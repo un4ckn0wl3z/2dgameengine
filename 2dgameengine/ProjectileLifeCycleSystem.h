@@ -2,10 +2,10 @@
 #include "ECS.h"
 #include "ProjectileComponent.h"
 #include "SDL.h"
-class ProjectileLifeCycle : public System {
+class ProjectileLifeCycleSystem : public System {
 public:
 
-	ProjectileLifeCycle() {
+	ProjectileLifeCycleSystem() {
 		RequireComponent<ProjectileComponent>();
 	}
 

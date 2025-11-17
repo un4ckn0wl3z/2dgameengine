@@ -24,13 +24,15 @@
 #include "KeyboardControlSystem.h"
 #include "CameraMovementSystem.h"
 #include "ProjectileEmitSystem.h"
-#include "ProjectileLifeCycle.h"
+#include "ProjectileLifeCycleSystem.h"
+#include "RenderTextSystem.h"
 
 #include "AnimationSystem.h"
 #include "AssetStore.h"
 #include <fstream>
 #include "EventBus.h"
 #include "KeypressedEvent.h"
+#include "TextLabelComponent.h"
 
 int Game::s_windowWidth;
 int Game::s_windowsHeight;
@@ -141,7 +143,8 @@ void Game::LoadLevel(int level) {
 	m_registry->AddSystem<KeyboardControlSystem>();
 	m_registry->AddSystem<CameraMovementSystem>();
 	m_registry->AddSystem<ProjectileEmitSystem>();
-	m_registry->AddSystem<ProjectileLifeCycle>();
+	m_registry->AddSystem<ProjectileLifeCycleSystem>();
+	m_registry->AddSystem<RenderTextSystem>();
 
 	
 	// Adding assets
@@ -234,9 +237,16 @@ void Game::LoadLevel(int level) {
 	radar.AddComponent<AnimationComponent>(8, 5, true);
 	radar.Group("hud");
 
+	SDL_Color white = { 255, 255, 255 };
 
 	Entity label = m_registry->CreateEntity();
-	// label.AddComponent<TextLabelComponent>(pos, "THIS IS MY TEXT", "charriot-font");
+	label.AddComponent<TextLabelComponent>(
+		glm::vec2(100.0, 100.0),
+		"THIS IS MY TEXT", 
+		"charriot-font",
+		white,
+		true
+	);
 
 }
 
@@ -276,7 +286,7 @@ void Game::Update() {
 
 	m_registry->GetSystem<ProjectileEmitSystem>().Update(m_registry);
 
-	m_registry->GetSystem<ProjectileLifeCycle>().Update();
+	m_registry->GetSystem<ProjectileLifeCycleSystem>().Update();
 	// update entities
 	m_registry->Update();
 
