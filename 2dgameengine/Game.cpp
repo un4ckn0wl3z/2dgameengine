@@ -27,6 +27,7 @@
 #include "ProjectileLifeCycleSystem.h"
 #include "RenderTextSystem.h"
 #include "RenderHealthBarSystem.h"
+#include "RenderGUISystem.h"
 
 #include "AnimationSystem.h"
 #include "AssetStore.h"
@@ -183,8 +184,7 @@ void Game::LoadLevel(int level) {
 	m_registry->AddSystem<ProjectileLifeCycleSystem>();
 	m_registry->AddSystem<RenderTextSystem>();
 	m_registry->AddSystem<RenderHealthBarSystem>();
-	
-
+	m_registry->AddSystem<RenderGUISystem>();
 	
 	// Adding assets
 	m_assetStore->AddTexture(m_renderer, "tank-image", "./assets/images/tank-panther-left.png");
@@ -347,14 +347,16 @@ void Game::Render() {
 
 	if (m_isDebug) {
 		m_registry->GetSystem<RenderColliderSystem>().Update(m_renderer, m_camera);
-		ImGui_ImplSDLRenderer2_NewFrame();
-		ImGui_ImplSDL2_NewFrame();
-		ImGui::NewFrame();
+		//ImGui_ImplSDLRenderer2_NewFrame();
+		//ImGui_ImplSDL2_NewFrame();
+		//ImGui::NewFrame();
+		//ImGui::ShowDemoWindow();
+		//ImGui::Render();
+		//ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), m_renderer);
 
-		ImGui::ShowDemoWindow();
-		ImGui::Render();
+		m_registry->GetSystem<RenderGUISystem>().Update(m_renderer);
 
-		ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), m_renderer);
+
 	}
 	// draw (switch-buffer)
 	SDL_RenderPresent(m_renderer);

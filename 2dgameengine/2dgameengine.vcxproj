@@ -207,6 +207,7 @@
     <ClInclude Include="ProjectileEmitterComponent.h" />
     <ClInclude Include="ProjectileLifeCycleSystem.h" />
     <ClInclude Include="RenderColliderSystem.h" />
+    <ClInclude Include="RenderGUISystem.h" />
     <ClInclude Include="RenderHealthBarSystem.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="RenderTextSystem.h" />
