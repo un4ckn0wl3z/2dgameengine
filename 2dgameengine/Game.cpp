@@ -187,7 +187,7 @@ void Game::LoadLevel(int level) {
 	m_registry->AddSystem<RenderGUISystem>();
 	
 	// Adding assets
-	m_assetStore->AddTexture(m_renderer, "tank-image", "./assets/images/tank-panther-left.png");
+	m_assetStore->AddTexture(m_renderer, "tank-image", "./assets/images/tank-panther-right.png");
 	m_assetStore->AddTexture(m_renderer, "truck-image", "./assets/images/truck-ford-right.png");
 	m_assetStore->AddTexture(m_renderer, "chopper-image", "./assets/images/chopper-spritesheet.png");
 	m_assetStore->AddTexture(m_renderer, "radar-image", "./assets/images/radar.png");
@@ -354,7 +354,7 @@ void Game::Render() {
 		//ImGui::Render();
 		//ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), m_renderer);
 
-		m_registry->GetSystem<RenderGUISystem>().Update(m_renderer);
+		m_registry->GetSystem<RenderGUISystem>().Update(m_registry ,m_renderer);
 
 
 	}
