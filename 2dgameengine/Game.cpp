@@ -104,8 +104,17 @@ void Game::Initialize() {
 
 
 	// init imgui
+	// Setup Dear ImGui context
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+
+	// Setup Dear ImGui style
+	ImGui::StyleColorsDark();
+
+	// Setup Platform/Renderer backends
 	ImGui_ImplSDLRenderer2_Init(m_renderer);
 	ImGui_ImplSDL2_InitForSDLRenderer(m_window, m_renderer);
 
@@ -134,13 +143,14 @@ void Game::ProcesInput() {
 	SDL_Event sdlEvent;
 	while (SDL_PollEvent(&sdlEvent)) {
 		// Passing event to Imgui
+		//ImGui_ImplSDL2_ProcessEvent(&sdlEvent);
+		//ImGuiIO& io = ImGui::GetIO();
+		//int mouseX, mouseY;
+		//const int buttons = SDL_GetMouseState(&mouseX, &mouseY);
+		//io.MousePos = ImVec2(mouseX, mouseY);
+		//io.MouseDown[0] = buttons & SDL_BUTTON(SDL_BUTTON_LEFT);
+		//io.MouseDown[1] = buttons & SDL_BUTTON(SDL_BUTTON_RIGHT);
 		ImGui_ImplSDL2_ProcessEvent(&sdlEvent);
-		ImGuiIO& io = ImGui::GetIO();
-		int mouseX, mouseY;
-		const int buttons = SDL_GetMouseState(&mouseX, &mouseY);
-		io.MousePos = ImVec2(mouseX, mouseY);
-		io.MouseDown[0] = buttons & SDL_BUTTON(SDL_BUTTON_LEFT);
-		io.MouseDown[1] = buttons & SDL_BUTTON(SDL_BUTTON_RIGHT);
 
 		switch (sdlEvent.type) {
 		
