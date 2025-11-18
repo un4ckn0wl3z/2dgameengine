@@ -35,6 +35,10 @@
 #include "KeypressedEvent.h"
 #include "TextLabelComponent.h"
 
+#include "imgui.h"
+#include "imgui_impl_sdl2.h"
+#include "imgui_impl_sdlrenderer2.h"
+
 int Game::s_windowWidth;
 int Game::s_windowsHeight;
 int Game::s_mapWidth;
@@ -98,6 +102,14 @@ void Game::Initialize() {
 
 	// SDL_SetWindowFullscreen(m_window, SDL_WINDOW_FULLSCREEN);
 
+
+	// init imgui
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGui_ImplSDLRenderer2_Init(m_renderer);
+	ImGui_ImplSDL2_InitForSDLRenderer(m_window, m_renderer);
+
+
 	// init camera
 	m_camera.x = 0;
 	m_camera.y = 0;
@@ -121,6 +133,15 @@ void Game::ProcesInput() {
 
 	SDL_Event sdlEvent;
 	while (SDL_PollEvent(&sdlEvent)) {
+		// Passing event to Imgui
+		ImGui_ImplSDL2_ProcessEvent(&sdlEvent);
+		ImGuiIO& io = ImGui::GetIO();
+		int mouseX, mouseY;
+		const int buttons = SDL_GetMouseState(&mouseX, &mouseY);
+		io.MousePos = ImVec2(mouseX, mouseY);
+		io.MouseDown[0] = buttons & SDL_BUTTON(SDL_BUTTON_LEFT);
+		io.MouseDown[1] = buttons & SDL_BUTTON(SDL_BUTTON_RIGHT);
+
 		switch (sdlEvent.type) {
 		
 		case SDL_QUIT:
@@ -316,16 +337,24 @@ void Game::Render() {
 
 	if (m_isDebug) {
 		m_registry->GetSystem<RenderColliderSystem>().Update(m_renderer, m_camera);
+		ImGui_ImplSDLRenderer2_NewFrame();
+		ImGui_ImplSDL2_NewFrame();
+		ImGui::NewFrame();
+
+		ImGui::ShowDemoWindow();
+		ImGui::Render();
+
+		ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), m_renderer);
 	}
-
-
 	// draw (switch-buffer)
 	SDL_RenderPresent(m_renderer);
 
 };
 
 void Game::Destroy() {
-
+	ImGui_ImplSDLRenderer2_Shutdown();
+	ImGui_ImplSDL2_Shutdown();
+	ImGui::DestroyContext();
 	SDL_DestroyRenderer(m_renderer);
 	SDL_DestroyWindow(m_window);
 	SDL_Quit();
