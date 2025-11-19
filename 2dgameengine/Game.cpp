@@ -232,7 +232,7 @@ void Game::LoadLevel(int level) {
 	tank.AddComponent<TransformComponent>(glm::vec2(500.0, 500.0), glm::vec2(1.0, 1.0), 0.0);
 	tank.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
 	tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 2);
-	tank.AddComponent<BoxColliderComponent>(32, 32);
+	tank.AddComponent<BoxColliderComponent>(25, 20, glm::vec2(5, 5));
 	tank.AddComponent<ProjectileEmitterComponent>(
 		glm::vec2(100.0, 0.0), 500, 5000, 10, false
 	);
@@ -244,7 +244,7 @@ void Game::LoadLevel(int level) {
 	truck.AddComponent<TransformComponent>(glm::vec2(120.0, 500.0), glm::vec2(1.0, 1.0), 0.0);
 	truck.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
 	truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 1);
-	truck.AddComponent<BoxColliderComponent>(32, 32);
+	truck.AddComponent<BoxColliderComponent>(25, 20, glm::vec2(5, 5));
 	truck.AddComponent<ProjectileEmitterComponent>(
 		glm::vec2(00, 100.0), 500, 5000, 10, false
 	);
@@ -257,7 +257,7 @@ void Game::LoadLevel(int level) {
 	chopper.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
 	chopper.AddComponent<SpriteComponent>("chopper-image", 32, 32, 1);
 	chopper.AddComponent<AnimationComponent>(2,10,true);
-	chopper.AddComponent<BoxColliderComponent>(32, 32);
+	chopper.AddComponent<BoxColliderComponent>(25, 20, glm::vec2(5, 5));
 	chopper.AddComponent<KeyboardControlledComponent>(
 		glm::vec2(0.0, -80.0),
 		glm::vec2(80.0, 0.0),
