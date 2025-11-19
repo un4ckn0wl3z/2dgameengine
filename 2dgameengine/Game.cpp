@@ -103,7 +103,7 @@ void Game::Initialize() {
 		return;
 	}
 
-	// SDL_SetWindowFullscreen(m_window, SDL_WINDOW_FULLSCREEN);
+	SDL_SetWindowFullscreen(m_window, SDL_WINDOW_FULLSCREEN);
 
 
 	// init imgui
