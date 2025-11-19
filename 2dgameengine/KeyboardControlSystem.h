@@ -7,6 +7,8 @@
 #include "Logger.h"
 #include "KeyboardControlledComponent.h"
 #include "SDL.h"
+#include "glm.hpp"
+
  
 class KeyboardControlSystem : public System {
 public:
@@ -34,20 +36,27 @@ public:
 			switch (event.symbol) {
 			case SDLK_w:
 				rigidbody.velocity = keyboardcontrol.upVelocity;
+				rigidbody.direction = UP;
 				sprite.srcRect.y = sprite.height * 0;
 				break;
 			case SDLK_d:
 				rigidbody.velocity = keyboardcontrol.rightVelocity;
+				rigidbody.direction = RIGHT;
 				sprite.srcRect.y = sprite.height * 1;
 				break;
 			case SDLK_s:
 				rigidbody.velocity = keyboardcontrol.downVelocity;
+				rigidbody.direction = DOWN;
 				sprite.srcRect.y = sprite.height * 2;
 				break;
 			case SDLK_a:
 				rigidbody.velocity = keyboardcontrol.leftVelocity;
+				rigidbody.direction = LEFT;
 				sprite.srcRect.y = sprite.height * 3;
 				break;
+			case SDLK_LSHIFT:
+				rigidbody.velocity = glm::vec2(0);
+ 				break;
 			}
 
 		}

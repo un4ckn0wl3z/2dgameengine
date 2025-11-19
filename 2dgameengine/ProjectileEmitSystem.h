@@ -40,15 +40,33 @@ public:
 					}
 
 					glm::vec2 projectileVelocity = projectileEmitter.projectileVelocity;
+					
 					int directionX = 0;
 					int directionY = 0;
-					if (rigidbody.velocity.x > 0) directionX = +1;
-					if (rigidbody.velocity.x < 0) directionX = -1;
-					if (rigidbody.velocity.y > 0) directionY = +1;
-					if (rigidbody.velocity.y < 0) directionY = -1;
+					
+					//if (rigidbody.velocity.x > 0) directionX = +1;
+					//if (rigidbody.velocity.x < 0) directionX = -1;
+					//if (rigidbody.velocity.y > 0) directionY = +1;
+					//if (rigidbody.velocity.y < 0) directionY = -1;
+
+					switch (rigidbody.direction) {
+					case UP:
+						directionY = -1;
+						break;
+					case RIGHT:
+						directionX = +1;
+						break;
+					case DOWN:
+						directionY = +1;
+						break;
+					case LEFT:
+						directionX = -1;
+						break;
+					}
 
 					projectileVelocity.x = projectileEmitter.projectileVelocity.x * directionX;
 					projectileVelocity.y = projectileEmitter.projectileVelocity.y * directionY;
+
 
 					// create new projectile
 					Entity projectile = entity.registry->CreateEntity();
