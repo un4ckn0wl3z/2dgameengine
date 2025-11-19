@@ -119,7 +119,7 @@ public:
 			ImGuiWindowFlags_NoNav;
 
 		ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_Always, ImVec2(0, 0));
-		ImGui::SetNextWindowBgAlpha(0.9f);
+		ImGui::SetNextWindowBgAlpha(0.3f);
 		if (ImGui::Begin("Map coordinates", NULL, windowFlags)) {
 			ImGui::Text("Map coordinates (x=%.1f, y=%.1f)", 
 				ImGui::GetIO().MousePos.x + camera.x,
