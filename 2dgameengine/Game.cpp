@@ -354,7 +354,7 @@ void Game::Render() {
 		//ImGui::Render();
 		//ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), m_renderer);
 
-		m_registry->GetSystem<RenderGUISystem>().Update(m_registry ,m_renderer);
+		m_registry->GetSystem<RenderGUISystem>().Update(m_registry ,m_renderer, m_camera);
 
 
 	}

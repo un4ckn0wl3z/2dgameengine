@@ -11,7 +11,7 @@ class RenderGUISystem : public System {
 public:
 	RenderGUISystem() = default;
 
-	void Update(const std::unique_ptr<Registry>& registry, SDL_Renderer* renderer) {
+	void Update(const std::unique_ptr<Registry>& registry, SDL_Renderer* renderer, const SDL_Rect& camera) {
 		// draw debug menu
 		ImGui_ImplSDLRenderer2_NewFrame();
 		ImGui_ImplSDL2_NewFrame();
@@ -90,14 +90,30 @@ public:
 					glm::vec2(projVelX, projVelY), projRepeat * 1000, projDuration * 1000, 10, false
 				);
 				enemy.AddComponent<HealthComponent>(health);
-
-				posX = posY = scaleX = scaleY = rotation = projAngle = 0;
+				
+				// restore data
+				posX = posY = rotation = projAngle = 0;
+				scaleX = scaleY = 1;
 				projRepeat = projDuration = 10;
 				projSpeed = 100;
 				health = 100;
 				
 			}
 
+		}
+		ImGui::End();
+
+		ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration |
+			ImGuiWindowFlags_AlwaysAutoResize |
+			ImGuiWindowFlags_NoNav;
+
+		ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_Always, ImVec2(0, 0));
+		ImGui::SetNextWindowBgAlpha(0.9f);
+		if (ImGui::Begin("Map coordinates", NULL, windowFlags)) {
+			ImGui::Text("Map coordinates (x=%.1f, y=%.1f)", 
+				ImGui::GetIO().MousePos.x + camera.x,
+				ImGui::GetIO().MousePos.y + camera.y
+				);
 		}
 		ImGui::End();
 
