@@ -180,6 +180,7 @@
     <ClCompile Include="libs\lua\src\lzio.c" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MousePressedEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationComponent.h" />

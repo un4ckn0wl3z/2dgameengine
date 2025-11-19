@@ -34,6 +34,8 @@
 #include <fstream>
 #include "EventBus.h"
 #include "KeypressedEvent.h"
+#include "MousePressedEvent.h"
+
 #include "TextLabelComponent.h"
 
 #include "imgui.h"
@@ -162,6 +164,14 @@ void Game::ProcesInput() {
 			if (sdlEvent.key.keysym.sym == SDLK_ESCAPE) m_isRunning = false;
 			if (sdlEvent.key.keysym.sym == SDLK_p) m_isDebug = !m_isDebug;
 			m_eventBus->EmitEvent<KeypressedEvent>(sdlEvent.key.keysym.sym);
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			if (sdlEvent.button.button == SDL_BUTTON_LEFT) {
+				SDL_Keymod mods = SDL_GetModState();
+				if (mods & KMOD_LCTRL) {
+					m_eventBus->EmitEvent<MousePressedEvent>(sdlEvent.button.x, sdlEvent.button.y);
+				}
+			}
 			break;
 
 
@@ -314,7 +324,7 @@ void Game::Update() {
 	m_registry->GetSystem<DamageSystem>().SubscribeToEvents(m_eventBus);
 	m_registry->GetSystem<KeyboardControlSystem>().SubscribeToEvents(m_eventBus);
 	m_registry->GetSystem<ProjectileEmitSystem>().SubscribeToEvents(m_eventBus);
-
+	m_registry->GetSystem<RenderGUISystem>().SubscribeToEvents(m_eventBus);
 	// invoke update system
 	m_registry->GetSystem<MovementSystem>().Update(deltaTime);
 

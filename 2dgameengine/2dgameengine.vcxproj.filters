@@ -192,6 +192,9 @@
     <ClCompile Include="libs\imgui\src\imgui_impl_sdlrenderer2.cpp">
       <Filter>Source Files\Imgui</Filter>
     </ClCompile>
+    <ClCompile Include="MousePressedEvent.h">
+      <Filter>Header Files\Events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\lua\src\lua.hpp">

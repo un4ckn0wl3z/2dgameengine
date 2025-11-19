@@ -6,10 +6,22 @@
 #include "SDL.h"
 #include "glm.hpp"
 #include <cmath>
+#include "Event.h"
+#include "MousePressedEvent.h"
 
 class RenderGUISystem : public System {
 public:
 	RenderGUISystem() = default;
+	int posX;
+	int posY;
+	void SubscribeToEvents(std::unique_ptr<EventBus>& eventBus) {
+		eventBus->SubscribeToEvent<MousePressedEvent>(this, &RenderGUISystem::OnMousePressed);
+	}
+
+	void OnMousePressed(MousePressedEvent& event) {
+		posX = event.mouseX;
+		posY = event.mouseY;
+	}
 
 	void Update(const std::unique_ptr<Registry>& registry, SDL_Renderer* renderer, const SDL_Rect& camera) {
 		// draw debug menu
@@ -23,8 +35,6 @@ public:
 
 		if (ImGui::Begin("Spawn enemies")) {
 
-			static int posX = 0;
-			static int posY = 0;
 			static int scaleX = 1;
 			static int scaleY = 1;
 			static int velX = 0;
@@ -46,6 +56,7 @@ public:
 
 
 			if (ImGui::CollapsingHeader("Transform", ImGuiTreeNodeFlags_DefaultOpen)) {
+				ImGui::Text("Mouse click + LCtrl to automated get position");
 				ImGui::InputInt("position x", &posX);
 				ImGui::InputInt("position y", &posY);
 				ImGui::SliderInt("scale x", &scaleX, 1, 10);
@@ -92,11 +103,11 @@ public:
 				enemy.AddComponent<HealthComponent>(health);
 				
 				// restore data
-				posX = posY = rotation = projAngle = 0;
-				scaleX = scaleY = 1;
-				projRepeat = projDuration = 10;
-				projSpeed = 100;
-				health = 100;
+				//posX = posY = rotation = projAngle = 0;
+				//scaleX = scaleY = 1;
+				//projRepeat = projDuration = 10;
+				//projSpeed = 100;
+				//health = 100;
 				
 			}
 
