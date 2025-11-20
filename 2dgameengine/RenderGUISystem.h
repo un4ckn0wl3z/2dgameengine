@@ -10,17 +10,22 @@
 #include "MousePressedEvent.h"
 
 class RenderGUISystem : public System {
+private:
+	int m_posX;
+	int m_posY;
 public:
-	RenderGUISystem() = default;
-	int posX;
-	int posY;
+	RenderGUISystem(){
+		this->m_posX = 0;
+		this->m_posY = 0;
+	};
+
 	void SubscribeToEvents(std::unique_ptr<EventBus>& eventBus) {
 		eventBus->SubscribeToEvent<MousePressedEvent>(this, &RenderGUISystem::OnMousePressed);
 	}
 
 	void OnMousePressed(MousePressedEvent& event) {
-		posX = event.mouseX;
-		posY = event.mouseY;
+		m_posX = event.mouseX;
+		m_posY = event.mouseY;
 	}
 
 	void Update(const std::unique_ptr<Registry>& registry, SDL_Renderer* renderer, const SDL_Rect& camera) {
@@ -57,8 +62,8 @@ public:
 
 			if (ImGui::CollapsingHeader("Transform", ImGuiTreeNodeFlags_DefaultOpen)) {
 				ImGui::Text("Mouse click + LCtrl to automated get position");
-				ImGui::InputInt("position x", &posX);
-				ImGui::InputInt("position y", &posY);
+				ImGui::InputInt("position x", &m_posX);
+				ImGui::InputInt("position y", &m_posY);
 				ImGui::SliderInt("scale x", &scaleX, 1, 10);
 				ImGui::SliderInt("scale y", &scaleY, 1, 10);
 				ImGui::SliderAngle("rotation (deg)", &rotation, 0, 360);
@@ -90,7 +95,7 @@ public:
 			if (ImGui::Button("Spawn new enemy")) {
 				Entity enemy = registry->CreateEntity();
 				enemy.Group("enemies");
-				enemy.AddComponent<TransformComponent>(glm::vec2(posX, posY), glm::vec2(scaleX, scaleY), glm::degrees(rotation));
+				enemy.AddComponent<TransformComponent>(glm::vec2(m_posX, m_posY), glm::vec2(scaleX, scaleY), glm::degrees(rotation));
 				enemy.AddComponent<RigidBodyComponent>(glm::vec2(velX, velY));
 				enemy.AddComponent<SpriteComponent>(sprites[selectedSpriteIndex], 32, 32, 2);
 				enemy.AddComponent<BoxColliderComponent>(25, 20, glm::vec2(5, 5));

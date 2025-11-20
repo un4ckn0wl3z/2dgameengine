@@ -202,6 +202,7 @@ void Game::LoadLevel(int level) {
 	m_assetStore->AddTexture(m_renderer, "chopper-image", "./assets/images/chopper-spritesheet.png");
 	m_assetStore->AddTexture(m_renderer, "radar-image", "./assets/images/radar.png");
 	m_assetStore->AddTexture(m_renderer, "bullet-image", "./assets/images/bullet.png");
+	m_assetStore->AddTexture(m_renderer, "tree-image", "./assets/images/tree.png");
 
 	// load fonts
 	m_assetStore->AddFont("charriot-font-20", "./assets/fonts/charriot.ttf", 20);
@@ -240,14 +241,29 @@ void Game::LoadLevel(int level) {
 	////// Create entity
 	Entity tank = m_registry->CreateEntity();
 	tank.AddComponent<TransformComponent>(glm::vec2(500.0, 500.0), glm::vec2(1.0, 1.0), 0.0);
-	tank.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+	tank.AddComponent<RigidBodyComponent>(glm::vec2(20.0, 0.0));
 	tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 2);
 	tank.AddComponent<BoxColliderComponent>(25, 20, glm::vec2(5, 5));
-	tank.AddComponent<ProjectileEmitterComponent>(
-		glm::vec2(100.0, 0.0), 500, 5000, 10, false
-	);
+	//tank.AddComponent<ProjectileEmitterComponent>(
+	//	glm::vec2(100.0, 0.0), 500, 5000, 10, false
+	//);
 	tank.AddComponent<HealthComponent>(100);
 	tank.Group("enemies");
+
+	Entity treeA = m_registry->CreateEntity();
+	treeA.Group("obstacles");
+	treeA.AddComponent<TransformComponent>(glm::vec2(600.0, 495.0), glm::vec2(1.0, 1.0), 0.0);
+	treeA.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+	treeA.AddComponent<SpriteComponent>("tree-image", 16, 32, 2);
+	treeA.AddComponent<BoxColliderComponent>(16, 32);
+
+
+	Entity treeB = m_registry->CreateEntity();
+	treeB.Group("obstacles");
+	treeB.AddComponent<TransformComponent>(glm::vec2(400, 495.0), glm::vec2(1.0, 1.0), 0.0);
+	treeB.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+	treeB.AddComponent<SpriteComponent>("tree-image", 16, 32, 2);
+	treeB.AddComponent<BoxColliderComponent>(16, 32);
 
 	////// Create entity
 	Entity truck = m_registry->CreateEntity();
@@ -265,7 +281,7 @@ void Game::LoadLevel(int level) {
 	Entity chopper = m_registry->CreateEntity();
 	chopper.AddComponent<TransformComponent>(glm::vec2(245.0, 110.0), glm::vec2(1.0, 1.0), 0.0);
 	chopper.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
-	chopper.AddComponent<SpriteComponent>("chopper-image", 32, 32, 1);
+	chopper.AddComponent<SpriteComponent>("chopper-image", 32, 32, 4);
 	chopper.AddComponent<AnimationComponent>(2,10,true);
 	chopper.AddComponent<BoxColliderComponent>(25, 20, glm::vec2(5, 5));
 	chopper.AddComponent<KeyboardControlledComponent>(
@@ -300,6 +316,10 @@ void Game::LoadLevel(int level) {
 	);
 	label.Group("hud");
 
+
+
+
+
 }
 
 void  Game::Setup() {
@@ -322,6 +342,7 @@ void Game::Update() {
 
 	// subscription events
 	m_registry->GetSystem<DamageSystem>().SubscribeToEvents(m_eventBus);
+	m_registry->GetSystem<MovementSystem>().SubscribeToEvents(m_eventBus);
 	m_registry->GetSystem<KeyboardControlSystem>().SubscribeToEvents(m_eventBus);
 	m_registry->GetSystem<ProjectileEmitSystem>().SubscribeToEvents(m_eventBus);
 	m_registry->GetSystem<RenderGUISystem>().SubscribeToEvents(m_eventBus);
