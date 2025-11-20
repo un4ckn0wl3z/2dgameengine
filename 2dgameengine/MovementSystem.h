@@ -25,8 +25,6 @@ public:
 		Entity a = event.a;
 		Entity b = event.b;
 
-		Logger::Log("DamageSystem got CollisionEvent! [entity]: " + std::to_string(a.GetId()) + "  and " + std::to_string(b.GetId()));
-
 		if (a.BelongsToGroup("enemies") && b.BelongsToGroup("obstacles")) {
 			OnEnemyHitsObstacle(a, b);
 		}
