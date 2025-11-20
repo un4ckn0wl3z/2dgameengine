@@ -55,10 +55,21 @@ public:
 		for (auto entity : GetSystemEntities()) {
 			// update
 			auto& transform = entity.GetComponent<TransformComponent>();
-			const auto rigidbody = entity.GetComponent<RigidBodyComponent>();
+			auto& rigidbody = entity.GetComponent<RigidBodyComponent>();
 
 			transform.position.x += rigidbody.velocity.x * deleta_time;
 			transform.position.y += rigidbody.velocity.y * deleta_time;
+
+			if (entity.Hastag("player")) {
+				int paddingLeft = 10;
+				int paddingTop = 10;
+				int paddingRight = 50;
+				int paddingBottom = 50;
+				transform.position.x = transform.position.x < paddingLeft ? paddingLeft : transform.position.x;
+				transform.position.x = transform.position.x > Game::s_mapWidth - paddingRight ? Game::s_mapWidth - paddingRight : transform.position.x;
+				transform.position.y = transform.position.y < paddingTop ? paddingTop : transform.position.y;
+				transform.position.y = transform.position.y > Game::s_mapHeight - paddingBottom ? Game::s_mapHeight - paddingBottom : transform.position.y;
+			}
 			
 			bool isEntityOutsideMap = (
 				transform.position.x < 0 ||
@@ -71,6 +82,10 @@ public:
 			if (isEntityOutsideMap && !entity.Hastag("player")) {
 				entity.Kill();
 			}
+
+			//if (isEntityOutsideMap && entity.Hastag("player")) {
+			//	rigidbody.velocity = glm::vec2(0.0, 0.0);
+			//}
 
 			// Logger::Log("Entity Id = " + std::to_string(entity.GetId()) + " position is now ( " + std::to_string(transform.position.x) + " ," + std::to_string(transform.position.y) + ")");
 
