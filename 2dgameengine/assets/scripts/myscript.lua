@@ -1,2 +1,2 @@
 -- This is lua global variable
-some_val = 7 * 6
+some_var = 7 * 6

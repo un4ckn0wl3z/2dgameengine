@@ -23,8 +23,8 @@ void TestLua() {
     lua.open_libraries(sol::lib::base);
     lua.script_file("./assets/scripts/myscript.lua");
 
-    int l_some_val = lua["some_val"];
-    std::cout << "The value of some variable inside c++ is: " << l_some_val << std::endl;
+    int l_some_var = lua["some_var"];
+    std::cout << "The value of some variable inside c++ is: " << l_some_var << std::endl;
 
 }
 
