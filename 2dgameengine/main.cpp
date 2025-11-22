@@ -18,9 +18,17 @@
 
 #include "Game.h"
 
+int nativeCube(int n) {
+    return (n * n * n);
+}
+
 void TestLua() {
     sol::state lua;
     lua.open_libraries(sol::lib::base);
+
+    // bind c native function to lua
+    lua["cube"] = nativeCube;
+
     lua.script_file("./assets/scripts/myscript.lua");
 
     int l_some_var = lua["some_var"];

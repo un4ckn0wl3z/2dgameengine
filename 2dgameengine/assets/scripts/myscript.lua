@@ -18,3 +18,5 @@ function fac(n)
 	end
 	return n * fac(n - 1)
 end
+
+print("cube of 3 = " .. cube(3))
