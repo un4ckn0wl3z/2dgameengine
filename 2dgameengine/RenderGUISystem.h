@@ -33,7 +33,6 @@ public:
 		ImGui_ImplSDLRenderer2_NewFrame();
 		ImGui_ImplSDL2_NewFrame();
 		ImGui::NewFrame();
-		
 		//ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoDecoration |
 		//	ImGuiWindowFlags_NoNav |
 		//	ImGuiWindowFlags_AlwaysAutoResize;
@@ -136,7 +135,6 @@ public:
 
 		ImGui::Render();
 		ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), renderer);
-
 	}
 
 };

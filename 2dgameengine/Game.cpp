@@ -18,6 +18,7 @@
 #include "RenderTextSystem.h"
 #include "RenderHealthBarSystem.h"
 #include "RenderGUISystem.h"
+#include "SnapLinesSystem.h"
 
 #include "AnimationSystem.h"
 #include "AssetStore.h"
@@ -159,7 +160,7 @@ void Game::ProcesInput() {
 			if (sdlEvent.button.button == SDL_BUTTON_LEFT) {
 				SDL_Keymod mods = SDL_GetModState();
 				if (mods & KMOD_LCTRL) {
-					m_eventBus->EmitEvent<MousePressedEvent>(sdlEvent.button.x, sdlEvent.button.y);
+					m_eventBus->EmitEvent<MousePressedEvent>(sdlEvent.button.x + m_camera.x, sdlEvent.button.y + m_camera.y);
 				}
 			}
 			break;
@@ -185,7 +186,9 @@ void  Game::Setup() {
 	m_registry->AddSystem<RenderTextSystem>();
 	m_registry->AddSystem<RenderHealthBarSystem>();
 	m_registry->AddSystem<RenderGUISystem>();
+	m_registry->AddSystem<SnapLinesSystem>();
 
+	
 	LevelLoader loader;
 	loader.LoadLevel(m_registry, m_assetStore, m_renderer, 1);
 
@@ -239,9 +242,12 @@ void Game::Render() {
 	m_registry->GetSystem<RenderSystem>().Update(m_renderer, m_camera, m_assetStore);
 	m_registry->GetSystem<RenderTextSystem>().Update(m_renderer, m_camera, m_assetStore);
 	m_registry->GetSystem<RenderHealthBarSystem>().Update(m_renderer, m_camera, m_assetStore);
+	
 
 	if (m_isDebug) {
+		m_registry->GetSystem<SnapLinesSystem>().Update(m_renderer, m_camera);
 		m_registry->GetSystem<RenderColliderSystem>().Update(m_renderer, m_camera);
+		
 		//ImGui_ImplSDLRenderer2_NewFrame();
 		//ImGui_ImplSDL2_NewFrame();
 		//ImGui::NewFrame();

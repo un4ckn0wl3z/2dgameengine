@@ -182,6 +182,7 @@
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MousePressedEvent.h" />
+    <ClCompile Include="SnapLinesSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationComponent.h" />
