@@ -5,18 +5,8 @@
 #include "Logger.h"
 #include "ECS.h"
 #include <iostream>
-#include "TransformComponent.h"
-#include "RigidBodyComponent.h"
-#include "AnimationComponent.h"
-#include "BoxColliderComponent.h"
-#include "KeyboardControlledComponent.h"
-#include "CameraFollowComponent.h"
-#include "ProjectileEmitterComponent.h"
-#include "HealthComponent.h"
-
 
 #include "MovementSystem.h"
-#include "SpriteComponent.h"
 #include "RenderSystem.h"
 #include "CollisionSystem.h"
 #include "RenderColliderSystem.h"
@@ -36,7 +26,6 @@
 #include "KeypressedEvent.h"
 #include "MousePressedEvent.h"
 
-#include "TextLabelComponent.h"
 
 #include "imgui.h"
 #include "imgui_impl_sdl2.h"
