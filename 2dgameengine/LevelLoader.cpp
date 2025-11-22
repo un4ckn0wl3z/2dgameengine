@@ -31,7 +31,7 @@ void LevelLoader::LoadLevel(
 	SDL_Renderer* renderer,
 	int level) {
 
-	// dynamic loading from lua script
+	// dynamic loading level from lua script
 
 
 
