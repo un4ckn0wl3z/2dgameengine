@@ -24,7 +24,7 @@ void TestLua() {
     lua.script_file("./assets/scripts/myscript.lua");
 
     int l_some_val = lua["some_val"];
-    std::cout << "The valur of some variable inside c++ is: " << l_some_val << std::endl;
+    std::cout << "The value of some variable inside c++ is: " << l_some_val << std::endl;
 
 }
 
