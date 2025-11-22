@@ -35,9 +35,7 @@ void LevelLoader::LoadLevel(
 
 
 
-
-
-	//// Adding assets
+	// Adding assets
 	//assetStore->AddTexture(renderer, "tank-image", "./assets/images/tank-panther-right.png");
 	//assetStore->AddTexture(renderer, "truck-image", "./assets/images/truck-ford-right.png");
 	//assetStore->AddTexture(renderer, "chopper-image", "./assets/images/chopper-spritesheet.png");
