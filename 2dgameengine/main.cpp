@@ -36,6 +36,12 @@ void TestLua() {
     std::cout << "We read the value width: " << width << std::endl;
     std::cout << "We read the value height: " << height << std::endl;
 
+    sol::function l_fac = lua["fac"];
+    int l_fac_result = l_fac(5);
+
+    std::cout << "5! from lua: " << l_fac_result << std::endl;
+
+
 }
 
 int main(int argc, char* argv[]){
