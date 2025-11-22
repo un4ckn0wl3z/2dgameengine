@@ -26,6 +26,16 @@ void TestLua() {
     int l_some_var = lua["some_var"];
     std::cout << "The value of some variable inside c++ is: " << l_some_var << std::endl;
 
+    // get configs from lua script
+    bool isFullScreen = lua["config"]["fullscreen"];
+    sol::table config = lua["config"];
+    int width = config["resolution"]["width"];
+    int height = config["resolution"]["height"];
+
+    std::cout << "We read the value fullscreen: " << static_cast<bool>(isFullScreen) << std::endl;
+    std::cout << "We read the value width: " << width << std::endl;
+    std::cout << "We read the value height: " << height << std::endl;
+
 }
 
 int main(int argc, char* argv[]){
