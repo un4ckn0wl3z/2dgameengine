@@ -12,15 +12,14 @@
 #include "AnimationComponent.h"
 #include "KeyboardControlledComponent.h"
 #include "CameraFollowComponent.h"
-
+#include "Logger.h"
 
 LevelLoader::LevelLoader() {
-
+	Logger::Log("LevelLoader constrctor called!");
 }
 
 LevelLoader::~LevelLoader() {
-
-
+	Logger::Log("LevelLoader deconstrctor called!");
 }
 
 void LevelLoader::LoadLevel(
