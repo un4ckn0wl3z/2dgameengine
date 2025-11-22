@@ -200,7 +200,6 @@
     <ClInclude Include="KeyboardControlledComponent.h" />
     <ClInclude Include="KeyboardControlSystem.h" />
     <ClInclude Include="KeypressedEvent.h" />
-    <ClInclude Include="libs\lua\src\lua.hpp" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="ProjectileComponent.h" />
