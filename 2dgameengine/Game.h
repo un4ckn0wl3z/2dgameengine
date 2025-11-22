@@ -31,8 +31,7 @@ public:
 	void Update();
 	void Render();
 	void Destroy();
-	void LoadLevel(int level);
-
+ 
 	static int s_windowWidth;
 	static int s_windowsHeight;
 	static int s_mapWidth;

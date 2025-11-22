@@ -138,6 +138,7 @@
     <ClCompile Include="AssetStore.cpp" />
     <ClCompile Include="ECS.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="libs\imgui\src\imgui.cpp" />
     <ClCompile Include="libs\imgui\src\imgui_demo.cpp" />
     <ClCompile Include="libs\imgui\src\imgui_draw.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="KeyboardControlledComponent.h" />
     <ClInclude Include="KeyboardControlSystem.h" />
     <ClInclude Include="KeypressedEvent.h" />
+    <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="ProjectileComponent.h" />
