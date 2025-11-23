@@ -55,6 +55,9 @@
     <Filter Include="Source Files\Lua">
       <UniqueIdentifier>{f2bbc13f-4cc9-451f-86e3-20d8d58e5c17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Levels">
+      <UniqueIdentifier>{8cb04672-0443-4101-9b7f-2b96221151ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -302,5 +305,10 @@
     <ClInclude Include="LevelLoader.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\scripts\Level1.lua">
+      <Filter>Resource Files\Levels</Filter>
+    </None>
   </ItemGroup>
 </Project>

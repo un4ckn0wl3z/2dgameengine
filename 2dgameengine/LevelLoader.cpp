@@ -46,11 +46,11 @@ void LevelLoader::LoadLevel(sol::state& lua, const std::unique_ptr<Registry>& re
 
     int i = 0;
     while (true) {
-        sol::optional<sol::table> hasAsset = assets[i];
-        if (hasAsset == sol::nullopt) {
+        sol::optional<sol::table> assetsOpt = assets[i];
+        if (assetsOpt == sol::nullopt) {
             break;
         }
-        sol::table asset = assets[i];
+        sol::table asset = *assetsOpt;
         std::string assetType = asset["type"];
         std::string assetId = asset["id"];
         if (assetType == "texture") {
@@ -97,33 +97,33 @@ void LevelLoader::LoadLevel(sol::state& lua, const std::unique_ptr<Registry>& re
     sol::table entities = level["entities"];
     i = 0;
     while (true) {
-        sol::optional<sol::table> hasEntity = entities[i];
-        if (hasEntity == sol::nullopt) {
+        sol::optional<sol::table> entityOps = entities[i];
+        if (entityOps == sol::nullopt) {
             break;
         }
 
-        sol::table entity = entities[i];
+        sol::table entity = *entityOps;
 
         Entity newEntity = registry->CreateEntity();
 
         // Tag
-        sol::optional<std::string> tag = entity["tag"];
-        if (tag != sol::nullopt) {
+        sol::optional<std::string> tagOps = entity["tag"];
+        if (tagOps != sol::nullopt) {
             newEntity.Tag(entity["tag"]);
         }
 
         // Group
-        sol::optional<std::string> group = entity["group"];
-        if (group != sol::nullopt) {
+        sol::optional<std::string> groupOps = entity["group"];
+        if (groupOps != sol::nullopt) {
             newEntity.Group(entity["group"]);
         }
 
         // Components
-        sol::optional<sol::table> hasComponents = entity["components"];
-        if (hasComponents != sol::nullopt) {
+        sol::optional<sol::table> componentsOps = entity["components"];
+        if (componentsOps != sol::nullopt) {
             // Transform
-            sol::optional<sol::table> transform = entity["components"]["transform"];
-            if (transform != sol::nullopt) {
+            sol::optional<sol::table> transformOps = entity["components"]["transform"];
+            if (transformOps != sol::nullopt) {
                 newEntity.AddComponent<TransformComponent>(
                     glm::vec2(
                         entity["components"]["transform"]["position"]["x"],
@@ -138,8 +138,8 @@ void LevelLoader::LoadLevel(sol::state& lua, const std::unique_ptr<Registry>& re
             }
 
             // RigidBody
-            sol::optional<sol::table> rigidbody = entity["components"]["rigidbody"];
-            if (rigidbody != sol::nullopt) {
+            sol::optional<sol::table> rigidbodyOps = entity["components"]["rigidbody"];
+            if (rigidbodyOps != sol::nullopt) {
                 newEntity.AddComponent<RigidBodyComponent>(
                     glm::vec2(
                         entity["components"]["rigidbody"]["velocity"]["x"].get_or(0.0),
@@ -149,8 +149,8 @@ void LevelLoader::LoadLevel(sol::state& lua, const std::unique_ptr<Registry>& re
             }
 
             // Sprite
-            sol::optional<sol::table> sprite = entity["components"]["sprite"];
-            if (sprite != sol::nullopt) {
+            sol::optional<sol::table> spriteOps = entity["components"]["sprite"];
+            if (spriteOps != sol::nullopt) {
                 newEntity.AddComponent<SpriteComponent>(
                     entity["components"]["sprite"]["texture_asset_id"],
                     entity["components"]["sprite"]["width"],
@@ -163,8 +163,8 @@ void LevelLoader::LoadLevel(sol::state& lua, const std::unique_ptr<Registry>& re
             }
 
             // Animation
-            sol::optional<sol::table> animation = entity["components"]["animation"];
-            if (animation != sol::nullopt) {
+            sol::optional<sol::table> animationOps = entity["components"]["animation"];
+            if (animationOps != sol::nullopt) {
                 newEntity.AddComponent<AnimationComponent>(
                     entity["components"]["animation"]["num_frames"].get_or(1),
                     entity["components"]["animation"]["speed_rate"].get_or(1)
@@ -172,8 +172,8 @@ void LevelLoader::LoadLevel(sol::state& lua, const std::unique_ptr<Registry>& re
             }
 
             // BoxCollider
-            sol::optional<sol::table> collider = entity["components"]["boxcollider"];
-            if (collider != sol::nullopt) {
+            sol::optional<sol::table> colliderOps = entity["components"]["boxcollider"];
+            if (colliderOps != sol::nullopt) {
                 newEntity.AddComponent<BoxColliderComponent>(
                     entity["components"]["boxcollider"]["width"],
                     entity["components"]["boxcollider"]["height"],
@@ -185,16 +185,16 @@ void LevelLoader::LoadLevel(sol::state& lua, const std::unique_ptr<Registry>& re
             }
 
             // Health
-            sol::optional<sol::table> health = entity["components"]["health"];
-            if (health != sol::nullopt) {
+            sol::optional<sol::table> healthOps = entity["components"]["health"];
+            if (healthOps != sol::nullopt) {
                 newEntity.AddComponent<HealthComponent>(
                     static_cast<int>(entity["components"]["health"]["health_percentage"].get_or(100))
                 );
             }
 
             // ProjectileEmitter
-            sol::optional<sol::table> projectileEmitter = entity["components"]["projectile_emitter"];
-            if (projectileEmitter != sol::nullopt) {
+            sol::optional<sol::table> projectileEmitterOps = entity["components"]["projectile_emitter"];
+            if (projectileEmitterOps != sol::nullopt) {
                 newEntity.AddComponent<ProjectileEmitterComponent>(
                     glm::vec2(
                         entity["components"]["projectile_emitter"]["projectile_velocity"]["x"],
@@ -208,14 +208,14 @@ void LevelLoader::LoadLevel(sol::state& lua, const std::unique_ptr<Registry>& re
             }
 
             // CameraFollow
-            sol::optional<sol::table> cameraFollow = entity["components"]["camera_follow"];
-            if (cameraFollow != sol::nullopt) {
+            sol::optional<sol::table> cameraFollowOps = entity["components"]["camera_follow"];
+            if (cameraFollowOps != sol::nullopt) {
                 newEntity.AddComponent<CameraFollowComponent>();
             }
 
             // KeyboardControlled
-            sol::optional<sol::table> keyboardControlled = entity["components"]["keyboard_controller"];
-            if (keyboardControlled != sol::nullopt) {
+            sol::optional<sol::table> keyboardControlledOps = entity["components"]["keyboard_controller"];
+            if (keyboardControlledOps != sol::nullopt) {
                 newEntity.AddComponent<KeyboardControlledComponent>(
                     glm::vec2(
                         entity["components"]["keyboard_controller"]["up_velocity"]["x"],
