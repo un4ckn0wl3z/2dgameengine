@@ -189,10 +189,49 @@ void  Game::Setup() {
 	m_registry->AddSystem<RenderHealthBarSystem>();
 	m_registry->AddSystem<RenderGUISystem>();
 	m_registry->AddSystem<SnapLinesSystem>();
-
 	
 	LevelLoader loader;
 	m_lua.open_libraries(sol::lib::base, sol::lib::math);
+
+	// This checks the syntax of our script, but it does not execute the script
+	sol::load_result script = m_lua.load_file("./assets/scripts/GameInfo.lua");
+	if (!script.valid()) {
+		sol::error err = script;
+		std::string errorMessage = err.what();
+		Logger::Err("Error loading the lua script: " + errorMessage);
+		return;
+	}
+	// Executes the script using the Sol state
+	m_lua.script_file("./assets/scripts/GameInfo.lua");
+
+	sol::optional<std::string> title = m_lua["GameTitle"];
+	if (title != sol::nullopt) {
+		SDL_Color green = { 0, 255, 0 };
+		Entity label = m_registry->CreateEntity();
+		label.AddComponent<TextLabelComponent>(
+			glm::vec2(Game::s_windowWidth / 2 - 30, 10.0),
+			(*title).c_str(),
+			"charriot-font-20",
+			green,
+			true
+		);
+		label.Group("hud");
+	}
+
+	sol::optional<std::string> manual = m_lua["GameManual"];
+	if (title != sol::nullopt) {
+		SDL_Color green = { 0, 255, 0 };
+		Entity label = m_registry->CreateEntity();
+		label.AddComponent<TextLabelComponent>(
+			glm::vec2(10, Game::s_windowsHeight - 50),
+			(*manual).c_str(),
+			"charriot-font-9",
+			green,
+			true
+		);
+		label.Group("hud");
+	}
+
 	loader.LoadLevel(m_lua, m_registry, m_assetStore, m_renderer, 1);
 
 }

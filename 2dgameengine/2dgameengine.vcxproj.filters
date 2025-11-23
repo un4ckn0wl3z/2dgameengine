@@ -310,5 +310,8 @@
     <None Include="assets\scripts\Level1.lua">
       <Filter>Resource Files\Levels</Filter>
     </None>
+    <None Include="assets\scripts\GameInfo.Lua">
+      <Filter>Resource Files\Levels</Filter>
+    </None>
   </ItemGroup>
 </Project>

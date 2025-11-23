@@ -1,4 +1,4 @@
--- Define a table with the values of the first level
+-- Define a table with the values of the first leve
 Level = {
     ----------------------------------------------------
     -- Table to define the list of assets
@@ -10,7 +10,11 @@ Level = {
         { type = "texture", id = "tank-texture",    file = "./assets/images/tank-tiger-right.png" },
         { type = "texture", id = "bullet-texture",  file = "./assets/images/bullet.png" },
         { type = "font"   , id = "pico8-font-5",    file = "./assets/fonts/pico8.ttf", font_size = 5 },
-        { type = "font"   , id = "pico8-font-10",   file = "./assets/fonts/pico8.ttf", font_size = 10 }
+        { type = "font"   , id = "pico8-font-10",   file = "./assets/fonts/pico8.ttf", font_size = 10 },
+        { type = "font"   , id = "charriot-font-20",file = "./assets/fonts/charriot.ttf", font_size = 20 },
+        { type = "font"   , id = "charriot-font-9",file = "./assets/fonts/charriot.ttf", font_size = 9 }
+
+
     },
 
     ----------------------------------------------------
