@@ -3,6 +3,8 @@
 #include "ECS.h"
 #include "AssetStore.h"
 #include "EventBus.h"
+#include "lua.hpp"
+#include "sol.hpp"
 
 const int FPS = 60;
 const int MILLISECS_PER_FRAME = 1000 / FPS;
@@ -19,6 +21,7 @@ private:
 	std::unique_ptr<AssetStore> m_assetStore;
 	std::unique_ptr<EventBus> m_eventBus;
 	SDL_Rect m_camera;
+	sol::state m_lua;
 
 
 public:

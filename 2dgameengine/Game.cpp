@@ -32,6 +32,8 @@
 #include "imgui_impl_sdlrenderer2.h"
 
 #include "LevelLoader.h"
+#include "lua.hpp"
+#include "sol.hpp"
 
 int Game::s_windowWidth;
 int Game::s_windowsHeight;
@@ -190,7 +192,8 @@ void  Game::Setup() {
 
 	
 	LevelLoader loader;
-	loader.LoadLevel(m_registry, m_assetStore, m_renderer, 1);
+	m_lua.open_libraries(sol::lib::base, sol::lib::math);
+	loader.LoadLevel(m_lua, m_registry, m_assetStore, m_renderer, 1);
 
 }
 
