@@ -49,7 +49,7 @@ public:
 			static float projSpeed = 100.0;
 			static int projRepeat = 10;
 			static int projDuration = 10;
-			const char* sprites[] = { "tank-image", "truck-image" };
+			const char* sprites[] = { "tank-texture" };
 			static int selectedSpriteIndex = 0;
 
 
