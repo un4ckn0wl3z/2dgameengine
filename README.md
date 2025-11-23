@@ -15,3 +15,6 @@ A lightweight 2D game engine written in modern C++, inspired by Gustavo Pezzi’
 2. Open the solution (.sln) file in Microsoft Visual Studio.
 3. Set the build configuration to x64 / Debug.
 4. Build and run the project directly from Visual Studio.
+
+### Demo
+https://youtu.be/HBdYnMk3AKo
