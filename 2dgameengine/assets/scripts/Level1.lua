@@ -108,7 +108,7 @@ Level = {
                     projectile_velocity = { x = 100, y = 0 },
                     projectile_duration = 2, -- seconds
                     repeat_frequency = 1, -- seconds
-                    hit_percentage_damage = 20
+                    hit_percentage_damage = 20,
                     friendly = false
                 }
             }

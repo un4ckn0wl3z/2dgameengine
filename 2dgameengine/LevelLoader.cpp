@@ -30,21 +30,57 @@ void LevelLoader::LoadLevel(
 	const std::unique_ptr<Registry>& registry,
 	const std::unique_ptr<AssetStore>& assetStore,
 	SDL_Renderer* renderer,
-	int level) {
+	int levelNum) {
 
 	// dynamic loading level from lua script
 
-	sol::load_result script = lua.load_file("./assets/scripts/Level" + std::to_string(level) + ".lua");
+	sol::load_result script = lua.load_file("./assets/scripts/Level" + std::to_string(levelNum) + ".lua");
 	
 	// validate lua script first
 	if (!script.valid()) {
 		sol::error err = script;
 		std::string errMessage = err.what();
-		Logger::Err("Error loading script: Level" + std::to_string(level) + ".lua! cause: " + errMessage);
+		Logger::Err("Error loading script: Level" + std::to_string(levelNum) + ".lua! cause: " + errMessage);
 		return;
 	}
 	
-	Logger::Log("Level: " + std::to_string(level) + " loaded!");
+	Logger::Log("Level: " + std::to_string(levelNum) + " loaded!");
+
+	sol::table l_level = lua["Level"];
+
+	// Read level assets
+	sol::table l_assets = l_level["assets"];
+	int i = 0;
+	while (true) {
+		
+		sol::optional<sol::table> assetOpt = l_assets[i];
+		if (assetOpt == sol::nullopt) {
+			break;
+		}
+		sol::table asset = *assetOpt;
+		std::string assetType = asset["type"];
+		std::string assetId = asset["id"];
+
+		if (assetType == "texture") {
+			assetStore->AddTexture(renderer, assetId, asset["file"]);
+			Logger::Log("New asset loaded to the asset store id," + assetId);
+
+		}
+
+		if (assetType == "font") {
+			assetStore->AddFont(assetId, asset["file"], asset["font_size"]);
+			Logger::Log("New font loaded to the asset store id," + assetId);
+		}
+
+		i++;
+	}
+
+	// read tiles map
+
+
+	// read level entities and components
+
+
 
 
 
