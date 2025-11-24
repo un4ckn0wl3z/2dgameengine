@@ -191,6 +191,8 @@ void  Game::Setup() {
 	m_registry->AddSystem<RenderGUISystem>();
 	m_registry->AddSystem<SnapLinesSystem>();
 	m_registry->AddSystem<ScriptSystem>();
+
+	m_registry->GetSystem<ScriptSystem>().CreateLuaBindings(m_lua);
 	
 	LevelLoader loader;
 	m_lua.open_libraries(sol::lib::base, sol::lib::math, sol::lib::os);
@@ -272,7 +274,7 @@ void Game::Update() {
 
 	m_registry->GetSystem<ProjectileLifeCycleSystem>().Update();
 
-	m_registry->GetSystem<ScriptSystem>().Update();
+	m_registry->GetSystem<ScriptSystem>().Update(deltaTime, SDL_GetTicks());
 
 	// update entities
 	m_registry->Update();
