@@ -15,6 +15,7 @@
 #include "Logger.h"
 #include "lua.hpp"
 #include "sol.hpp"
+#include "ScriptComponent.h"
 
 
 LevelLoader::LevelLoader() {
@@ -235,6 +236,15 @@ void LevelLoader::LoadLevel(sol::state& lua, const std::unique_ptr<Registry>& re
                     )
                 );
             }
+
+            // Script
+            sol::optional<sol::table> scriptOps = entity["components"]["on_update_script"];
+            if (scriptOps != sol::nullopt) {
+                sol::function func = entity["components"]["on_update_script"][0];
+                newEntity.AddComponent<ScriptComponent>(func);
+            }
+
+
         }
         i++;
     }

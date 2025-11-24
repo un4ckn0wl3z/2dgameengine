@@ -179,3 +179,7 @@ Level = {
         }
     }
 }
+
+-- Define some useful global variables
+map_width = Level.tilemap.num_cols * Level.tilemap.tile_size * Level.tilemap.scale
+map_height = Level.tilemap.num_rows * Level.tilemap.tile_size * Level.tilemap.scale

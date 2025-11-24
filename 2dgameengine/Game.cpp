@@ -34,6 +34,7 @@
 #include "LevelLoader.h"
 #include "lua.hpp"
 #include "sol.hpp"
+#include "ScriptSystem.h"
 
 int Game::s_windowWidth;
 int Game::s_windowsHeight;
@@ -189,6 +190,7 @@ void  Game::Setup() {
 	m_registry->AddSystem<RenderHealthBarSystem>();
 	m_registry->AddSystem<RenderGUISystem>();
 	m_registry->AddSystem<SnapLinesSystem>();
+	m_registry->AddSystem<ScriptSystem>();
 	
 	LevelLoader loader;
 	m_lua.open_libraries(sol::lib::base, sol::lib::math, sol::lib::os);
@@ -269,6 +271,9 @@ void Game::Update() {
 	m_registry->GetSystem<ProjectileEmitSystem>().Update(m_registry);
 
 	m_registry->GetSystem<ProjectileLifeCycleSystem>().Update();
+
+	m_registry->GetSystem<ScriptSystem>().Update();
+
 	// update entities
 	m_registry->Update();
 
