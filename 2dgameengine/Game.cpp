@@ -191,7 +191,7 @@ void  Game::Setup() {
 	m_registry->AddSystem<SnapLinesSystem>();
 	
 	LevelLoader loader;
-	m_lua.open_libraries(sol::lib::base, sol::lib::math);
+	m_lua.open_libraries(sol::lib::base, sol::lib::math, sol::lib::os);
 
 	// This checks the syntax of our script, but it does not execute the script
 	sol::load_result script = m_lua.load_file("./assets/scripts/GameInfo.lua");
