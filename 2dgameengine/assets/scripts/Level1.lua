@@ -13,16 +13,16 @@ Level = {
     ----------------------------------------------------
     assets = {
         [0] =
-        { type = "texture", id = "tilemap-texture-day", file = "./assets/tilemaps/jungle.png" },
-        { type = "texture", id = "tilemap-texture-night", file = "./assets/tilemaps/jungle-night.png" },
-        { type = "texture", id = "chopper-texture", file = "./assets/images/chopper-green-spritesheet.png" },
-        { type = "texture", id = "tank-texture",    file = "./assets/images/tank-tiger-right.png" },
-        { type = "texture", id = "bullet-texture",  file = "./assets/images/bullet.png" },
-        { type = "font"   , id = "pico8-font-5",    file = "./assets/fonts/pico8.ttf", font_size = 5 },
-        { type = "font"   , id = "pico8-font-10",   file = "./assets/fonts/pico8.ttf", font_size = 10 },
-        { type = "font"   , id = "charriot-font-20",file = "./assets/fonts/charriot.ttf", font_size = 20 },
-        { type = "font"   , id = "charriot-font-9",file = "./assets/fonts/charriot.ttf", font_size = 9 }
-
+        { type = "texture", id = "tilemap-texture-day",     file = "./assets/tilemaps/jungle.png" },
+        { type = "texture", id = "tilemap-texture-night",   file = "./assets/tilemaps/jungle-night.png" },
+        { type = "texture", id = "f22-texture",             file = "./assets/images/f22-spritesheet.png" },
+        { type = "texture", id = "chopper-texture",         file = "./assets/images/chopper-green-spritesheet.png" },
+        { type = "texture", id = "tank-texture",            file = "./assets/images/tank-tiger-right.png" },
+        { type = "texture", id = "bullet-texture",          file = "./assets/images/bullet.png" },
+        { type = "font"   , id = "pico8-font-5",            file = "./assets/fonts/pico8.ttf", font_size = 5 },
+        { type = "font"   , id = "pico8-font-10",           file = "./assets/fonts/pico8.ttf", font_size = 10 },
+        { type = "font"   , id = "charriot-font-20",        file = "./assets/fonts/charriot.ttf", font_size = 20 },
+        { type = "font"   , id = "charriot-font-9",         file = "./assets/fonts/charriot.ttf", font_size = 9 }
 
     },
 
@@ -123,6 +123,57 @@ Level = {
                     repeat_frequency = 1, -- seconds
                     hit_percentage_damage = 20,
                     friendly = false
+                }
+            }
+        },
+                {
+            -- F-22 fighter jet
+            group = "enemies",
+            components = {
+                transform = {
+                    position = { x = 10, y = 10 },
+                    scale = { x = 1.0, y = 1.0 },
+                    rotation = 90.0, -- degrees
+                },
+                rigidbody = {
+                    velocity = { x = 0.0, y = 0.0 }
+                },
+                sprite = {
+                    texture_asset_id = "f22-texture",
+                    width = 32,
+                    height = 32,
+                    z_index = 5
+                },
+                animation = {
+                    num_frames = 2,
+                    speed_rate = 10 -- fps
+                },
+                boxcollider = {
+                    width = 32,
+                    height = 32
+                },
+                health = {
+                    health_percentage = 100
+                },
+                projectile_emitter = {
+                    projectile_velocity = { x = 200, y = 0 },
+                    projectile_duration = 1, -- secondsm
+                    repeat_frequency = 1, -- seconds
+                    hit_percentage_damage = 10,
+                    friendly = false
+                },
+                on_update_script = {
+                    [0] =
+                    function(entity, delta_time, ellapsed_time)
+                        print("Executing F-22 Lua script!")
+
+                        --[[
+                        -- change the position of the the airplane to follow a sine wave movement
+                        local new_x = ellapsed_time * 0.09
+                        local new_y = 200 + (math.sin(ellapsed_time * 0.001) * 50)
+                        set_position(entity, new_x, new_y) -- set the new position
+                        --]]
+                    end
                 }
             }
         }
